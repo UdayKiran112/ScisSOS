@@ -77,58 +77,26 @@ int scissos_schedule_priority(int *readyQ, int qsize)
 // Round Robin Algorithm --> Based on time slice
 int scissos_schedule_rr(int *readyQ, int qsize)
 {
-    if (qsize <= 0 || readyQ[0] == EMPTY)
-    {
+    if (qsize <= 0)
         return EMPTY;
-    }
 
-    // If this is the first scheduling
-    if (last_scheduled_index == -1)
+    int start_index = (last_scheduled_index + 1) % qsize;
+    int selected_pid = EMPTY;
+
+    // Loop through ready queue circularly to find the next valid process
+    for (int i = 0; i < qsize; i++)
     {
-        last_scheduled_index = 0;
-        printf("[SCHEDULER: ROUND ROBIN] Starting from first process (PID: %d)\n", readyQ[0]);
-        return readyQ[0];
-    }
-
-    // Find the position of the last scheduled process in current ready queue
-    int found_position = -1;
-    int last_scheduled_pid = readyQ[last_scheduled_index];
-
-    for (int i = 0; i < qsize && readyQ[i] != EMPTY; i++)
-    {
-        if (readyQ[i] == last_scheduled_pid)
+        int index = (start_index + i) % qsize;
+        if (readyQ[index] != EMPTY)
         {
-            found_position = i;
-            break;
+            selected_pid = readyQ[index];
+            last_scheduled_index = index; // Update last scheduled index
+            printf("[SCHEDULER: ROUND ROBIN] Selected process %d (position %d in queue)\n",
+                   selected_pid, index);
+            return selected_pid;
         }
     }
 
-    int next_index;
-
-    // If last scheduled process is still in ready queue
-    if (found_position != -1)
-    {
-        // Move to next process in circular fashion
-        next_index = (found_position + 1) % qsize;
-
-        // If we've wrapped around or hit an empty slot, go back to start
-        if (readyQ[next_index] == EMPTY)
-        {
-            next_index = 0;
-        }
-    }
-    else
-    {
-        // Last scheduled process is no longer in queue (blocked/completed)
-        // Start from the beginning or continue from last index
-        next_index = 0;
-    }
-
-    last_scheduled_index = next_index;
-    int selected_pid = readyQ[next_index];
-
-    printf("[SCHEDULER: ROUND ROBIN] Selected process %d (position %d in queue)\n",
-           selected_pid, next_index);
-
-    return selected_pid;
+    // No valid process found
+    return EMPTY;
 }
