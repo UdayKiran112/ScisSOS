@@ -90,6 +90,6 @@ void scissos_proc_delete(int pid);
 
 /** OS-related functions found in scissos_os.c file **/
 void scissos_initialise(void);
-void scissos_call_scheduler(void);
+void scissos_call_scheduler(char *scheduler);
 
 #endif
