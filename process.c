@@ -153,7 +153,7 @@ int scissos_proc_save(ScisSosProcess *process, FILE *process_info)
 }
 
 // run the process with the given PID
-int scissos_proc_run(int pid)
+int scissos_proc_run(int pid, char *scheduler)
 {
     // get pcb from process table
     ScisSosPCB *pcb = _proctable[pid - 1];
@@ -208,7 +208,7 @@ int scissos_proc_run(int pid)
     fprintf(stdout, "[STATUS] Process PID : %d moved from PC = %d to PC = %d, State = %d\n", pid, start_pc, pcb->pc, pcb->ps_state);
 
     // call scheduler
-    scissos_call_scheduler();
+    scissos_call_scheduler(scheduler);
 
     return 0;
 }

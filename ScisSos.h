@@ -85,7 +85,7 @@ extern int _blockQ_len = 0;             /* Length of Wait Queue */
 ScisSosProcess *scissos_proc_create(char *process_name, int size, int priority, int p_type);
 int scissos_proc_save(ScisSosProcess *process, FILE *process_info);
 void scissos_print_pcb(ScisSosProcess *process, FILE *pcb_info);
-int scissos_proc_run(int pid);
+int scissos_proc_run(int pid, char *scheduler);
 void scissos_proc_delete(int pid);
 
 /** OS-related functions found in scissos_os.c file **/

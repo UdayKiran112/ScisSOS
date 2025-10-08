@@ -1,4 +1,4 @@
-#include "ScisSos.h"
+#include "scheduling_algo.h"
 
 static int last_scheduled_index = -1;
 
@@ -75,7 +75,7 @@ int scissos_schedule_priority(int *readyQ, int qsize)
 }
 
 // Round Robin Algorithm --> Based on time slice
-int scissos_schedule(int *readyQ, int qsize)
+int scissos_schedule_rr(int *readyQ, int qsize)
 {
     if (qsize <= 0 || readyQ[0] == EMPTY)
     {

@@ -215,5 +215,5 @@ void scissos_call_scheduler(char *scheduler)
     fprintf(stdout, "=== SCHEDULER TERMINATED ===\n");
 
     // Run the selected process
-    scissos_proc_run(selected_pid);
+    scissos_proc_run(selected_pid, scheduler);
 }
