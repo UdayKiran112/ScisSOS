@@ -247,8 +247,8 @@ int scissos_proc_run(int pid, char *scheduler)
         }
 
         // short system call -> continue execution
-        fprintf(stdout, "[EXECUTING] Process PID %d executing instruction %d (Short Syscall)\n",
-                pid, instr->_inum);
+        // fprintf(stdout, "[EXECUTING] Process PID %d executing instruction %d (Short Syscall)\n",
+        //         pid, instr->_inum);
         pcb->pc++; // Move to next instruction
         exec_instr++;
 
