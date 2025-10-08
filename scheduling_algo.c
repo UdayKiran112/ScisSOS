@@ -82,31 +82,45 @@ int scissos_schedule_rr(int *readyQ, int qsize)
         return EMPTY;
     }
 
-    // If this is the first scheduling or last process is not in queue
+    // If this is the first scheduling
     if (last_scheduled_index == -1)
     {
         last_scheduled_index = 0;
-        printf("[SCHEDULER: ROUND ROBIN] Starting from first process\n");
+        printf("[SCHEDULER: ROUND ROBIN] Starting from first process (PID: %d)\n", readyQ[0]);
         return readyQ[0];
     }
 
-    // Find the previously scheduled process in current ready queue
-    int found_index = -1;
+    // Find the position of the last scheduled process in current ready queue
+    int found_position = -1;
+    int last_scheduled_pid = readyQ[last_scheduled_index];
+
     for (int i = 0; i < qsize && readyQ[i] != EMPTY; i++)
     {
-        if (i == last_scheduled_index && i < qsize)
+        if (readyQ[i] == last_scheduled_pid)
         {
-            found_index = i;
+            found_position = i;
             break;
         }
     }
 
-    // Move to next process in circular fashion
-    int next_index = (last_scheduled_index + 1) % qsize;
+    int next_index;
 
-    // Handle case where queue size changed
-    if (next_index >= qsize || readyQ[next_index] == EMPTY)
+    // If last scheduled process is still in ready queue
+    if (found_position != -1)
     {
+        // Move to next process in circular fashion
+        next_index = (found_position + 1) % qsize;
+
+        // If we've wrapped around or hit an empty slot, go back to start
+        if (readyQ[next_index] == EMPTY)
+        {
+            next_index = 0;
+        }
+    }
+    else
+    {
+        // Last scheduled process is no longer in queue (blocked/completed)
+        // Start from the beginning or continue from last index
         next_index = 0;
     }
 

@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 /****
  *  Constants defining OS parameters
@@ -76,9 +77,7 @@ typedef struct
 /** Defined in the scissos_os.c file                      **/
 extern ScisSosPCB *_proctable[MAXPROC]; /* Process Table */
 extern int _readyQ[MAXPROC];            /* Ready Queue */
-extern int _readyQ_len = 0;             /* Length of Ready Queue */
 extern int _blockQ[MAXPROC];            /* Wait Queue */
-extern int _blockQ_len = 0;             /* Length of Wait Queue */
 
 /** Process-related functions found in process.c file **/
 /** Some functions not meant for users are found in the file    **/

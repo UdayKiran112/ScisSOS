@@ -1,6 +1,10 @@
-#include "ScisSos.h"
+#include "scheduling_algo.h"
+#include "time.h"
 
 int _currentPID = EMPTY;
+ScisSosPCB *_proctable[MAXPROC] = {NULL};
+int _readyQ[MAXPROC] = {EMPTY};
+int _blockQ[MAXPROC] = {EMPTY};
 
 // Initialise the OS
 void scissos_initialise(void)
@@ -70,7 +74,7 @@ void scisos_update_queues(void)
 }
 
 // count ready processes
-void scissos_count_ready_processes(void)
+int scissos_count_ready_processes(void)
 {
     int count = 0;
 
@@ -82,7 +86,7 @@ void scissos_count_ready_processes(void)
         }
     }
 
-    _readyQ_len = count;
+    return count;
 }
 
 // check for active processes
@@ -109,7 +113,7 @@ void scissos_unblock_process(void)
 {
     for (int i = 0; i < MAXPROC; i++)
     {
-        if (_blockQ[i] == EMPTY)
+        if (_blockQ[i] != EMPTY)
         {
             int pid = _blockQ[i];
             ScisSosPCB *pcb = _proctable[pid - 1];
@@ -129,12 +133,13 @@ void scissos_call_scheduler(char *scheduler)
     fprintf(stdout, "=== SCHEDULER INVOKED ===\n");
 
     // unblock processes
-    scisos_unblock_process();
+    scissos_unblock_process();
 
     // update ready queue and block queue
     scisos_update_queues();
 
-    int ready_count = scisos_count_ready_processes();
+    int ready_count = scissos_count_ready_processes();
+
     fprintf(stdout, "Number of ready processes: %d\n", ready_count);
 
     // Print Ready queue
@@ -183,19 +188,19 @@ void scissos_call_scheduler(char *scheduler)
     int selected_pid;
     if (strcmp(scheduler, "fcfs") == 0)
     {
-        selected_pid = scissos_schedule_fcfs(_readyQ, _readyQ_len);
+        selected_pid = scissos_schedule_fcfs(_readyQ, ready_count);
     }
     else if (strcmp(scheduler, "sjf") == 0)
     {
-        selected_pid = scissos_schedule_sjf(_readyQ, _readyQ_len);
+        selected_pid = scissos_schedule_sjf(_readyQ, ready_count);
     }
     else if (strcmp(scheduler, "rr") == 0)
     {
-        selected_pid = scissos_schedule_rr(_readyQ, _readyQ_len);
+        selected_pid = scissos_schedule_rr(_readyQ, ready_count);
     }
     else if (strcmp(scheduler, "priority") == 0)
     {
-        selected_pid = scissos_schedule_priority(_readyQ, _readyQ_len);
+        selected_pid = scissos_schedule_priority(_readyQ, ready_count);
     }
 
     if (selected_pid <= 0 || selected_pid >= MAXPROC || _proctable[selected_pid] == NULL)

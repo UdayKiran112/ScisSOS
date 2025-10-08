@@ -107,7 +107,8 @@ ScisSosProcess *scissos_proc_create(char *process_name, int size, int priority, 
     // set process state to ready
     new_process->_pcb->ps_state = PS_RDY;
 
-    fprintf(stdout, "Process created: %s, PID: %d, UID: %d\n, Priority: %d\n, Type: %d\n", process_name, pid, uid, priority, p_type);
+    fprintf(stdout, "Process created: %s, PID: %d, UID: %d, Priority: %d, Type: %d\n",
+            process_name, pid, uid, priority, p_type);
 
     return new_process;
 }
