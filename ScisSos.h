@@ -80,10 +80,10 @@ extern int _blockQ[MAXPROC];            /* Wait Queue */
 
 /** Process-related functions found in scissos_processes.c file **/
 /** Some functions not meant for users are found in the file    **/
-ScisSosProcess *scissos_proc_create(char *, int, int, int);
-int scissos_proc_save(ScisSosProcess *, FILE *);
-void scissos_print_pcb(ScisSosProcess *, FILE *);
-int scissos_proc_run(int);
+ScisSosProcess *scissos_proc_create(char *process_name, int pid, int uid, int size);
+int scissos_proc_save(ScisSosProcess *process, FILE *process_info);
+void scissos_print_pcb(ScisSosProcess *process, FILE *pcb_info);
+int scissos_proc_run(int pid);
 
 /** OS-related functions found in scissos_os.c file **/
 void scissos_initialise(void);
