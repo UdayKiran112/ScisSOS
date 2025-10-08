@@ -26,7 +26,7 @@ void scissos_initialise(void)
 
     fprintf(stdout, "Process table initialised\n");
     fprintf(stdout, "Ready and Block Queues initialised\n");
-    fprintf(stdout, "=== ScisSOS Initialised ===\n");
+    fprintf(stdout, "=== ScisSOS Initialised ===\n\n");
 }
 
 // Update the ready and block queues
@@ -99,7 +99,8 @@ static int scisos_active_processes(void)
         {
             int state = pcb->ps_state;
 
-            if (state == PS_RDY || state == PS_RUN || state == PS_BLK || state == PS_SRDY || state == PS_SBLK)
+            if (state == PS_RDY || state == PS_RUN || state == PS_BLK ||
+                state == PS_SRDY || state == PS_SBLK)
             {
                 return 1; // Active process found
             }
@@ -129,17 +130,16 @@ void scissos_unblock_process(void)
             if (pcb != NULL && pcb->ps_state == PS_BLK)
             {
                 pcb->ps_state = PS_RDY;
-                fprintf(stdout, "[UNBLOCKED] Process PID : %d moved to READY state\n", pcb->pid);
+                fprintf(stdout, "[UNBLOCKED] Process PID %d moved to READY state\n", pcb->pid);
             }
         }
     }
 }
 
 // Call the scheduler to manage processes
-// Call the scheduler to manage processes
 void scissos_call_scheduler(char *scheduler)
 {
-    fprintf(stdout, "=== SCHEDULER INVOKED ===\n");
+    fprintf(stdout, "\n=== SCHEDULER INVOKED ===\n");
 
     // unblock processes
     scissos_unblock_process();
@@ -156,14 +156,15 @@ void scissos_call_scheduler(char *scheduler)
     {
         fprintf(stdout, "Ready Queue: [");
 
+        int first = 1;
         for (int i = 0; i < MAXPROC && _readyQ[i] != EMPTY; i++)
         {
-            fprintf(stdout, "%d ", _readyQ[i]);
-
-            if (i + 1 < MAXPROC && _readyQ[i + 1] != EMPTY)
+            if (!first)
             {
                 fprintf(stdout, ", ");
             }
+            fprintf(stdout, "%d", _readyQ[i]);
+            first = 0;
         }
         fprintf(stdout, "]\n");
     }
@@ -187,9 +188,10 @@ void scissos_call_scheduler(char *scheduler)
     // Change current running process to READY (if exists)
     if (_currentPID != EMPTY && _currentPID > 0 && _currentPID <= MAXPROC)
     {
-        if (_proctable[_currentPID - 1] != NULL && _proctable[_currentPID - 1]->ps_state == PS_RUN)
+        ScisSosPCB *current_pcb = _proctable[_currentPID - 1];
+        if (current_pcb != NULL && current_pcb->ps_state == PS_RUN)
         {
-            _proctable[_currentPID - 1]->ps_state = PS_RDY;
+            current_pcb->ps_state = PS_RDY;
         }
     }
 
@@ -214,6 +216,7 @@ void scissos_call_scheduler(char *scheduler)
     else
     {
         fprintf(stderr, "Error: Unknown scheduler '%s'\n", scheduler);
+        fprintf(stdout, "Available schedulers: fcfs, sjf, priority, rr\n");
         fprintf(stdout, "=== SCHEDULER TERMINATED ===\n");
         return;
     }

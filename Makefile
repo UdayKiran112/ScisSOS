@@ -1,34 +1,38 @@
-# Compiler and flags
-CC = gcc
-CFLAGS = -Wall -g
+# Makefile for ScisSOS
 
-# Executable name
-TARGET = run_os
+CC = gcc
+CFLAGS = -Wall -Wextra -g -std=c11
+LDFLAGS = 
 
 # Source files
-SRCS = main.c os.c process.c scheduling_algo.c
+SOURCES = main.c os.c process.c scheduling_algo.c
+OBJECTS = $(SOURCES:.c=.o)
+EXECUTABLE = run_os
 
-# Object files in obj/ folder
-OBJS = $(patsubst %.c,obj/%.o,$(SRCS))
+# Header files
+HEADERS = ScisSos.h scheduling_algo.h
 
-# Default target
-all: $(TARGET)
+all: $(EXECUTABLE)
 
-# Link object files to create executable
-$(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS)
+$(EXECUTABLE): $(OBJECTS)
+	$(CC) $(OBJECTS) -o $@ $(LDFLAGS)
 
-# Compile .c files to obj/%.o
-obj/%.o: %.c | obj
+%.o: %.c $(HEADERS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-# Create obj folder if it doesn't exist
-obj:
-	mkdir -p obj
-
-# Clean build files
 clean:
-	rm -rf obj $(TARGET)
+	rm -f $(OBJECTS) $(EXECUTABLE)
 
-# Phony targets
-.PHONY: all clean obj
+run_fcfs: $(EXECUTABLE)
+	./$(EXECUTABLE) fcfs
+
+run_sjf: $(EXECUTABLE)
+	./$(EXECUTABLE) sjf
+
+run_priority: $(EXECUTABLE)
+	./$(EXECUTABLE) priority
+
+run_rr: $(EXECUTABLE)
+	./$(EXECUTABLE) rr
+
+.PHONY: all clean run_fcfs run_sjf run_priority run_rr

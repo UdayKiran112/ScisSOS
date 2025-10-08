@@ -26,6 +26,7 @@ int main(int argc, char *argv[])
     if (argc != 2)
     {
         printf("Usage: %s <scheduler_name>\n", argv[0]);
+        printf("Available schedulers: fcfs, sjf, priority, rr\n");
         return 1;
     }
 
@@ -42,13 +43,18 @@ int main(int argc, char *argv[])
     for (int i = 0; i < NUM_PROCESSES; i++)
     {
         if (processes[i])
+        {
             scissos_print_pcb(processes[i], stdout);
+            printf("\n");
+        }
     }
 
     // Step 4: Start scheduling
     printf("\n*****************************************************\n");
     printf("*          Starting Process Scheduling             *\n");
-    printf("*****************************************************\n");
+    printf("*          Scheduler: %-28s *\n", argv[1]);
+    printf("*****************************************************\n\n");
+
     scissos_call_scheduler(argv[1]);
 
     // Step 5: Final statistics
@@ -61,12 +67,12 @@ int main(int argc, char *argv[])
                                "SUSP_READY", "SUSP_BLOCKED", "DEAD"};
 
     int dead_count = 0, active_count = 0;
-    for (int i = 1; i < MAXPROC; i++)
+    for (int i = 0; i < MAXPROC; i++)
     {
-        if (_proctable[i])
+        if (_proctable[i] != NULL)
         {
             printf("Process %d: %s (PC=%d/%d)\n",
-                   i, state_str[_proctable[i]->ps_state],
+                   _proctable[i]->pid, state_str[_proctable[i]->ps_state],
                    _proctable[i]->pc, _proctable[i]->size);
 
             if (_proctable[i]->ps_state == PS_DEAD)
@@ -79,14 +85,15 @@ int main(int argc, char *argv[])
     printf("\nCompleted Processes: %d\n", dead_count);
     printf("Active Processes: %d\n", active_count);
 
-    // Step 6: Cleanup
+    // Step 6: Cleanup - Delete processes through OS function
     printf("\n=== Cleaning up resources ===\n");
     for (int i = 0; i < NUM_PROCESSES; i++)
     {
-        if (processes[i])
+        if (processes[i] != NULL)
         {
-            scissos_proc_delete(processes[i]->_PID);
-            free(processes[i]);
+            int pid = processes[i]->_PID;
+            free(processes[i]);       // Free the process structure
+            scissos_proc_delete(pid); // Delete PCB from process table
         }
     }
 

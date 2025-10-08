@@ -13,7 +13,7 @@
 #define DEFPRIO 20    /* Default priority for process */
 #define EMPTY -100    /* Unfilled entries */
 #define MAXPGES 10    /* Max number of pages/process */
-#define DEFTS 6239    /* Default time slice */
+#define DEFTS 6       /* Default time slice */
 #define REG_THR 0.02  /* Normal process: 2% long calls */
 #define CMP_THR 0.001 /* Compute Intensive: 0.1% */
 #define IOE_THR 0.2   /* IO Intensive: 20% long calls */
@@ -22,7 +22,7 @@
 #define PS_NEW 0
 #define PS_RDY 1
 #define PS_RUN 2
-#define PS_BLK 3 /* Self-explanatory, I guess! */
+#define PS_BLK 3 
 #define PS_SRDY 4
 #define PS_SBLK 5
 #define PS_DEAD 6
@@ -74,21 +74,23 @@ typedef struct
 } ScisSosProcess;
 
 /** Data structures used by the OS to do its management actions **/
-/** Defined in the scissos_os.c file                      **/
 extern ScisSosPCB *_proctable[MAXPROC]; /* Process Table */
 extern int _readyQ[MAXPROC];            /* Ready Queue */
 extern int _blockQ[MAXPROC];            /* Wait Queue */
+extern int _currentPID;                 /* Current running process PID */
 
 /** Process-related functions found in process.c file **/
-/** Some functions not meant for users are found in the file    **/
 ScisSosProcess *scissos_proc_create(char *process_name, int size, int priority, int p_type);
 int scissos_proc_save(ScisSosProcess *process, FILE *process_info);
 void scissos_print_pcb(ScisSosProcess *process, FILE *pcb_info);
 int scissos_proc_run(int pid, char *scheduler);
 void scissos_proc_delete(int pid);
 
-/** OS-related functions found in scissos_os.c file **/
+/** OS-related functions found in os.c file **/
 void scissos_initialise(void);
 void scissos_call_scheduler(char *scheduler);
+void scisos_update_queues(void);
+int scissos_count_ready_processes(void);
+void scissos_unblock_process(void);
 
 #endif

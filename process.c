@@ -5,6 +5,12 @@ static int pid_counter = 1; // Global PID counter
 // Generate code for a process based on its type
 ScisSosInst **scissos_generate_code(int size, int p_type)
 {
+    if (size <= 0)
+    {
+        fprintf(stderr, "Error: Invalid size %d for code generation.\n", size);
+        return NULL;
+    }
+
     ScisSosInst **code = (ScisSosInst **)malloc(size * sizeof(ScisSosInst *));
     if (!code)
     {
@@ -29,6 +35,18 @@ ScisSosInst **scissos_generate_code(int size, int p_type)
     for (int i = 0; i < size; i++)
     {
         code[i] = (ScisSosInst *)malloc(sizeof(ScisSosInst));
+        if (!code[i])
+        {
+            fprintf(stderr, "Error: Memory allocation failed for instruction %d.\n", i);
+            // Free previously allocated instructions
+            for (int j = 0; j < i; j++)
+            {
+                free(code[j]);
+            }
+            free(code);
+            return NULL;
+        }
+
         code[i]->_inum = i;
 
         // Determine if this is a long or short system call
@@ -50,9 +68,16 @@ ScisSosInst **scissos_generate_code(int size, int p_type)
 }
 
 // Create and initialise a PCB
-void scissos_create_pcb(ScisSosProcess *process, int pid, int uid, int size, int priority, int p_type, ScisSosInst **code)
+void scissos_create_pcb(ScisSosProcess *process, int pid, int uid, int size,
+                        int priority, int p_type, ScisSosInst **code)
 {
     process->_pcb = (ScisSosPCB *)malloc(sizeof(ScisSosPCB));
+    if (!process->_pcb)
+    {
+        fprintf(stderr, "Error: Memory allocation failed for PCB.\n");
+        return;
+    }
+
     process->_pcb->pid = pid;
     process->_pcb->uid = uid;
     process->_pcb->size = size;
@@ -75,23 +100,44 @@ void scissos_create_pcb(ScisSosProcess *process, int pid, int uid, int size, int
 // Create a new process and return its pointer
 ScisSosProcess *scissos_proc_create(char *process_name, int size, int priority, int p_type)
 {
-    int pid, uid;
+    // Check size validity
+    if (size <= 0)
+    {
+        fprintf(stderr, "Error: Invalid size %d. Must be positive.\n", size);
+        return NULL;
+    }
 
-    pid = pid_counter++;
-    uid = rand() % MAXUSRS + 1; // Random UID between 1 and MAXUSRS
+    // Check if we have space in process table
+    if (pid_counter > MAXPROC)
+    {
+        fprintf(stderr, "Error: Process table full. Cannot create more processes.\n");
+        return NULL;
+    }
+
+    int pid = pid_counter++;
+    int uid = rand() % MAXUSRS + 1; // Random UID between 1 and MAXUSRS
 
     // Generate code for process
     ScisSosInst **code = scissos_generate_code(size, p_type);
-
-    // Check size validity
-    if (size < 0)
+    if (!code)
     {
-        fprintf(stderr, "Error: Invalid size %d. Must be non-negative.\n", size);
-        return NULL; // Invalid size
+        fprintf(stderr, "Error: Failed to generate code for process.\n");
+        return NULL;
     }
 
-    // Memory allocation
+    // Memory allocation for process structure
     ScisSosProcess *new_process = (ScisSosProcess *)malloc(sizeof(ScisSosProcess));
+    if (!new_process)
+    {
+        fprintf(stderr, "Error: Memory allocation failed for process structure.\n");
+        // Free the code
+        for (int i = 0; i < size; i++)
+        {
+            free(code[i]);
+        }
+        free(code);
+        return NULL;
+    }
 
     snprintf(new_process->_pname, sizeof(new_process->_pname), "%s", process_name);
     new_process->_PID = pid;
@@ -123,15 +169,22 @@ void scissos_print_pcb(ScisSosProcess *process, FILE *pcb_info)
         return;
     }
 
+    const char *state_names[] = {"NEW", "READY", "RUNNING", "BLOCKED",
+                                 "SUSP_READY", "SUSP_BLOCKED", "DEAD"};
+    const char *type_names[] = {"REGULAR", "COMPUTE_INTENSIVE", "IO_INTENSIVE"};
+
+    fprintf(pcb_info, "----------------------------------------\n");
+    fprintf(pcb_info, "Process Name: %s\n", process->_pname);
     fprintf(pcb_info, "PID: %d\n", process->_pcb->pid);
     fprintf(pcb_info, "UID: %d\n", process->_pcb->uid);
     fprintf(pcb_info, "Size: %d\n", process->_pcb->size);
     fprintf(pcb_info, "Priority: %d\n", process->_pcb->priority_value);
-    fprintf(pcb_info, "State: %d\n", process->_pcb->ps_state);
-    fprintf(pcb_info, "Type: %d\n", process->_pcb->p_type);
+    fprintf(pcb_info, "State: %s (%d)\n", state_names[process->_pcb->ps_state], process->_pcb->ps_state);
+    fprintf(pcb_info, "Type: %s (%d)\n", type_names[process->_pcb->p_type], process->_pcb->p_type);
     fprintf(pcb_info, "Memory Type: %d\n", process->_pcb->m_type);
     fprintf(pcb_info, "Program Counter: %d\n", process->_pcb->pc);
     fprintf(pcb_info, "Time Slice: %d\n", process->_pcb->p_timeslice);
+    fprintf(pcb_info, "----------------------------------------\n");
 }
 
 // save the process information to a file
@@ -156,16 +209,23 @@ int scissos_proc_save(ScisSosProcess *process, FILE *process_info)
 // run the process with the given PID
 int scissos_proc_run(int pid, char *scheduler)
 {
+    // Validate PID
+    if (pid < 1 || pid > MAXPROC)
+    {
+        fprintf(stderr, "Error: Invalid PID %d.\n", pid);
+        return -1;
+    }
+
     // get pcb from process table
     ScisSosPCB *pcb = _proctable[pid - 1];
 
     if (pcb == NULL)
     {
-        fprintf(stderr, "Error: Process not found.\n");
+        fprintf(stderr, "Error: Process with PID %d not found.\n", pid);
         return -1;
     }
 
-    fprintf(stdout, "[RUNNING] Process PID : %d starting from PC = %d\n", pid, pcb->pc);
+    fprintf(stdout, "\n[RUNNING] Process PID %d starting from PC = %d\n", pid, pcb->pc);
 
     int exec_instr = 0; /* Number of instructions executed */
     int start_pc = pcb->pc;
@@ -178,7 +238,8 @@ int scissos_proc_run(int pid, char *scheduler)
         // long system call -> block the process
         if (instr->_syscall == INS_LNG)
         {
-            fprintf(stdout, "[BLOCKED] Process PID : %d on instruction %d (Long Syscall)\n", pid, instr->_inum);
+            fprintf(stdout, "[BLOCKED] Process PID %d on instruction %d (Long Syscall)\n",
+                    pid, instr->_inum);
             pcb->pc++; // Move to next instruction
             pcb->ps_state = PS_BLK;
             exec_instr++;
@@ -186,14 +247,16 @@ int scissos_proc_run(int pid, char *scheduler)
         }
 
         // short system call -> continue execution
-        fprintf(stdout, "[EXECUTING] Process PID : %d executing instruction %d (Short Syscall)\n", pid, instr->_inum);
+        fprintf(stdout, "[EXECUTING] Process PID %d executing instruction %d (Short Syscall)\n",
+                pid, instr->_inum);
         pcb->pc++; // Move to next instruction
         exec_instr++;
 
         // time quantum exhaustion case
         if (exec_instr >= pcb->p_timeslice)
         {
-            fprintf(stdout, "[TIME SLICE EXHAUSTED] Process PID : %d after executing %d instructions\n", pid, exec_instr);
+            fprintf(stdout, "[TIME SLICE EXHAUSTED] Process PID %d after executing %d instructions\n",
+                    pid, exec_instr);
             pcb->ps_state = PS_RDY;
             break;
         }
@@ -202,13 +265,14 @@ int scissos_proc_run(int pid, char *scheduler)
     // check for process completion
     if (pcb->pc >= pcb->size)
     {
-        fprintf(stdout, "[COMPLETED] Process PID : %d completed\n", pid);
+        fprintf(stdout, "[COMPLETED] Process PID %d completed\n", pid);
         pcb->ps_state = PS_DEAD;
     }
 
-    fprintf(stdout, "[STATUS] Process PID : %d moved from PC = %d to PC = %d, State = %d\n", pid, start_pc, pcb->pc, pcb->ps_state);
+    fprintf(stdout, "[STATUS] Process PID %d moved from PC = %d to PC = %d, State = %d\n",
+            pid, start_pc, pcb->pc, pcb->ps_state);
 
-    // call scheduler
+    // call scheduler recursively
     scissos_call_scheduler(scheduler);
 
     return 0;
@@ -220,7 +284,7 @@ void scissos_proc_delete(int pid)
     // Error handling
     if (pid < 1 || pid > MAXPROC)
     {
-        fprintf(stderr, "Error: Invalid PID %d.\n", pid); // Invalid PID
+        fprintf(stderr, "Error: Invalid PID %d.\n", pid);
         return;
     }
 
@@ -228,7 +292,7 @@ void scissos_proc_delete(int pid)
 
     if (pcb == NULL)
     {
-        fprintf(stderr, "Error: Process with PID %d not found.\n", pid); // Process not found
+        // Process already deleted or doesn't exist
         return;
     }
 
@@ -250,4 +314,6 @@ void scissos_proc_delete(int pid)
 
     // Remove from process table
     _proctable[pid - 1] = NULL;
+
+    fprintf(stdout, "Process PID %d deleted from system\n", pid);
 }
