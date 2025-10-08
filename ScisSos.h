@@ -80,12 +80,13 @@ extern int _readyQ_len = 0;             /* Length of Ready Queue */
 extern int _blockQ[MAXPROC];            /* Wait Queue */
 extern int _blockQ_len = 0;             /* Length of Wait Queue */
 
-/** Process-related functions found in scissos_processes.c file **/
+/** Process-related functions found in process.c file **/
 /** Some functions not meant for users are found in the file    **/
-ScisSosProcess *scissos_proc_create(char *process_name, int pid, int uid, int size);
+ScisSosProcess *scissos_proc_create(char *process_name, int size, int priority, int p_type);
 int scissos_proc_save(ScisSosProcess *process, FILE *process_info);
 void scissos_print_pcb(ScisSosProcess *process, FILE *pcb_info);
 int scissos_proc_run(int pid);
+void scissos_proc_delete(int pid);
 
 /** OS-related functions found in scissos_os.c file **/
 void scissos_initialise(void);
