@@ -3,6 +3,17 @@
 // Create a new process and return its pointer
 ScisSosProcess *scissos_proc_create(char *process_name, int pid, int uid, int size)
 {
+    // Check PID validity
+    if (pid < 0 || pid >= MAXPROC)
+    {
+        return NULL; // Invalid PID
+    }
+
+    // Check UID validity
+    if (uid < 0 || uid >= MAXUSRS)
+    {
+        return NULL; // Invalid UID
+    }
 }
 
 // save the process information to a file
