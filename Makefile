@@ -3,11 +3,13 @@ CC = gcc
 CFLAGS = -Wall -g
 
 # Executable name
-TARGET = scissos_sim
+TARGET = run_os
 
 # Source files
 SRCS = main.c os.c process.c scheduling_algo.c
-OBJS = $(SRCS:.c=.o)
+
+# Object files in obj/ folder
+OBJS = $(patsubst %.c,obj/%.o,$(SRCS))
 
 # Default target
 all: $(TARGET)
@@ -16,13 +18,17 @@ all: $(TARGET)
 $(TARGET): $(OBJS)
 	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS)
 
-# Compile .c files to .o
-%.o: %.c
+# Compile .c files to obj/%.o
+obj/%.o: %.c | obj
 	$(CC) $(CFLAGS) -c $< -o $@
+
+# Create obj folder if it doesn't exist
+obj:
+	mkdir -p obj
 
 # Clean build files
 clean:
-	rm -f $(OBJS) $(TARGET)
+	rm -rf obj $(TARGET)
 
 # Phony targets
-.PHONY: all clean
+.PHONY: all clean obj
