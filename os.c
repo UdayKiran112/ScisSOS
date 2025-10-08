@@ -116,6 +116,14 @@ void scissos_unblock_process(void)
         if (_blockQ[i] != EMPTY)
         {
             int pid = _blockQ[i];
+
+            // Add bounds check
+            if (pid < 1 || pid > MAXPROC)
+            {
+                fprintf(stderr, "Warning: Invalid PID %d in block queue\n", pid);
+                continue;
+            }
+
             ScisSosPCB *pcb = _proctable[pid - 1];
 
             if (pcb != NULL && pcb->ps_state == PS_BLK)
@@ -127,6 +135,7 @@ void scissos_unblock_process(void)
     }
 }
 
+// Call the scheduler to manage processes
 // Call the scheduler to manage processes
 void scissos_call_scheduler(char *scheduler)
 {
@@ -176,16 +185,16 @@ void scissos_call_scheduler(char *scheduler)
     }
 
     // Change current running process to READY (if exists)
-    if (_currentPID != EMPTY && _proctable[_currentPID] != NULL)
+    if (_currentPID != EMPTY && _currentPID > 0 && _currentPID <= MAXPROC)
     {
-        if (_proctable[_currentPID]->ps_state == PS_RUN)
+        if (_proctable[_currentPID - 1] != NULL && _proctable[_currentPID - 1]->ps_state == PS_RUN)
         {
-            _proctable[_currentPID]->ps_state = PS_RDY;
+            _proctable[_currentPID - 1]->ps_state = PS_RDY;
         }
     }
 
     // call scheduling_algo
-    int selected_pid;
+    int selected_pid = EMPTY;
     if (strcmp(scheduler, "fcfs") == 0)
     {
         selected_pid = scissos_schedule_fcfs(_readyQ, ready_count);
@@ -202,8 +211,15 @@ void scissos_call_scheduler(char *scheduler)
     {
         selected_pid = scissos_schedule_priority(_readyQ, ready_count);
     }
+    else
+    {
+        fprintf(stderr, "Error: Unknown scheduler '%s'\n", scheduler);
+        fprintf(stdout, "=== SCHEDULER TERMINATED ===\n");
+        return;
+    }
 
-    if (selected_pid <= 0 || selected_pid >= MAXPROC || _proctable[selected_pid] == NULL)
+    // check for valid selected_pid
+    if (selected_pid <= 0 || selected_pid > MAXPROC || _proctable[selected_pid - 1] == NULL)
     {
         fprintf(stdout, "Invalid process with PID %d selected for scheduling\n", selected_pid);
         fprintf(stdout, "Scheduler terminating\n");
@@ -214,7 +230,7 @@ void scissos_call_scheduler(char *scheduler)
     printf("\n[SCHEDULED] Process %d selected for execution\n", selected_pid);
 
     // update process state to running
-    _proctable[selected_pid]->ps_state = PS_RUN;
+    _proctable[selected_pid - 1]->ps_state = PS_RUN;
     _currentPID = selected_pid;
 
     fprintf(stdout, "=== SCHEDULER TERMINATED ===\n");

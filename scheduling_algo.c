@@ -11,6 +11,10 @@ int scissos_schedule_fcfs(int *readyQ, int qsize)
     }
 
     printf("[SCHEDULER: FCFS] Selecting first process in queue\n");
+    if (readyQ[0] == EMPTY)
+    {
+        return EMPTY;
+    }
     return readyQ[0];
 }
 
