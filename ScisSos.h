@@ -13,7 +13,7 @@
 #define DEFPRIO 20    /* Default priority for process */
 #define EMPTY -100    /* Unfilled entries */
 #define MAXPGES 10    /* Max number of pages/process */
-#define DEFTS 6239       /* Default time slice */
+#define DEFTS 6239    /* Default time slice */
 #define REG_THR 0.02  /* Normal process: 2% long calls */
 #define CMP_THR 0.001 /* Compute Intensive: 0.1% */
 #define IOE_THR 0.2   /* IO Intensive: 20% long calls */
@@ -22,7 +22,7 @@
 #define PS_NEW 0
 #define PS_RDY 1
 #define PS_RUN 2
-#define PS_BLK 3 
+#define PS_BLK 3
 #define PS_SRDY 4
 #define PS_SBLK 5
 #define PS_DEAD 6
@@ -80,17 +80,18 @@ extern int _blockQ[MAXPROC];            /* Wait Queue */
 extern int _currentPID;                 /* Current running process PID */
 
 /** Process-related functions found in process.c file **/
-ScisSosProcess *scissos_proc_create(char *process_name, int size, int priority, int p_type);
-int scissos_proc_save(ScisSosProcess *process, FILE *process_info);
-void scissos_print_pcb(ScisSosProcess *process, FILE *pcb_info);
-int scissos_proc_run(int pid, char *scheduler);
-void scissos_proc_delete(int pid);
+ScisSosProcess *scissos_proc_create(char *process_name, int size, int priority, int p_type); /* Create a new process */
+int scissos_proc_save(ScisSosProcess *process, FILE *process_info);                          /* Save process info to file */
+void scissos_print_pcb(ScisSosProcess *process, FILE *pcb_info);                             /* Print PCB info */
+int scissos_proc_run(int pid, char *scheduler);                                              /* Run the process with given PID */
+void scissos_proc_delete(int pid);                                                           /* Delete the process with given PID */
 
 /** OS-related functions found in os.c file **/
-void scissos_initialise(void);
-void scissos_call_scheduler(char *scheduler);
-void scisos_update_queues(void);
-int scissos_count_ready_processes(void);
-void scissos_unblock_process(void);
+void scissos_initialise(void);                /* Initialise the OS */
+void scissos_call_scheduler(char *scheduler); /* Call the scheduler */
+void scisos_update_queues(void);              /* Update the ready and block queues */
+int scissos_count_ready_processes(void);      /* Count ready processes */
+void scissos_unblock_process(void);           /* Unblock processes */
+int scisos_active_processes(void);            /* Check for active processes */
 
 #endif

@@ -90,7 +90,7 @@ int scissos_count_ready_processes(void)
 }
 
 // check for active processes
-static int scisos_active_processes(void)
+int scisos_active_processes(void)
 {
     for (int i = 0; i < MAXPROC; i++)
     {
@@ -177,13 +177,13 @@ void scissos_call_scheduler(char *scheduler)
         return;
     }
 
-    // if no ready processes --> terminate
-    if (ready_count == 0)
-    {
-        fprintf(stdout, "No ready processes --- Scheduler terminating\n");
-        fprintf(stdout, "=== SCHEDULER TERMINATED ===\n");
-        return;
-    }
+    // // if no ready processes --> terminate
+    // if (ready_count == 0)
+    // {
+    //     fprintf(stdout, "No ready processes --- Scheduler terminating\n");
+    //     fprintf(stdout, "=== SCHEDULER TERMINATED ===\n");
+    //     return;
+    // }
 
     // Change current running process to READY (if exists)
     if (_currentPID != EMPTY && _currentPID > 0 && _currentPID <= MAXPROC)

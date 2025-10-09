@@ -55,7 +55,25 @@ int main(int argc, char *argv[])
     printf("*          Scheduler: %-28s *\n", argv[1]);
     printf("*****************************************************\n\n");
 
-    scissos_call_scheduler(argv[1]);
+    // ✅ FIX: Loop until all processes complete
+    int iteration = 0;
+    while (scisos_active_processes())
+    {
+        iteration++;
+        printf("\n--- Scheduling Iteration %d ---\n", iteration);
+
+        scissos_call_scheduler(argv[1]);
+
+        // Safety check to prevent infinite loops during development
+        if (iteration > 10000)
+        {
+            fprintf(stderr, "\n[ERROR] Maximum iterations exceeded!\n");
+            fprintf(stderr, "Possible infinite loop detected.\n");
+            break;
+        }
+    }
+
+    printf("\n[INFO] All processes completed after %d scheduling iterations\n", iteration);
 
     // Step 5: Final statistics
     printf("\n*****************************************************\n");
@@ -85,15 +103,16 @@ int main(int argc, char *argv[])
     printf("\nCompleted Processes: %d\n", dead_count);
     printf("Active Processes: %d\n", active_count);
 
-    // Step 6: Cleanup - Delete processes through OS function
+    // Step 6: Cleanup
     printf("\n=== Cleaning up resources ===\n");
-    for (int i = 0; i < NUM_PROCESSES; i++)
+
+    // Delete all processes
+    for (int i = 0; i < MAXPROC; i++)
     {
-        if (processes[i] != NULL)
+        if (_proctable[i] != NULL)
         {
-            int pid = processes[i]->_PID;
-            free(processes[i]);       // Free the process structure
-            scissos_proc_delete(pid); // Delete PCB from process table
+            int pid = _proctable[i]->pid;
+            scissos_proc_delete(pid); 
         }
     }
 
