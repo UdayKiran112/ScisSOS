@@ -14,8 +14,7 @@ const char *algorithms[ALGO_COUNT] = {"fcfs", "sjf", "priority", "rr"};
 
 double run_once(const char *algo)
 {
-    struct timespec start, end;
-    clock_gettime(CLOCK_MONOTONIC, &start);
+    struct timespec start;
 
     pid_t pid = fork();
     if (pid == 0)
@@ -31,18 +30,28 @@ double run_once(const char *algo)
         dup2(devnull, STDERR_FILENO);
         close(devnull);
 
+        // Measure child process CPU time only
+        clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &start);
+
         execl("./run_os", "run_os", algo, (char *)NULL);
         perror("execl failed");
         exit(1);
     }
     else if (pid > 0)
     {
+        // Parent: wait for child to finish
         int status;
-        waitpid(pid, &status, 0);
-        clock_gettime(CLOCK_MONOTONIC, &end);
+        struct timespec usage_start, usage_end;
 
-        return (end.tv_sec - start.tv_sec) +
-               (end.tv_nsec - start.tv_nsec) / 1e9;
+        // Measure CPU time of child using /proc after it exits
+        clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &usage_start);
+        waitpid(pid, &status, 0);
+        clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &usage_end);
+
+        double cpu_time = (usage_end.tv_sec - usage_start.tv_sec) +
+                          (usage_end.tv_nsec - usage_start.tv_nsec) / 1e9;
+
+        return cpu_time;
     }
     else
     {
@@ -56,7 +65,7 @@ void benchmark_algorithm(const char *algo)
     double total = 0.0, min = 1e9, max = 0.0;
     double time;
 
-    printf("Benchmarking: %s\n", algo);
+    fprintf(stdout, "Benchmarking (CPU Time): %s\n", algo);
 
     for (int i = 0; i < NUM_RUNS; i++)
     {
@@ -68,14 +77,18 @@ void benchmark_algorithm(const char *algo)
         }
         total += time;
         if (time < min)
+        {
             min = time;
+        }
         if (time > max)
+        {
             max = time;
+        }
     }
 
-    printf("→ Average time: %.6f seconds (over %d runs)\n", total / NUM_RUNS, NUM_RUNS);
-    printf("→ Min time:     %.6f seconds\n", min);
-    printf("→ Max time:     %.6f seconds\n\n", max);
+    fprintf(stdout, "→ Average CPU time: %.6f seconds (over %d runs)\n", total / NUM_RUNS, NUM_RUNS);
+    fprintf(stdout, "→ Min CPU time:     %.6f seconds\n", min);
+    fprintf(stdout, "→ Max CPU time:     %.6f seconds\n\n", max);
 }
 
 int main()

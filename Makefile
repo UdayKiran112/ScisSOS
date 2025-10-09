@@ -1,7 +1,7 @@
 # Makefile for ScisSOS
 
 CC = gcc
-CFLAGS = -Wall -Wextra -g -std=c11
+CFLAGS = -Wall -Wextra -g 
 LDFLAGS = 
 
 # Directories
@@ -17,7 +17,7 @@ TEST_EXECUTABLE = test_perf
 # Header files
 HEADERS = ScisSos.h scheduling_algo.h
 
-all: $(OBJ_DIR) $(EXECUTABLE)
+all: $(OBJ_DIR) $(EXECUTABLE) $(TEST_EXECUTABLE)
 
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
