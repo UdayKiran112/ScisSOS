@@ -230,7 +230,7 @@ void scissos_call_scheduler(char *scheduler)
         return;
     }
 
-    printf("\n[SCHEDULED] Process %d selected for execution\n", selected_pid);
+    fprintf(stdout, "\n[SCHEDULED] Process %d selected for execution\n", selected_pid);
 
     // update process state to running
     _proctable[selected_pid - 1]->ps_state = PS_RUN;

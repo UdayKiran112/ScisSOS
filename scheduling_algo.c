@@ -10,7 +10,7 @@ int scissos_schedule_fcfs(int *readyQ, int qsize)
         return EMPTY;
     }
 
-    printf("[SCHEDULER: FCFS] Selecting first process in queue\n");
+    fprintf(stdout, "[SCHEDULER: FCFS] Selecting first process in queue\n");
     return readyQ[0];
 }
 
@@ -61,8 +61,8 @@ int scissos_schedule_sjf(int *readyQ, int qsize)
         }
     }
 
-    printf("[SCHEDULER: SJF] Selected process %d (remaining=%d instructions)\n",
-           selected_pid, remaining);
+    fprintf(stdout, "[SCHEDULER: SJF] Selected process %d (remaining=%d instructions)\n",
+            selected_pid, remaining);
 
     return selected_pid;
 }
@@ -114,8 +114,8 @@ int scissos_schedule_priority(int *readyQ, int qsize)
         }
     }
 
-    printf("[SCHEDULER: PRIORITY] Selected process %d (priority=%d)\n",
-           selected_pid, highest_priority);
+    fprintf(stdout, "[SCHEDULER: PRIORITY] Selected process %d (priority=%d)\n",
+            selected_pid, highest_priority);
 
     return selected_pid;
 }
@@ -151,8 +151,8 @@ int scissos_schedule_rr(int *readyQ, int qsize)
             {
                 selected_pid = pid;
                 last_scheduled_index = index; // Update last scheduled index
-                printf("[SCHEDULER: ROUND ROBIN] Selected process %d (position %d in queue)\n",
-                       selected_pid, index);
+                fprintf(stdout, "[SCHEDULER: ROUND ROBIN] Selected process %d (position %d in queue)\n",
+                        selected_pid, index);
                 return selected_pid;
             }
             else
