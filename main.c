@@ -17,16 +17,16 @@ void create_processes(ScisSosProcess *processes[])
     processes[8] = scissos_proc_create("Terminal", 25, 12, PT_REG);
     processes[9] = scissos_proc_create("ImageEditor", 55, 6, PT_IOE);
 
-    printf("\n=== Process Creation Complete ===\n");
-    printf("Total processes created: %d\n\n", NUM_PROCESSES);
+    fprintf(stdout, "\n=== Process Creation Complete ===\n");
+    fprintf(stdout, "Total processes created: %d\n\n", NUM_PROCESSES);
 }
 
 int main(int argc, char *argv[])
 {
     if (argc != 2)
     {
-        printf("Usage: %s <scheduler_name>\n", argv[0]);
-        printf("Available schedulers: fcfs, sjf, priority, rr\n");
+        fprintf(stderr, "Usage: %s <scheduler_name>\n", argv[0]);
+        fprintf(stdout, "Available schedulers: fcfs, sjf, priority, rr\n");
         return 1;
     }
 
@@ -34,33 +34,45 @@ int main(int argc, char *argv[])
     scissos_initialise();
 
     // Step 2: Create processes
-    printf("=== Creating Processes ===\n\n");
+    fprintf(stdout, "=== Creating Processes ===\n\n");
     ScisSosProcess *processes[NUM_PROCESSES];
     create_processes(processes);
 
     // Step 3: Print initial PCBs
-    printf("=== Initial Process Control Blocks ===\n");
+    fprintf(stdout, "=== Initial Process Control Blocks ===\n");
     for (int i = 0; i < NUM_PROCESSES; i++)
     {
         if (processes[i])
         {
             scissos_print_pcb(processes[i], stdout);
-            printf("\n");
+            fprintf(stdout, "\n");
         }
     }
 
-    // Step 4: Start scheduling
-    printf("\n*****************************************************\n");
-    printf("*          Starting Process Scheduling             *\n");
-    printf("*          Scheduler: %-28s *\n", argv[1]);
-    printf("*****************************************************\n\n");
+    // Validate scheduler choice
+    int valid_scheduler = 0;
+    if (strcmp(argv[1], "fcfs") == 0 || strcmp(argv[1], "sjf") == 0 ||
+        strcmp(argv[1], "priority") == 0 || strcmp(argv[1], "rr") == 0)
+    {
+        valid_scheduler = 1;
+    }
 
-    // ✅ FIX: Loop until all processes complete
+    if (!valid_scheduler)
+    {
+        fprintf(stderr, "Error: Unknown scheduler '%s'\n", argv[1]);
+        fprintf(stdout, "Available schedulers: fcfs, sjf, priority, rr\n");
+        return 1;
+    }
+
+    // Step 4: Start scheduling loop
+    fprintf(stdout, "=== Starting Scheduling with '%s' Algorithm ===\n", argv[1]);
+
+    // Loop until all processes are completed
     int iteration = 0;
     while (scisos_active_processes())
     {
         iteration++;
-        printf("\n--- Scheduling Iteration %d ---\n", iteration);
+        fprintf(stdout, "\n--- Scheduling Iteration %d ---\n", iteration);
 
         scissos_call_scheduler(argv[1]);
 
@@ -76,11 +88,9 @@ int main(int argc, char *argv[])
     printf("\n[INFO] All processes completed after %d scheduling iterations\n", iteration);
 
     // Step 5: Final statistics
-    printf("\n*****************************************************\n");
-    printf("*              Simulation Complete                  *\n");
-    printf("*****************************************************\n\n");
+    fprintf(stdout, "\n=== Final Statistics ===\n");
 
-    printf("=== Final Process States ===\n");
+    fprintf(stdout, "=== Final Process States ===\n");
     const char *state_str[] = {"NEW", "READY", "RUNNING", "BLOCKED",
                                "SUSP_READY", "SUSP_BLOCKED", "DEAD"};
 
@@ -89,9 +99,9 @@ int main(int argc, char *argv[])
     {
         if (_proctable[i] != NULL)
         {
-            printf("Process %d: %s (PC=%d/%d)\n",
-                   _proctable[i]->pid, state_str[_proctable[i]->ps_state],
-                   _proctable[i]->pc, _proctable[i]->size);
+            fprintf(stdout, "Process %d: %s (PC=%d/%d)\n",
+                    _proctable[i]->pid, state_str[_proctable[i]->ps_state],
+                    _proctable[i]->pc, _proctable[i]->size);
 
             if (_proctable[i]->ps_state == PS_DEAD)
                 dead_count++;
@@ -100,11 +110,11 @@ int main(int argc, char *argv[])
         }
     }
 
-    printf("\nCompleted Processes: %d\n", dead_count);
-    printf("Active Processes: %d\n", active_count);
+    fprintf(stdout, "\nCompleted Processes: %d\n", dead_count);
+    fprintf(stdout, "Active Processes: %d\n", active_count);
 
     // Step 6: Cleanup
-    printf("\n=== Cleaning up resources ===\n");
+    fprintf(stdout, "\n=== Cleaning up resources ===\n");
 
     // Delete all processes
     for (int i = 0; i < MAXPROC; i++)
@@ -112,10 +122,10 @@ int main(int argc, char *argv[])
         if (_proctable[i] != NULL)
         {
             int pid = _proctable[i]->pid;
-            scissos_proc_delete(pid); 
+            scissos_proc_delete(pid);
         }
     }
 
-    printf("\nSimulation terminated successfully.\n\n");
+    fprintf(stdout, "\nSimulation terminated successfully.\n\n");
     return 0;
 }
