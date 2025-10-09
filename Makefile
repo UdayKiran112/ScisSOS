@@ -4,17 +4,23 @@ CC = gcc
 CFLAGS = -Wall -Wextra -g -std=c11
 LDFLAGS = 
 
+# Directories
+OBJ_DIR = obj
+
 # Source files
 SOURCES = main.c os.c process.c scheduling_algo.c
 TEST_SRC = test_perf.c
-OBJECTS = $(SOURCES:.c=.o)
+OBJECTS = $(addprefix $(OBJ_DIR)/, $(SOURCES:.c=.o))
 EXECUTABLE = run_os
 TEST_EXECUTABLE = test_perf
 
 # Header files
 HEADERS = ScisSos.h scheduling_algo.h
 
-all: $(EXECUTABLE)
+all: $(OBJ_DIR) $(EXECUTABLE)
+
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
 
 $(EXECUTABLE): $(OBJECTS)
 	$(CC) $(OBJECTS) -o $@ $(LDFLAGS)
@@ -22,11 +28,12 @@ $(EXECUTABLE): $(OBJECTS)
 $(TEST_EXECUTABLE): $(TEST_SRC)
 	$(CC) $(CFLAGS) -o $@ $^
 
-%.o: %.c $(HEADERS)
+$(OBJ_DIR)/%.o: %.c $(HEADERS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJECTS) $(EXECUTABLE) $(TEST_EXECUTABLE)
+	rm -f $(OBJ_DIR)/*.o $(EXECUTABLE) $(TEST_EXECUTABLE)
+	rmdir $(OBJ_DIR) 2>/dev/null || true
 
 run_fcfs: $(EXECUTABLE)
 	./$(EXECUTABLE) fcfs
