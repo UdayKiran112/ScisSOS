@@ -1,10 +1,18 @@
+/* memory.c - corrected and cleaned-up memory manager implementation */
+
 #include "ScisSos.h"
+#include <stdint.h>
 
 FrameEntry *_physical_memory = NULL;
 int _num_frames = NUMFRAMES;
-long _global_reference_counter = 0;
+long _global_reference_counter = 1; /* start at 1 to avoid zero-load_time ambiguity */
 MemoryStats _mem_stats = {0, 0, 0};
+/* Flag to enable/disable memory manager (extern in header is defined elsewhere) */
 int _memory_manager_enabled = 1;
+
+/* NOTE: header defines DIRTY_BIT and USE_BIT. In this simulator we use DIRTY_BIT
+   as the *reference* bit for the CLOCK algorithm and as "recently referenced"
+   marker. USE_BIT is currently unused but kept for future extension. */
 static int clock_hand = 0; /* For clock algorithm */
 
 /* Initialize the memory manager */
@@ -29,7 +37,7 @@ void memory_manager_init(int num_frames)
         _physical_memory[i].load_time = 0;
     }
 
-    _global_reference_counter = 0;
+    _global_reference_counter = 1;
     _mem_stats.total_page_faults = 0;
     _mem_stats.total_page_replacements = 0;
     _mem_stats.total_page_loads = 0;
@@ -49,7 +57,8 @@ void memory_manager_cleanup(void)
     }
 }
 
-/* Find a free frame in physical memory */
+/* Find a free frame in physical memory.
+   Returns frame index [0.._num_frames-1] or EMPTY when none free. */
 int find_free_frame(void)
 {
     for (int i = 0; i < _num_frames; i++)
@@ -62,7 +71,8 @@ int find_free_frame(void)
     return EMPTY; /* No free frame */
 }
 
-/* Check if a page is already loaded in memory */
+/* Check if a page is already loaded in memory for given pid.
+   Returns frame index or EMPTY if not loaded. */
 int is_page_loaded(int pid, int page_number)
 {
     for (int i = 0; i < _num_frames; i++)
@@ -76,12 +86,55 @@ int is_page_loaded(int pid, int page_number)
     return EMPTY; /* Page not loaded */
 }
 
+/* Helper: mark a frame as loaded (used when loading new page) */
+static void mark_frame_loaded(int frame, int pid, int page_number)
+{
+    _physical_memory[frame].page_number = page_number;
+    _physical_memory[frame].pid = pid;
+    /* Set "reference bit" (DIRTY_BIT used as reference bit in this sim) */
+    _physical_memory[frame].flags |= DIRTY_BIT;
+    _physical_memory[frame].last_reference = _global_reference_counter++;
+    _physical_memory[frame].load_time = (int)_global_reference_counter;
+}
+
+/* Evict victim frame: update victim's page table and optionally simulate write-back */
+static void evict_frame(int victim_frame)
+{
+    int victim_pid = _physical_memory[victim_frame].pid;
+    int victim_page = _physical_memory[victim_frame].page_number;
+
+    if (victim_pid > 0 && victim_pid <= MAXPROC && _proctable[victim_pid - 1] != NULL)
+    {
+        ScisSosPCB *victim_pcb = _proctable[victim_pid - 1];
+        if (victim_page >= 0 && victim_page < MAXPGES)
+        {
+            /* Simulate write-back if page appears modified (USE_BIT set). Currently we
+               don't set USE_BIT anywhere, but keep simulation hook. */
+            if (_physical_memory[victim_frame].flags & USE_BIT)
+            {
+                fprintf(stdout, "[MEMORY] Write-back: page %d of PID %d (frame %d)\n",
+                        victim_page, victim_pid, victim_frame);
+            }
+
+            victim_pcb->pg_table[victim_page][1] = EMPTY;
+        }
+    }
+
+    /* Clear frame metadata (will be overwritten by caller anyway) */
+    _physical_memory[victim_frame].pid = EMPTY;
+    _physical_memory[victim_frame].page_number = EMPTY;
+    _physical_memory[victim_frame].flags = 0;
+    _physical_memory[victim_frame].last_reference = 0;
+    _physical_memory[victim_frame].load_time = 0;
+}
+
 /* FIFO Page Replacement Algorithm */
 int page_replace_fifo(int pid, int page_number)
 {
     (void)pid;
     (void)page_number;
 
+    /* If there are empty frames they should have been found earlier; assume all full. */
     int oldest_frame = 0;
     int oldest_time = _physical_memory[0].load_time;
 
@@ -95,23 +148,14 @@ int page_replace_fifo(int pid, int page_number)
         }
     }
 
-    fprintf(stdout, "[FIFO] Replacing page %d of PID %d in frame %d\n",
+    fprintf(stdout, "[FIFO] Replacing page %d of PID %d in frame %d (load_time=%d)\n",
             _physical_memory[oldest_frame].page_number,
             _physical_memory[oldest_frame].pid,
-            oldest_frame);
+            oldest_frame,
+            _physical_memory[oldest_frame].load_time);
 
-    /* Update page table of victim process */
-    int victim_pid = _physical_memory[oldest_frame].pid;
-    int victim_page = _physical_memory[oldest_frame].page_number;
-
-    if (victim_pid > 0 && victim_pid <= MAXPROC && _proctable[victim_pid - 1] != NULL)
-    {
-        ScisSosPCB *victim_pcb = _proctable[victim_pid - 1];
-        if (victim_page >= 0 && victim_page < MAXPGES)
-        {
-            victim_pcb->pg_table[victim_page][1] = EMPTY;
-        }
-    }
+    /* Update victim page table and clear frame */
+    evict_frame(oldest_frame);
 
     _mem_stats.total_page_replacements++;
     return oldest_frame;
@@ -142,18 +186,8 @@ int page_replace_lru(int pid, int page_number)
             lru_frame,
             lru_time);
 
-    /* Update page table of victim process */
-    int victim_pid = _physical_memory[lru_frame].pid;
-    int victim_page = _physical_memory[lru_frame].page_number;
-
-    if (victim_pid > 0 && victim_pid <= MAXPROC && _proctable[victim_pid - 1] != NULL)
-    {
-        ScisSosPCB *victim_pcb = _proctable[victim_pid - 1];
-        if (victim_page >= 0 && victim_page < MAXPGES)
-        {
-            victim_pcb->pg_table[victim_page][1] = EMPTY;
-        }
-    }
+    /* Update victim page table and clear frame */
+    evict_frame(lru_frame);
 
     _mem_stats.total_page_replacements++;
     return lru_frame;
@@ -171,7 +205,7 @@ int page_replace_clock(int pid, int page_number)
 
     while (iterations < max_iterations)
     {
-        /* Check if current frame has reference bit cleared */
+        /* We treat DIRTY_BIT as the reference bit here. If cleared -> victim. */
         if (!(_physical_memory[clock_hand].flags & DIRTY_BIT))
         {
             victim_frame = clock_hand;
@@ -179,13 +213,13 @@ int page_replace_clock(int pid, int page_number)
             break;
         }
 
-        /* Clear reference bit and move to next frame */
+        /* Clear reference bit and move to next frame (second-chance). */
         _physical_memory[clock_hand].flags &= ~DIRTY_BIT;
         clock_hand = (clock_hand + 1) % _num_frames;
         iterations++;
     }
 
-    /* If no victim found, use current clock position */
+    /* If no victim found within iterations, choose current clock position */
     if (victim_frame == EMPTY)
     {
         victim_frame = clock_hand;
@@ -197,18 +231,8 @@ int page_replace_clock(int pid, int page_number)
             _physical_memory[victim_frame].pid,
             victim_frame);
 
-    /* Update page table of victim process */
-    int victim_pid = _physical_memory[victim_frame].pid;
-    int victim_page = _physical_memory[victim_frame].page_number;
-
-    if (victim_pid > 0 && victim_pid <= MAXPROC && _proctable[victim_pid - 1] != NULL)
-    {
-        ScisSosPCB *victim_pcb = _proctable[victim_pid - 1];
-        if (victim_page >= 0 && victim_page < MAXPGES)
-        {
-            victim_pcb->pg_table[victim_page][1] = EMPTY;
-        }
-    }
+    /* Update victim page table and clear frame */
+    evict_frame(victim_frame);
 
     _mem_stats.total_page_replacements++;
     return victim_frame;
@@ -255,22 +279,21 @@ int memory_load_page(int pid, int page_number)
     /* If no free frame, use page replacement */
     if (frame == EMPTY)
     {
-        /* Use LRU by default - can be changed */
+        /* Use LRU by default - can be changed to FIFO or CLOCK easily. */
         frame = page_replace_lru(pid, page_number);
     }
 
-    /* Load the page into the frame */
-    _physical_memory[frame].page_number = page_number;
-    _physical_memory[frame].pid = pid;
-    _physical_memory[frame].flags = DIRTY_BIT;
-    _physical_memory[frame].last_reference = _global_reference_counter++;
-    _physical_memory[frame].load_time = (int)_global_reference_counter;
+    /* Load the page into the frame (overwrite cleared frame) */
+    mark_frame_loaded(frame, pid, page_number);
 
     /* Update process page table */
     if (page_number >= 0 && page_number < MAXPGES)
     {
         pcb->pg_table[page_number][1] = frame;
     }
+
+    /* Count this load as a reference for the process (first access) */
+    pcb->reference_counter++;
 
     _mem_stats.total_page_loads++;
 
@@ -280,30 +303,34 @@ int memory_load_page(int pid, int page_number)
     return frame;
 }
 
-/* Handle page fault */
+/* Handle page fault (wrapper) */
 int memory_handle_page_fault(int pid, int page_number)
 {
     return memory_load_page(pid, page_number);
 }
 
-/* Get frame number for a given logical address */
+/* Get frame number for a given logical address
+   Return values:
+     >=0  -> valid frame index
+     -1   -> error (invalid pid/page or other failure)
+     -2   -> memory manager disabled (treat as successful access by caller)
+*/
 int memory_get_frame(int pid, int logical_address)
 {
     if (!_memory_manager_enabled)
     {
-        return EMPTY; /* Memory manager disabled */
+        return -2; /* special code: memory manager disabled */
     }
 
     if (pid < 1 || pid > MAXPROC || _proctable[pid - 1] == NULL)
     {
-        return -1;
+        return -1; /* Invalid PID or missing PCB */
     }
 
     ScisSosPCB *pcb = _proctable[pid - 1];
 
     /* Calculate page number from logical address */
     int page_number = logical_address / PAGESIZE;
-    (void)(logical_address % PAGESIZE); /* offset is intentionally unused */
 
     /* Validate page number */
     if (page_number < 0 || page_number >= pcb->num_pages)
@@ -319,7 +346,7 @@ int memory_get_frame(int pid, int logical_address)
         int frame = pcb->pg_table[page_number][1];
         if (frame != EMPTY && frame >= 0 && frame < _num_frames)
         {
-            /* Page is loaded - update reference */
+            /* Page is loaded - update reference info */
             memory_update_reference(pid, page_number);
             return frame;
         }
@@ -335,7 +362,10 @@ void memory_update_reference(int pid, int page_number)
     int frame = is_page_loaded(pid, page_number);
     if (frame != EMPTY && frame >= 0 && frame < _num_frames)
     {
+        /* Mark as recently referenced (we're using DIRTY_BIT as reference bit) */
         _physical_memory[frame].flags |= DIRTY_BIT;
+
+        /* Update monotonic last-reference */
         _physical_memory[frame].last_reference = _global_reference_counter++;
 
         /* Update process reference counter */
@@ -369,11 +399,23 @@ void memory_print_stats(FILE *output)
             used_frames, _num_frames,
             (used_frames * 100.0) / _num_frames);
 
-    /* Calculate page fault rate */
-    if (_global_reference_counter > 0)
+    /* Calculate page fault rate (relative to actual references) */
+    long total_refs = 0;
+    for (int i = 0; i < MAXPROC; ++i)
+    {
+        if (_proctable[i] != NULL)
+            total_refs += _proctable[i]->reference_counter;
+    }
+
+    if (total_refs > 0)
     {
         fprintf(output, "Page Fault Rate: %.2f%%\n",
-                (_mem_stats.total_page_faults * 100.0) / _global_reference_counter);
+                (_mem_stats.total_page_faults * 100.0) / (double)total_refs);
+    }
+    else
+    {
+        /* Fall back to safe default if no references were recorded */
+        fprintf(output, "Page Fault Rate: 0.00%%\n");
     }
 
     fprintf(output, "==================================\n");

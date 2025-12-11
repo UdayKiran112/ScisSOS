@@ -1,6 +1,21 @@
+/* process.c - corrected and complete version */
+
 #include "ScisSos.h"
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/time.h>
+#include <time.h>
+
 static int pid_counter = 1;
+
+/* Number of bytes we simulate per "instruction".
+   Tune this (or PAGESIZE) to get processes spanning multiple pages
+   in your experiments. */
+#ifndef INSTR_BYTES
+#define INSTR_BYTES 512
+#endif
 
 /* Calculate time difference in microseconds */
 long get_time_diff_us(struct timeval start, struct timeval end)
@@ -55,7 +70,7 @@ ScisSosInst **scissos_generate_code(int size, int p_type)
         code[i]->_inum = i;
 
         /* Determine if this is a long or short system call */
-        double rand_val = (double)rand() / RAND_MAX;
+        double rand_val = (double)rand() / (double)RAND_MAX;
         if (rand_val < long_call_prob)
         {
             code[i]->_syscall = INS_LNG;
@@ -76,6 +91,12 @@ ScisSosInst **scissos_generate_code(int size, int p_type)
 void scissos_create_pcb(ScisSosProcess *process, int pid, int uid, int size,
                         int priority, int p_type, int m_type, ScisSosInst **code)
 {
+    if (process == NULL)
+    {
+        fprintf(stderr, "Error: scissos_create_pcb called with NULL process\n");
+        return;
+    }
+
     process->_pcb = (ScisSosPCB *)malloc(sizeof(ScisSosPCB));
     if (!process->_pcb)
     {
@@ -97,17 +118,19 @@ void scissos_create_pcb(ScisSosProcess *process, int pid, int uid, int size,
     process->_pcb->reference_counter = 0;
     process->_pcb->address_sequence = NULL;
 
-    /* Calculate number of pages needed */
-    process->_pcb->num_pages = (size + PAGESIZE - 1) / PAGESIZE;
+    /* Convert instruction count to total bytes and compute pages needed */
+    long total_bytes = (long)size * (long)INSTR_BYTES;
+    if (total_bytes <= 0)
+        total_bytes = INSTR_BYTES; /* safety */
+
+    process->_pcb->num_pages = (int)((total_bytes + PAGESIZE - 1) / PAGESIZE);
+    if (process->_pcb->num_pages < 1)
+        process->_pcb->num_pages = 1;
     if (process->_pcb->num_pages > MAXPGES)
-    {
         process->_pcb->num_pages = MAXPGES;
-    }
 
     /* Generate memory address reference sequence */
-    /* Using custom implementation since libscismem.a has bugs */
-    process->_pcb->address_sequence = (int *)malloc(size * sizeof(int));
-
+    process->_pcb->address_sequence = (int *)malloc((size_t)size * sizeof(int));
     if (process->_pcb->address_sequence == NULL)
     {
         fprintf(stderr, "Error: Failed to allocate address sequence for PID %d\n", pid);
@@ -121,15 +144,15 @@ void scissos_create_pcb(ScisSosProcess *process, int pid, int uid, int size,
         {
         case MT_GOOD:             /* Small working set, few page faults */
             working_set_size = 2; /* 2 pages */
-            transition_freq = 20; /* Change working set every 20 refs */
+            transition_freq = 20;
             break;
-        case MT_BAD:              /* Larger working set, more page faults */
-            working_set_size = 4; /* 4 pages */
-            transition_freq = 15; /* More frequent transitions */
+        case MT_BAD: /* Larger working set, more page faults */
+            working_set_size = 4;
+            transition_freq = 15;
             break;
-        case MT_UGLY:             /* Large working set, many page faults */
-            working_set_size = 8; /* 8 pages */
-            transition_freq = 10; /* Frequent transitions */
+        case MT_UGLY: /* Large working set, many page faults */
+            working_set_size = 8;
+            transition_freq = 10;
             break;
         default:
             working_set_size = 2;
@@ -137,21 +160,40 @@ void scissos_create_pcb(ScisSosProcess *process, int pid, int uid, int size,
             break;
         }
 
+        /* Clamp working_set_size to available pages (at least 1) */
+        if (working_set_size > process->_pcb->num_pages)
+            working_set_size = process->_pcb->num_pages;
+        if (working_set_size < 1)
+            working_set_size = 1;
+
         int current_working_set_base = 0;
 
         for (int i = 0; i < size; i++)
         {
             if (i < 100)
             {
-                /* First 100 references stay in first page */
-                process->_pcb->address_sequence[i] = rand() % PAGESIZE;
+                /* Spread the initial locality across the process's pages
+                   (not only page 0) to avoid only-first-page references. */
+                int max_addr_space = process->_pcb->num_pages * PAGESIZE;
+                if (max_addr_space <= 0)
+                    max_addr_space = PAGESIZE;
+                process->_pcb->address_sequence[i] = rand() % max_addr_space;
             }
             else
             {
-                /* Change working set periodically (transition phase) */
+                /* Change working set base periodically (transition phase) */
                 if (i % transition_freq == 0)
                 {
-                    current_working_set_base = (rand() % (process->_pcb->num_pages - working_set_size));
+                    int max_base;
+                    if (process->_pcb->num_pages > working_set_size)
+                        max_base = process->_pcb->num_pages - working_set_size;
+                    else
+                        max_base = 0;
+
+                    if (max_base == 0)
+                        current_working_set_base = 0;
+                    else
+                        current_working_set_base = rand() % (max_base + 1);
                 }
 
                 /* Generate address within current working set (stable phase) */
@@ -160,9 +202,9 @@ void scissos_create_pcb(ScisSosProcess *process, int pid, int uid, int size,
 
                 /* Ensure page is within bounds */
                 if (page >= process->_pcb->num_pages)
-                {
                     page = process->_pcb->num_pages - 1;
-                }
+                if (page < 0)
+                    page = 0;
 
                 process->_pcb->address_sequence[i] = page * PAGESIZE + (rand() % PAGESIZE);
             }
@@ -171,13 +213,16 @@ void scissos_create_pcb(ScisSosProcess *process, int pid, int uid, int size,
         /* Copy addresses to instruction address references */
         for (int i = 0; i < size; i++)
         {
-            code[i]->_addref = process->_pcb->address_sequence[i];
+            if (code && code[i])
+                code[i]->_addref = process->_pcb->address_sequence[i];
         }
 
-        fprintf(stdout, "[MEMORY] Generated address sequence for PID %d (type=%s, size=%d)\n",
+        fprintf(stdout,
+                "[MEMORY] Generated address sequence for PID %d (type=%s, size=%d, pages=%d)\n",
                 pid,
                 m_type == MT_GOOD ? "GOOD" : (m_type == MT_BAD ? "BAD" : "UGLY"),
-                size);
+                size,
+                process->_pcb->num_pages);
     }
 
     /* Initialize timing information */
@@ -215,7 +260,7 @@ ScisSosProcess *scissos_proc_create(char *process_name, int size, int priority, 
     }
 
     int pid = pid_counter++;
-    int uid = rand() % MAXUSRS + 1;
+    int uid = (rand() % MAXUSRS) + 1;
     int m_type = MT_GOOD; /* Default memory type */
 
     /* Generate code for process */
@@ -232,13 +277,12 @@ ScisSosProcess *scissos_proc_create(char *process_name, int size, int priority, 
     {
         fprintf(stderr, "Error: Memory allocation failed for process structure.\n");
         for (int i = 0; i < size; i++)
-        {
             free(code[i]);
-        }
         free(code);
         return NULL;
     }
 
+    memset(new_process, 0, sizeof(ScisSosProcess));
     snprintf(new_process->_pname, sizeof(new_process->_pname), "%s", process_name);
     new_process->_PID = pid;
     new_process->_psize = size;
@@ -247,11 +291,12 @@ ScisSosProcess *scissos_proc_create(char *process_name, int size, int priority, 
     scissos_create_pcb(new_process, pid, uid, size, priority, p_type, m_type, new_process->_CODE);
     _proctable[pid - 1] = new_process->_pcb;
 
-    /* If memory manager is enabled, load first page */
-    if (_memory_manager_enabled)
+    /* If memory manager is enabled, optionally load first page.
+       If you want demand paging (first access triggers a fault), remove this call. */
+    /*if (_memory_manager_enabled)
     {
         memory_load_page(pid, 0);
-    }
+    }*/
 
     new_process->_pcb->ps_state = PS_RDY;
 
@@ -337,6 +382,7 @@ int scissos_proc_save(ScisSosProcess *process, FILE *process_info)
 }
 
 /* Run process with given PID */
+/* Run process with given PID */
 int scissos_proc_run(int pid, char *scheduler)
 {
     if (pid < 1 || pid > MAXPROC)
@@ -381,12 +427,27 @@ int scissos_proc_run(int pid, char *scheduler)
         {
             int logical_addr = instr->_addref;
             int frame = memory_get_frame(pid, logical_addr);
-            if (frame < 0)
+
+            /* memory_get_frame return contract:
+               >=0  -> valid frame
+               -1   -> error
+               -2   -> memory manager disabled (treat as success)
+            */
+            if (frame == -1)
             {
                 fprintf(stderr, "[ERROR] Memory access failed for PID %d at address %d\n",
                         pid, logical_addr);
                 pcb->ps_state = PS_BLK;
                 break;
+            }
+            else if (frame == -2)
+            {
+                /* Memory manager disabled — treat as successful access.
+                   No frame to update; continue execution. */
+            }
+            else
+            {
+                /* frame >= 0 -> successful access; nothing more to do here */
             }
         }
 
