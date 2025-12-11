@@ -11,27 +11,33 @@ Time process_times[MAXPROC];
 Frame frame_table[NUMFRAMES];
 
 // Memory management global variables
-int _memory_enabled = 0; // Initialize here
-int page_faults = 0;     // Initialize here
+int _memory_enabled = 0;     // Initialize here
+int page_faults = 0;         // Initialize here
 int _total_instructions = 0; // Declare and initialize _total_instructions
-
 
 /* Map process state number → human-readable text */
 const char *get_state_name(int state)
 {
     switch (state)
     {
-        case PS_NEW:   return "NEW";
-        case PS_RDY:   return "READY";
-        case PS_RUN:   return "RUNNING";
-        case PS_BLK:   return "BLOCKED";
-        case PS_SRDY:  return "SUSP_READY";
-        case PS_SBLK:  return "SUSP_BLOCKED";
-        case PS_DEAD:  return "DEAD";
-        default:       return "UNKNOWN";
+    case PS_NEW:
+        return "NEW";
+    case PS_RDY:
+        return "READY";
+    case PS_RUN:
+        return "RUNNING";
+    case PS_BLK:
+        return "BLOCKED";
+    case PS_SRDY:
+        return "SUSP_READY";
+    case PS_SBLK:
+        return "SUSP_BLOCKED";
+    case PS_DEAD:
+        return "DEAD";
+    default:
+        return "UNKNOWN";
     }
 }
-
 
 // Initialise the OS
 void scissos_initialise(void)
@@ -309,20 +315,19 @@ struct timeval difference_times(struct timeval start, struct timeval end)
 {
     struct timeval diff;
 
-    if ((end.tv_usec - start.tv_usec) < 0)
+    // end - start (not start - end)
+    diff.tv_sec = end.tv_sec - start.tv_sec;
+    diff.tv_usec = end.tv_usec - start.tv_usec;
+
+    // Handle negative microseconds
+    if (diff.tv_usec < 0)
     {
-        diff.tv_sec = end.tv_sec - start.tv_sec - 1;
-        diff.tv_usec = end.tv_usec - start.tv_usec + 1000000;
-    }
-    else
-    {
-        diff.tv_sec = end.tv_sec - start.tv_sec;
-        diff.tv_usec = end.tv_usec - start.tv_usec;
+        diff.tv_sec--;
+        diff.tv_usec += 1000000;
     }
 
     return diff;
 }
-
 struct timeval add_times(struct timeval t1, struct timeval t2)
 {
     struct timeval sum;
@@ -405,7 +410,7 @@ void scissos_print_timings(void)
                 turnaround_tv = difference_times(t.create_time, t.terminate_time);
 
                 printf("P%-4d %-15.2f %-15.2f %-15.2f COMPLETED\n",
-                       i,
+                       _proctable[i]->pid,
                        tv_to_ms(response_tv),
                        tv_to_ms(turnaround_tv),
                        tv_to_ms(t.wait_time));
@@ -413,7 +418,7 @@ void scissos_print_timings(void)
             else
             {
                 printf("P%-4d %-15.2f %-15s %-15.2f %s\n",
-                       i,
+                       _proctable[i]->pid,
                        tv_to_ms(response_tv),
                        "N/A",
                        tv_to_ms(t.wait_time),

@@ -9,13 +9,13 @@ void create_processes(ScisSosProcess *processes[])
     processes[0] = scissos_proc_create("WebBrowser", 50, 5, PT_IOE, MT_GOOD);
     processes[1] = scissos_proc_create("Calculator", 20, 10, PT_CMP, MT_BAD);
     processes[2] = scissos_proc_create("TextEditor", 40, 8, PT_REG, MT_GOOD);
-    processes[3] = scissos_proc_create("VideoPlayer", 60, 3, PT_IOE, MT_UGLY);
+    processes[3] = scissos_proc_create("VideoPlayer", 60, 3, PT_IOE, MT_BAD);
     processes[4] = scissos_proc_create("Compiler", 80, 15, PT_CMP, MT_BAD);
     processes[5] = scissos_proc_create("FileManager", 35, 7, PT_REG, MT_GOOD);
-    processes[6] = scissos_proc_create("Database", 70, 4, PT_IOE, MT_UGLY);
+    processes[6] = scissos_proc_create("Database", 70, 4, PT_IOE, MT_GOOD);
     processes[7] = scissos_proc_create("Game", 100, 2, PT_CMP, MT_BAD);
     processes[8] = scissos_proc_create("Terminal", 25, 12, PT_REG, MT_GOOD);
-    processes[9] = scissos_proc_create("ImageEditor", 55, 6, PT_IOE, MT_UGLY);
+    processes[9] = scissos_proc_create("ImageEditor", 55, 6, PT_IOE, MT_BAD);
 
     fprintf(stdout, "\n========================================\n");
     fprintf(stdout, "   ALL PROCESSES CREATED\n");

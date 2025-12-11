@@ -116,7 +116,6 @@ ScisSosProcess *scissos_proc_create(char *process_name, int size, int priority, 
         return NULL;
     }
 
-
     int pid = pid_counter++;
     int uid = rand() % MAXUSRS + 1; // Random UID between 1 and MAXUSRS
 
@@ -136,7 +135,6 @@ ScisSosProcess *scissos_proc_create(char *process_name, int size, int priority, 
     int *reference_addr = memory_gen_addrefstrings(size, m_type);
 
     fprintf(stdout, "=== Creating Process: %s ===\n", process_name);
-
 
     if (reference_addr == NULL) // FIX: Check for NULL, not 0
     {
@@ -350,22 +348,24 @@ int scissos_proc_run(int pid, char *scheduler)
     {
         fprintf(stdout, "[COMPLETED] Process PID %d completed\n", pid);
         pcb->ps_state = PS_DEAD;
+        gettimeofday(&process_times[pid - 1].terminate_time, NULL); // set termination time
     }
 
     fprintf(stdout, "[STATUS] Process PID %d moved from PC = %d to PC = %d, State = %d\n",
             pid, start_pc, pcb->pc, pcb->ps_state);
 
-    struct timeval time_taken = difference_times(end_time, start_time);
+    struct timeval time_taken = difference_times(start_time, end_time);
 
     fprintf(stdout, "[TIME TAKEN] Process PID %d took %lf seconds to execute %d instructions\n",
             pid, timeval_to_seconds(time_taken), exec_instr);
 
+    // Set to ready immediately when blocking
     if (pcb->ps_state == PS_BLK)
     {
+        pcb->ps_state = PS_RDY; // Change state to ready
         gettimeofday(&process_times[pid - 1].last_ready_time, NULL);
         fprintf(stdout, "[BLOCKED] Process PID %d moved to READY state\n", pid);
     }
-
     // call scheduler recursively
     scissos_call_scheduler(scheduler);
 
