@@ -428,7 +428,6 @@ void scissos_print_timings(void)
     }
 
     printf("========================================\n");
-    printf("Total Instructions Executed: %d\n", _total_instructions);
     printf("Total Page Faults: %d\n", page_faults);
     printf("========================================\n\n");
 }
