@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/time.h>
 
 /****
  *  Constants defining OS parameters
@@ -37,6 +38,11 @@
 #define INS_LNG 10 /* Long instruction */
 #define INS_SHR 20 /* Short instruction */
 
+/**** Constants for Memory Management *********************************/
+#define PAGESIZE 1024  /* Size of a Page of memory */
+#define NUMFRAMES 64   /* No of Frames in Physical Memory */
+#define REFWINDOW 1024 /* Reference window */
+
 typedef int ScisSosPGTable[2];
 
 /** Instruction in a process; process is a sequence of instructions **/
@@ -61,6 +67,8 @@ typedef struct
     ScisSosInst **p_code;             /* Pointer to exectable code */
     ScisSosPGTable pg_table[MAXPGES]; /* Page Table Information */
     int p_timeslice;                  /* Current Time-Slice */
+    int page_loaded[MAXPGES];         /* Pages currently loaded */
+    int num_mem_pages;                /* Number of pages in memory */
 } ScisSosPCB;
 
 /** Process Structure **/
@@ -73,11 +81,35 @@ typedef struct
     ScisSosInst **_CODE; /* Pointer to its code */
 } ScisSosProcess;
 
+/* Time strcutture*/
+typedef struct
+{
+    struct timeval create_time;          /* Time when the process is created */
+    struct timeval first_scheduled_time; /* Time when the process is first scheduled */
+    struct timeval terminate_time;       /* Time when the process is terminated */
+    struct timeval wait_time;            /* Total time spent for waiting */
+    struct timeval last_ready_time;      /* Last time when moved to ready queue */
+    int response_flag;
+} Time;
+
+/*Frame structure*/
+typedef struct
+{
+    int page_number;   /* Page number loaded in this frame */
+    int pid;           /* PID of the process using this frame */
+    int dirty;         /* Dirty bit */
+    int use;           /* Use bit */
+    int reference_cnt; /* Reference count */
+} Frame;
+
 /** Data structures used by the OS to do its management actions **/
 extern ScisSosPCB *_proctable[MAXPROC]; /* Process Table */
 extern int _readyQ[MAXPROC];            /* Ready Queue */
 extern int _blockQ[MAXPROC];            /* Wait Queue */
 extern int _currentPID;                 /* Current running process PID */
+extern struct timeval base_time;        /* Base time for scheduling */
+extern Time process_times[MAXPROC];     /* Time tracking for processes */
+extern Frame frame_table[NUMFRAMES];    /* Frame Table --> Physical Memory */
 
 /** Process-related functions found in process.c file **/
 ScisSosProcess *scissos_proc_create(char *process_name, int size, int priority, int p_type); /* Create a new process */
@@ -93,5 +125,20 @@ void scisos_update_queues(void);              /* Update the ready and block queu
 int scissos_count_ready_processes(void);      /* Count ready processes */
 void scissos_unblock_process(void);           /* Unblock processes */
 int scisos_active_processes(void);            /* Check for active processes */
+
+/* Memory functions*/
+void memory_initialise(void);                        /* Initialise memory management */
+int memory_page_fault_handler(int pid, int page);    /* Handle page faults */
+int memory_get_page(int pid, int address);           /* Get page number for address */
+int memory_fifo(void);                               /* FIFO page replacement */
+int memory_lru(void);                                /* LRU page replacement */
+void print_memory_stats(void);                       /* Print memory stats */
+int *memory_gen_addrefstrings(int size, int m_type); /* Generate address reference strings */
+
+/* Time calculation functions*/
+struct timeval difference_times(struct timeval start, struct timeval end); /* Calculate difference between two timeval structs*/
+struct timeval add_times(struct timeval t1, struct timeval t2);            /* Add two timeval structs */
+void print_time(struct timeval t);                                         /* Print timeval struct */
+double timeval_to_seconds(struct timeval t);                               /* Convert timeval to seconds */
 
 #endif

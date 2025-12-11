@@ -1,10 +1,14 @@
 #include "scheduling_algo.h"
-#include "time.h"
+#include <time.h>
 
+// Global variables
 int _currentPID = EMPTY;
 ScisSosPCB *_proctable[MAXPROC] = {NULL};
 int _readyQ[MAXPROC] = {EMPTY};
 int _blockQ[MAXPROC] = {EMPTY};
+struct timeval base_time;        
+Time process_times[MAXPROC];     
+Frame frame_table[NUMFRAMES];    
 
 // Initialise the OS
 void scissos_initialise(void)
@@ -23,6 +27,13 @@ void scissos_initialise(void)
 
     // Seed random number generator
     srand((unsigned int)time(NULL));
+
+    gettimeofday(&base_time, NULL);
+    fprintf(stdout, "Base time set is : %ld seconds and %ld microseconds\n",
+            base_time.tv_sec, base_time.tv_usec);
+
+    // Initialize memory management here
+    memory_initialise();
 
     fprintf(stdout, "Process table initialised\n");
     fprintf(stdout, "Ready and Block Queues initialised\n");
@@ -185,6 +196,8 @@ void scissos_call_scheduler(char *scheduler)
     //     return;
     // }
 
+    struct timeval curr_time; // current time
+
     // Change current running process to READY (if exists)
     if (_currentPID != EMPTY && _currentPID > 0 && _currentPID <= MAXPROC)
     {
@@ -192,6 +205,9 @@ void scissos_call_scheduler(char *scheduler)
         if (current_pcb != NULL && current_pcb->ps_state == PS_RUN)
         {
             current_pcb->ps_state = PS_RDY;
+            gettimeofday(&curr_time, NULL);
+            process_times[_currentPID - 1].last_ready_time = curr_time;
+            fprintf(stdout, "[CONTEXT SWITCH] Process PID %d moved to READY state\n", _currentPID);
         }
     }
 
@@ -235,6 +251,28 @@ void scissos_call_scheduler(char *scheduler)
     // update process state to running
     _proctable[selected_pid - 1]->ps_state = PS_RUN;
     _currentPID = selected_pid;
+
+    // Response time update
+    gettimeofday(&curr_time, NULL);
+    if (process_times[selected_pid - 1].response_flag == 0)
+    {
+        process_times[selected_pid - 1].first_scheduled_time = curr_time;
+        process_times[selected_pid - 1].response_flag = 1;
+        struct timeval response = difference_times(curr_time, process_times[selected_pid - 1].create_time);
+        fprintf(stdout, "[RESPONSE TIME] Process PID %d response time: %f mss\n",
+                selected_pid,
+                timeval_to_seconds(response));
+    }
+
+    // Waiting time update
+    if(process_times[selected_pid -1].last_ready_time.tv_sec != 0 || process_times[selected_pid -1].last_ready_time.tv_usec != 0)
+    {
+        struct timeval wait_diff = difference_times(process_times[selected_pid -1].last_ready_time, curr_time);
+        process_times[selected_pid -1].wait_time = add_times(process_times[selected_pid -1].wait_time, wait_diff);
+        fprintf(stdout, "[WAITING TIME] Process PID %d total waiting time updated to: %f mss\n",
+                selected_pid,
+                timeval_to_seconds(process_times[selected_pid -1].wait_time));
+    }
 
     fprintf(stdout, "=== SCHEDULER TERMINATED ===\n");
 
