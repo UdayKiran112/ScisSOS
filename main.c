@@ -69,7 +69,7 @@ int main(int argc, char *argv[])
 
     // Loop until all processes are completed
     int iteration = 0;
-    while (scisos_active_processes())
+    while (scissos_active_processes())
     {
         iteration++;
         fprintf(stdout, "\n--- Scheduling Iteration %d ---\n", iteration);

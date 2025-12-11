@@ -140,10 +140,10 @@ void scissos_print_timing_info(ScisSosPCB *pcb, FILE *output);
 /** OS-related functions found in os.c file **/
 void scissos_initialise(void);
 void scissos_call_scheduler(char *scheduler);
-void scisos_update_queues(void);
+void scissos_update_queues(void);
 int scissos_count_ready_processes(void);
 void scissos_unblock_process(void);
-int scisos_active_processes(void);
+int scissos_active_processes(void);
 
 /** Memory management functions found in memory.c file **/
 void memory_manager_init(int num_frames);
