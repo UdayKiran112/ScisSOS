@@ -13,7 +13,7 @@
 #define MAXUSRS 10    /* Max number of users */
 #define DEFPRIO 20    /* Default priority for process */
 #define EMPTY -100    /* Unfilled entries */
-#define MAXPGES 100   /* Max number of pages/process */
+#define MAXPGES 10     /* Max number of pages/process */
 #define DEFTS 6239    /* Default time slice */
 #define REG_THR 0.02  /* Normal process: 2% long calls */
 #define CMP_THR 0.001 /* Compute Intensive: 0.1% */

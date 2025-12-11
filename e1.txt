@@ -1,0 +1,5754 @@
+
+============================================
+ Experiment 1 (K = 64) : MEMORY OFF then MEMORY ON
+============================================
+
+
+--- Run A : MEMORY MANAGER OFF (K=64) ---
+=== Initialising ScisSOS ===
+Process table initialised
+Ready and Block Queues initialised
+=== ScisSOS Initialised ===
+
+[MEMORY] Generated address sequence for PID 1 (type=GOOD, size=50, pages=7)
+Process created: WebBrowser, PID: 1, UID: 2, Priority: 5, Type: 2, MemType: 3
+[MEMORY] Generated address sequence for PID 2 (type=GOOD, size=20, pages=3)
+Process created: Calculator, PID: 2, UID: 9, Priority: 10, Type: 1, MemType: 3
+[MEMORY] Generated address sequence for PID 3 (type=GOOD, size=40, pages=5)
+Process created: TextEditor, PID: 3, UID: 10, Priority: 8, Type: 0, MemType: 3
+[MEMORY] Generated address sequence for PID 4 (type=GOOD, size=60, pages=8)
+Process created: VideoPlayer, PID: 4, UID: 3, Priority: 3, Type: 2, MemType: 3
+[MEMORY] Generated address sequence for PID 5 (type=GOOD, size=80, pages=10)
+Process created: Compiler, PID: 5, UID: 1, Priority: 15, Type: 1, MemType: 3
+[MEMORY] Generated address sequence for PID 6 (type=GOOD, size=35, pages=5)
+Process created: FileManager, PID: 6, UID: 10, Priority: 7, Type: 0, MemType: 3
+[MEMORY] Generated address sequence for PID 7 (type=GOOD, size=70, pages=9)
+Process created: Database, PID: 7, UID: 1, Priority: 4, Type: 2, MemType: 3
+[MEMORY] Generated address sequence for PID 8 (type=GOOD, size=100, pages=10)
+Process created: Game, PID: 8, UID: 6, Priority: 2, Type: 1, MemType: 3
+[MEMORY] Generated address sequence for PID 9 (type=GOOD, size=25, pages=4)
+Process created: Terminal, PID: 9, UID: 10, Priority: 12, Type: 0, MemType: 3
+[MEMORY] Generated address sequence for PID 10 (type=GOOD, size=55, pages=7)
+Process created: ImageEditor, PID: 10, UID: 3, Priority: 6, Type: 2, MemType: 3
+=== Process Creation Complete ===
+Total processes created: 10
+
+=== Initial Process Control Blocks ===
+----------------------------------------
+Process Name: WebBrowser
+PID: 1
+UID: 2
+Size: 50 instructions
+Pages: 7
+Priority: 5
+State: READY (1)
+Type: IO_INTENSIVE (2)
+Memory Type: GOOD (3)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+----------------------------------------
+Process Name: Calculator
+PID: 2
+UID: 9
+Size: 20 instructions
+Pages: 3
+Priority: 10
+State: READY (1)
+Type: COMPUTE_INTENSIVE (1)
+Memory Type: GOOD (3)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+----------------------------------------
+Process Name: TextEditor
+PID: 3
+UID: 10
+Size: 40 instructions
+Pages: 5
+Priority: 8
+State: READY (1)
+Type: REGULAR (0)
+Memory Type: GOOD (3)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+----------------------------------------
+Process Name: VideoPlayer
+PID: 4
+UID: 3
+Size: 60 instructions
+Pages: 8
+Priority: 3
+State: READY (1)
+Type: IO_INTENSIVE (2)
+Memory Type: BAD (4)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+----------------------------------------
+Process Name: Compiler
+PID: 5
+UID: 1
+Size: 80 instructions
+Pages: 10
+Priority: 15
+State: READY (1)
+Type: COMPUTE_INTENSIVE (1)
+Memory Type: BAD (4)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+----------------------------------------
+Process Name: FileManager
+PID: 6
+UID: 10
+Size: 35 instructions
+Pages: 5
+Priority: 7
+State: READY (1)
+Type: REGULAR (0)
+Memory Type: UGLY (5)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+----------------------------------------
+Process Name: Database
+PID: 7
+UID: 1
+Size: 70 instructions
+Pages: 9
+Priority: 4
+State: READY (1)
+Type: IO_INTENSIVE (2)
+Memory Type: UGLY (5)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+----------------------------------------
+Process Name: Game
+PID: 8
+UID: 6
+Size: 100 instructions
+Pages: 10
+Priority: 2
+State: READY (1)
+Type: COMPUTE_INTENSIVE (1)
+Memory Type: UGLY (5)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+----------------------------------------
+Process Name: Terminal
+PID: 9
+UID: 10
+Size: 25 instructions
+Pages: 4
+Priority: 12
+State: READY (1)
+Type: REGULAR (0)
+Memory Type: GOOD (3)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+----------------------------------------
+Process Name: ImageEditor
+PID: 10
+UID: 3
+Size: 55 instructions
+Pages: 7
+Priority: 6
+State: READY (1)
+Type: IO_INTENSIVE (2)
+Memory Type: BAD (4)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+
+--- Scheduling Iteration 1 ---
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 10
+Ready Queue: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 1 (position 0 in queue)
+
+[SCHEDULED] Process 1 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 0
+[BLOCKED] Process PID 1 on instruction 3 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 0 to PC = 4, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 9
+Ready Queue: [2, 3, 4, 5, 6, 7, 8, 9, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 3 (position 1 in queue)
+
+[SCHEDULED] Process 3 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 3 starting from PC = 0
+[BLOCKED] Process PID 3 on instruction 15 (Long Syscall)
+[STATUS] Process PID 3 moved from PC = 0 to PC = 16, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 1 moved to READY state
+Number of ready processes: 9
+Ready Queue: [1, 2, 4, 5, 6, 7, 8, 9, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 2 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 0
+[BLOCKED] Process PID 4 on instruction 4 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 0 to PC = 5, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 3 moved to READY state
+Number of ready processes: 9
+Ready Queue: [1, 2, 3, 5, 6, 7, 8, 9, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 5 (position 3 in queue)
+
+[SCHEDULED] Process 5 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 5 starting from PC = 0
+[COMPLETED] Process PID 5 completed
+[STATUS] Process PID 5 moved from PC = 0 to PC = 80, State = 6
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 9
+Ready Queue: [1, 2, 3, 4, 6, 7, 8, 9, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 6 (position 4 in queue)
+
+[SCHEDULED] Process 6 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 6 starting from PC = 0
+[BLOCKED] Process PID 6 on instruction 20 (Long Syscall)
+[STATUS] Process PID 6 moved from PC = 0 to PC = 21, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 8
+Ready Queue: [1, 2, 3, 4, 7, 8, 9, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 8 (position 5 in queue)
+
+[SCHEDULED] Process 8 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 8 starting from PC = 0
+[BLOCKED] Process PID 8 on instruction 94 (Long Syscall)
+[STATUS] Process PID 8 moved from PC = 0 to PC = 95, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 6 moved to READY state
+Number of ready processes: 8
+Ready Queue: [1, 2, 3, 4, 6, 7, 9, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 9 (position 6 in queue)
+
+[SCHEDULED] Process 9 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 9 starting from PC = 0
+[COMPLETED] Process PID 9 completed
+[STATUS] Process PID 9 moved from PC = 0 to PC = 25, State = 6
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 8 moved to READY state
+Number of ready processes: 8
+Ready Queue: [1, 2, 3, 4, 6, 7, 8, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 7 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 0
+[BLOCKED] Process PID 10 on instruction 2 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 0 to PC = 3, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 7
+Ready Queue: [1, 2, 3, 4, 6, 7, 8]
+[SCHEDULER: ROUND ROBIN] Selected process 1 (position 0 in queue)
+
+[SCHEDULED] Process 1 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 4
+[BLOCKED] Process PID 1 on instruction 5 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 4 to PC = 6, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 7
+Ready Queue: [2, 3, 4, 6, 7, 8, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 3 (position 1 in queue)
+
+[SCHEDULED] Process 3 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 3 starting from PC = 16
+[BLOCKED] Process PID 3 on instruction 18 (Long Syscall)
+[STATUS] Process PID 3 moved from PC = 16 to PC = 19, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 1 moved to READY state
+Number of ready processes: 7
+Ready Queue: [1, 2, 4, 6, 7, 8, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 2 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 5
+[BLOCKED] Process PID 4 on instruction 5 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 5 to PC = 6, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 3 moved to READY state
+Number of ready processes: 7
+Ready Queue: [1, 2, 3, 6, 7, 8, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 6 (position 3 in queue)
+
+[SCHEDULED] Process 6 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 6 starting from PC = 21
+[COMPLETED] Process PID 6 completed
+[STATUS] Process PID 6 moved from PC = 21 to PC = 35, State = 6
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 7
+Ready Queue: [1, 2, 3, 4, 7, 8, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 4 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 0
+[BLOCKED] Process PID 7 on instruction 1 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 0 to PC = 2, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 6
+Ready Queue: [1, 2, 3, 4, 8, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 5 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 3
+[BLOCKED] Process PID 10 on instruction 8 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 3 to PC = 9, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 6
+Ready Queue: [1, 2, 3, 4, 7, 8]
+[SCHEDULER: ROUND ROBIN] Selected process 1 (position 0 in queue)
+
+[SCHEDULED] Process 1 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 6
+[BLOCKED] Process PID 1 on instruction 8 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 6 to PC = 9, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 6
+Ready Queue: [2, 3, 4, 7, 8, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 3 (position 1 in queue)
+
+[SCHEDULED] Process 3 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 3 starting from PC = 19
+[COMPLETED] Process PID 3 completed
+[STATUS] Process PID 3 moved from PC = 19 to PC = 40, State = 6
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 1 moved to READY state
+Number of ready processes: 6
+Ready Queue: [1, 2, 4, 7, 8, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 2 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 6
+[BLOCKED] Process PID 4 on instruction 7 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 6 to PC = 8, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 5
+Ready Queue: [1, 2, 7, 8, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 8 (position 3 in queue)
+
+[SCHEDULED] Process 8 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 8 starting from PC = 95
+[COMPLETED] Process PID 8 completed
+[STATUS] Process PID 8 moved from PC = 95 to PC = 100, State = 6
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 5
+Ready Queue: [1, 2, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 4 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 9
+[BLOCKED] Process PID 10 on instruction 16 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 9 to PC = 17, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 4
+Ready Queue: [1, 2, 4, 7]
+[SCHEDULER: ROUND ROBIN] Selected process 1 (position 0 in queue)
+
+[SCHEDULED] Process 1 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 9
+[BLOCKED] Process PID 1 on instruction 9 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 9 to PC = 10, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 4
+Ready Queue: [2, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 1 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 8
+[BLOCKED] Process PID 4 on instruction 22 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 8 to PC = 23, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 1 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 2 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 2
+[BLOCKED] Process PID 7 on instruction 2 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 2 to PC = 3, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 4, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 3 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 17
+[BLOCKED] Process PID 10 on instruction 19 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 17 to PC = 20, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 4, 7]
+[SCHEDULER: ROUND ROBIN] Selected process 1 (position 0 in queue)
+
+[SCHEDULED] Process 1 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 10
+[BLOCKED] Process PID 1 on instruction 22 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 10 to PC = 23, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 4
+Ready Queue: [2, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 1 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 23
+[BLOCKED] Process PID 4 on instruction 26 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 23 to PC = 27, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 1 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 2 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 3
+[BLOCKED] Process PID 7 on instruction 3 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 3 to PC = 4, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 4, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 3 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 20
+[BLOCKED] Process PID 10 on instruction 23 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 20 to PC = 24, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 4, 7]
+[SCHEDULER: ROUND ROBIN] Selected process 1 (position 0 in queue)
+
+[SCHEDULED] Process 1 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 23
+[BLOCKED] Process PID 1 on instruction 24 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 23 to PC = 25, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 4
+Ready Queue: [2, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 1 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 27
+[BLOCKED] Process PID 4 on instruction 28 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 27 to PC = 29, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 1 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 2 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 4
+[BLOCKED] Process PID 7 on instruction 7 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 4 to PC = 8, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 4, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 3 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 24
+[BLOCKED] Process PID 10 on instruction 26 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 24 to PC = 27, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 4, 7]
+[SCHEDULER: ROUND ROBIN] Selected process 1 (position 0 in queue)
+
+[SCHEDULED] Process 1 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 25
+[BLOCKED] Process PID 1 on instruction 29 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 25 to PC = 30, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 4
+Ready Queue: [2, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 1 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 29
+[BLOCKED] Process PID 4 on instruction 32 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 29 to PC = 33, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 1 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 2 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 8
+[BLOCKED] Process PID 7 on instruction 9 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 8 to PC = 10, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 4, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 3 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 27
+[BLOCKED] Process PID 10 on instruction 34 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 27 to PC = 35, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 4, 7]
+[SCHEDULER: ROUND ROBIN] Selected process 1 (position 0 in queue)
+
+[SCHEDULED] Process 1 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 30
+[BLOCKED] Process PID 1 on instruction 31 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 30 to PC = 32, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 4
+Ready Queue: [2, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 1 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 33
+[BLOCKED] Process PID 4 on instruction 33 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 33 to PC = 34, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 1 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 2 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 10
+[BLOCKED] Process PID 7 on instruction 10 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 10 to PC = 11, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 4, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 3 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 35
+[BLOCKED] Process PID 10 on instruction 37 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 35 to PC = 38, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 4, 7]
+[SCHEDULER: ROUND ROBIN] Selected process 1 (position 0 in queue)
+
+[SCHEDULED] Process 1 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 32
+[BLOCKED] Process PID 1 on instruction 41 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 32 to PC = 42, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 4
+Ready Queue: [2, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 1 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 34
+[BLOCKED] Process PID 4 on instruction 36 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 34 to PC = 37, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 1 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 2 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 11
+[BLOCKED] Process PID 7 on instruction 11 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 11 to PC = 12, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 4, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 3 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 38
+[BLOCKED] Process PID 10 on instruction 38 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 38 to PC = 39, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 4, 7]
+[SCHEDULER: ROUND ROBIN] Selected process 1 (position 0 in queue)
+
+[SCHEDULED] Process 1 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 42
+[BLOCKED] Process PID 1 on instruction 43 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 42 to PC = 44, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 4
+Ready Queue: [2, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 1 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 37
+[BLOCKED] Process PID 4 on instruction 37 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 37 to PC = 38, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 1 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 2 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 12
+[BLOCKED] Process PID 7 on instruction 13 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 12 to PC = 14, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 4, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 3 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 39
+[BLOCKED] Process PID 10 on instruction 49 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 39 to PC = 50, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 4, 7]
+[SCHEDULER: ROUND ROBIN] Selected process 1 (position 0 in queue)
+
+[SCHEDULED] Process 1 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 44
+[COMPLETED] Process PID 1 completed
+[STATUS] Process PID 1 moved from PC = 44 to PC = 50, State = 6
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 4
+Ready Queue: [2, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 1 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 38
+[BLOCKED] Process PID 4 on instruction 42 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 38 to PC = 43, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 3
+Ready Queue: [2, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 2 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 50
+[BLOCKED] Process PID 10 on instruction 51 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 50 to PC = 52, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 3
+Ready Queue: [2, 4, 7]
+[SCHEDULER: ROUND ROBIN] Selected process 2 (position 0 in queue)
+
+[SCHEDULED] Process 2 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 2 starting from PC = 0
+[COMPLETED] Process PID 2 completed
+[STATUS] Process PID 2 moved from PC = 0 to PC = 20, State = 6
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 3
+Ready Queue: [4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 1 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 14
+[BLOCKED] Process PID 7 on instruction 16 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 14 to PC = 17, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 2
+Ready Queue: [4, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 0 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 43
+[BLOCKED] Process PID 4 on instruction 49 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 43 to PC = 50, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 2
+Ready Queue: [7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 1 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 52
+[COMPLETED] Process PID 10 completed
+[STATUS] Process PID 10 moved from PC = 52 to PC = 55, State = 6
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 2
+Ready Queue: [4, 7]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 0 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 50
+[COMPLETED] Process PID 4 completed
+[STATUS] Process PID 4 moved from PC = 50 to PC = 60, State = 6
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 1
+Ready Queue: [7]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 0 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 17
+[BLOCKED] Process PID 7 on instruction 19 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 17 to PC = 20, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 0
+Invalid process with PID -100 selected for scheduling
+Scheduler terminating
+=== SCHEDULER TERMINATED ===
+
+--- Scheduling Iteration 2 ---
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 1
+Ready Queue: [7]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 0 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 20
+[BLOCKED] Process PID 7 on instruction 20 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 20 to PC = 21, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 0
+Invalid process with PID -100 selected for scheduling
+Scheduler terminating
+=== SCHEDULER TERMINATED ===
+
+--- Scheduling Iteration 3 ---
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 1
+Ready Queue: [7]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 0 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 21
+[BLOCKED] Process PID 7 on instruction 25 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 21 to PC = 26, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 0
+Invalid process with PID -100 selected for scheduling
+Scheduler terminating
+=== SCHEDULER TERMINATED ===
+
+--- Scheduling Iteration 4 ---
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 1
+Ready Queue: [7]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 0 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 26
+[BLOCKED] Process PID 7 on instruction 26 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 26 to PC = 27, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 0
+Invalid process with PID -100 selected for scheduling
+Scheduler terminating
+=== SCHEDULER TERMINATED ===
+
+--- Scheduling Iteration 5 ---
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 1
+Ready Queue: [7]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 0 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 27
+[BLOCKED] Process PID 7 on instruction 28 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 27 to PC = 29, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 0
+Invalid process with PID -100 selected for scheduling
+Scheduler terminating
+=== SCHEDULER TERMINATED ===
+
+--- Scheduling Iteration 6 ---
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 1
+Ready Queue: [7]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 0 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 29
+[BLOCKED] Process PID 7 on instruction 37 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 29 to PC = 38, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 0
+Invalid process with PID -100 selected for scheduling
+Scheduler terminating
+=== SCHEDULER TERMINATED ===
+
+--- Scheduling Iteration 7 ---
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 1
+Ready Queue: [7]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 0 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 38
+[BLOCKED] Process PID 7 on instruction 39 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 38 to PC = 40, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 0
+Invalid process with PID -100 selected for scheduling
+Scheduler terminating
+=== SCHEDULER TERMINATED ===
+
+--- Scheduling Iteration 8 ---
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 1
+Ready Queue: [7]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 0 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 40
+[BLOCKED] Process PID 7 on instruction 40 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 40 to PC = 41, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 0
+Invalid process with PID -100 selected for scheduling
+Scheduler terminating
+=== SCHEDULER TERMINATED ===
+
+--- Scheduling Iteration 9 ---
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 1
+Ready Queue: [7]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 0 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 41
+[BLOCKED] Process PID 7 on instruction 41 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 41 to PC = 42, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 0
+Invalid process with PID -100 selected for scheduling
+Scheduler terminating
+=== SCHEDULER TERMINATED ===
+
+--- Scheduling Iteration 10 ---
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 1
+Ready Queue: [7]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 0 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 42
+[BLOCKED] Process PID 7 on instruction 45 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 42 to PC = 46, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 0
+Invalid process with PID -100 selected for scheduling
+Scheduler terminating
+=== SCHEDULER TERMINATED ===
+
+--- Scheduling Iteration 11 ---
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 1
+Ready Queue: [7]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 0 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 46
+[BLOCKED] Process PID 7 on instruction 49 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 46 to PC = 50, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 0
+Invalid process with PID -100 selected for scheduling
+Scheduler terminating
+=== SCHEDULER TERMINATED ===
+
+--- Scheduling Iteration 12 ---
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 1
+Ready Queue: [7]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 0 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 50
+[BLOCKED] Process PID 7 on instruction 55 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 50 to PC = 56, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 0
+Invalid process with PID -100 selected for scheduling
+Scheduler terminating
+=== SCHEDULER TERMINATED ===
+
+--- Scheduling Iteration 13 ---
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 1
+Ready Queue: [7]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 0 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 56
+[BLOCKED] Process PID 7 on instruction 59 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 56 to PC = 60, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 0
+Invalid process with PID -100 selected for scheduling
+Scheduler terminating
+=== SCHEDULER TERMINATED ===
+
+--- Scheduling Iteration 14 ---
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 1
+Ready Queue: [7]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 0 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 60
+[BLOCKED] Process PID 7 on instruction 60 (Long Syscall)
+[STATUS] P
+============================================
+ Experiment 1 (K = 64) : MEMORY OFF then MEMORY ON
+============================================
+
+
+--- Run A : MEMORY MANAGER OFF (K=64) ---
+=== Initialising ScisSOS ===
+Process table initialised
+Ready and Block Queues initialised
+=== ScisSOS Initialised ===
+
+[MEMORY] Generated address sequence for PID 1 (type=GOOD, size=50, pages=7)
+Process created: WebBrowser, PID: 1, UID: 3, Priority: 5, Type: 2, MemType: 3
+[MEMORY] Generated address sequence for PID 2 (type=GOOD, size=20, pages=3)
+Process created: Calculator, PID: 2, UID: 3, Priority: 10, Type: 1, MemType: 3
+[MEMORY] Generated address sequence for PID 3 (type=GOOD, size=40, pages=5)
+Process created: TextEditor, PID: 3, UID: 3, Priority: 8, Type: 0, MemType: 3
+[MEMORY] Generated address sequence for PID 4 (type=GOOD, size=60, pages=8)
+Process created: VideoPlayer, PID: 4, UID: 6, Priority: 3, Type: 2, MemType: 3
+[MEMORY] Generated address sequence for PID 5 (type=GOOD, size=80, pages=10)
+Process created: Compiler, PID: 5, UID: 9, Priority: 15, Type: 1, MemType: 3
+[MEMORY] Generated address sequence for PID 6 (type=GOOD, size=35, pages=5)
+Process created: FileManager, PID: 6, UID: 2, Priority: 7, Type: 0, MemType: 3
+[MEMORY] Generated address sequence for PID 7 (type=GOOD, size=70, pages=9)
+Process created: Database, PID: 7, UID: 10, Priority: 4, Type: 2, MemType: 3
+[MEMORY] Generated address sequence for PID 8 (type=GOOD, size=100, pages=10)
+Process created: Game, PID: 8, UID: 6, Priority: 2, Type: 1, MemType: 3
+[MEMORY] Generated address sequence for PID 9 (type=GOOD, size=25, pages=4)
+Process created: Terminal, PID: 9, UID: 2, Priority: 12, Type: 0, MemType: 3
+[MEMORY] Generated address sequence for PID 10 (type=GOOD, size=55, pages=7)
+Process created: ImageEditor, PID: 10, UID: 2, Priority: 6, Type: 2, MemType: 3
+=== Process Creation Complete ===
+Total processes created: 10
+
+=== Initial Process Control Blocks ===
+----------------------------------------
+Process Name: WebBrowser
+PID: 1
+UID: 3
+Size: 50 instructions
+Pages: 7
+Priority: 5
+State: READY (1)
+Type: IO_INTENSIVE (2)
+Memory Type: GOOD (3)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+----------------------------------------
+Process Name: Calculator
+PID: 2
+UID: 3
+Size: 20 instructions
+Pages: 3
+Priority: 10
+State: READY (1)
+Type: COMPUTE_INTENSIVE (1)
+Memory Type: GOOD (3)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+----------------------------------------
+Process Name: TextEditor
+PID: 3
+UID: 3
+Size: 40 instructions
+Pages: 5
+Priority: 8
+State: READY (1)
+Type: REGULAR (0)
+Memory Type: GOOD (3)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+----------------------------------------
+Process Name: VideoPlayer
+PID: 4
+UID: 6
+Size: 60 instructions
+Pages: 8
+Priority: 3
+State: READY (1)
+Type: IO_INTENSIVE (2)
+Memory Type: BAD (4)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+----------------------------------------
+Process Name: Compiler
+PID: 5
+UID: 9
+Size: 80 instructions
+Pages: 10
+Priority: 15
+State: READY (1)
+Type: COMPUTE_INTENSIVE (1)
+Memory Type: BAD (4)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+----------------------------------------
+Process Name: FileManager
+PID: 6
+UID: 2
+Size: 35 instructions
+Pages: 5
+Priority: 7
+State: READY (1)
+Type: REGULAR (0)
+Memory Type: UGLY (5)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+----------------------------------------
+Process Name: Database
+PID: 7
+UID: 10
+Size: 70 instructions
+Pages: 9
+Priority: 4
+State: READY (1)
+Type: IO_INTENSIVE (2)
+Memory Type: UGLY (5)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+----------------------------------------
+Process Name: Game
+PID: 8
+UID: 6
+Size: 100 instructions
+Pages: 10
+Priority: 2
+State: READY (1)
+Type: COMPUTE_INTENSIVE (1)
+Memory Type: UGLY (5)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+----------------------------------------
+Process Name: Terminal
+PID: 9
+UID: 2
+Size: 25 instructions
+Pages: 4
+Priority: 12
+State: READY (1)
+Type: REGULAR (0)
+Memory Type: GOOD (3)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+----------------------------------------
+Process Name: ImageEditor
+PID: 10
+UID: 2
+Size: 55 instructions
+Pages: 7
+Priority: 6
+State: READY (1)
+Type: IO_INTENSIVE (2)
+Memory Type: BAD (4)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+
+--- Scheduling Iteration 1 ---
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 10
+Ready Queue: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 1 (position 0 in queue)
+
+[SCHEDULED] Process 1 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 0
+[BLOCKED] Process PID 1 on instruction 5 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 0 to PC = 6, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 9
+Ready Queue: [2, 3, 4, 5, 6, 7, 8, 9, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 3 (position 1 in queue)
+
+[SCHEDULED] Process 3 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 3 starting from PC = 0
+[BLOCKED] Process PID 3 on instruction 4 (Long Syscall)
+[STATUS] Process PID 3 moved from PC = 0 to PC = 5, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 1 moved to READY state
+Number of ready processes: 9
+Ready Queue: [1, 2, 4, 5, 6, 7, 8, 9, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 2 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 0
+[BLOCKED] Process PID 4 on instruction 1 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 0 to PC = 2, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 3 moved to READY state
+Number of ready processes: 9
+Ready Queue: [1, 2, 3, 5, 6, 7, 8, 9, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 5 (position 3 in queue)
+
+[SCHEDULED] Process 5 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 5 starting from PC = 0
+[COMPLETED] Process PID 5 completed
+[STATUS] Process PID 5 moved from PC = 0 to PC = 80, State = 6
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 9
+Ready Queue: [1, 2, 3, 4, 6, 7, 8, 9, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 6 (position 4 in queue)
+
+[SCHEDULED] Process 6 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 6 starting from PC = 0
+[BLOCKED] Process PID 6 on instruction 22 (Long Syscall)
+[STATUS] Process PID 6 moved from PC = 0 to PC = 23, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 8
+Ready Queue: [1, 2, 3, 4, 7, 8, 9, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 8 (position 5 in queue)
+
+[SCHEDULED] Process 8 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 8 starting from PC = 0
+[COMPLETED] Process PID 8 completed
+[STATUS] Process PID 8 moved from PC = 0 to PC = 100, State = 6
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 6 moved to READY state
+Number of ready processes: 8
+Ready Queue: [1, 2, 3, 4, 6, 7, 9, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 9 (position 6 in queue)
+
+[SCHEDULED] Process 9 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 9 starting from PC = 0
+[COMPLETED] Process PID 9 completed
+[STATUS] Process PID 9 moved from PC = 0 to PC = 25, State = 6
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 7
+Ready Queue: [1, 2, 3, 4, 6, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 1 (position 0 in queue)
+
+[SCHEDULED] Process 1 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 6
+[BLOCKED] Process PID 1 on instruction 14 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 6 to PC = 15, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 6
+Ready Queue: [2, 3, 4, 6, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 3 (position 1 in queue)
+
+[SCHEDULED] Process 3 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 3 starting from PC = 5
+[BLOCKED] Process PID 3 on instruction 15 (Long Syscall)
+[STATUS] Process PID 3 moved from PC = 5 to PC = 16, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 1 moved to READY state
+Number of ready processes: 6
+Ready Queue: [1, 2, 4, 6, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 2 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 2
+[BLOCKED] Process PID 4 on instruction 3 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 2 to PC = 4, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 3 moved to READY state
+Number of ready processes: 6
+Ready Queue: [1, 2, 3, 6, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 6 (position 3 in queue)
+
+[SCHEDULED] Process 6 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 6 starting from PC = 23
+[COMPLETED] Process PID 6 completed
+[STATUS] Process PID 6 moved from PC = 23 to PC = 35, State = 6
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 6
+Ready Queue: [1, 2, 3, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 4 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 0
+[BLOCKED] Process PID 7 on instruction 2 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 0 to PC = 3, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 5
+Ready Queue: [1, 2, 3, 4, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 1 (position 0 in queue)
+
+[SCHEDULED] Process 1 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 15
+[BLOCKED] Process PID 1 on instruction 19 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 15 to PC = 20, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 5
+Ready Queue: [2, 3, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 3 (position 1 in queue)
+
+[SCHEDULED] Process 3 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 3 starting from PC = 16
+[COMPLETED] Process PID 3 completed
+[STATUS] Process PID 3 moved from PC = 16 to PC = 40, State = 6
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 1 moved to READY state
+Number of ready processes: 5
+Ready Queue: [1, 2, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 2 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 4
+[BLOCKED] Process PID 4 on instruction 4 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 4 to PC = 5, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 4
+Ready Queue: [1, 2, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 3 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 0
+[BLOCKED] Process PID 10 on instruction 3 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 0 to PC = 4, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 4, 7]
+[SCHEDULER: ROUND ROBIN] Selected process 1 (position 0 in queue)
+
+[SCHEDULED] Process 1 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 20
+[BLOCKED] Process PID 1 on instruction 27 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 20 to PC = 28, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 4
+Ready Queue: [2, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 1 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 5
+[BLOCKED] Process PID 4 on instruction 11 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 5 to PC = 12, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 1 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 2 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 3
+[BLOCKED] Process PID 7 on instruction 4 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 3 to PC = 5, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 4, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 3 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 4
+[BLOCKED] Process PID 10 on instruction 5 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 4 to PC = 6, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 4, 7]
+[SCHEDULER: ROUND ROBIN] Selected process 1 (position 0 in queue)
+
+[SCHEDULED] Process 1 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 28
+[BLOCKED] Process PID 1 on instruction 30 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 28 to PC = 31, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 4
+Ready Queue: [2, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 1 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 12
+[BLOCKED] Process PID 4 on instruction 19 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 12 to PC = 20, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 1 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 2 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 5
+[BLOCKED] Process PID 7 on instruction 9 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 5 to PC = 10, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 4, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 3 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 6
+[BLOCKED] Process PID 10 on instruction 16 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 6 to PC = 17, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 4, 7]
+[SCHEDULER: ROUND ROBIN] Selected process 1 (position 0 in queue)
+
+[SCHEDULED] Process 1 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 31
+[BLOCKED] Process PID 1 on instruction 40 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 31 to PC = 41, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 4
+Ready Queue: [2, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 1 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 20
+[BLOCKED] Process PID 4 on instruction 23 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 20 to PC = 24, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 1 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 2 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 10
+[BLOCKED] Process PID 7 on instruction 17 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 10 to PC = 18, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 4, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 3 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 17
+[BLOCKED] Process PID 10 on instruction 24 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 17 to PC = 25, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 4, 7]
+[SCHEDULER: ROUND ROBIN] Selected process 1 (position 0 in queue)
+
+[SCHEDULED] Process 1 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 41
+[BLOCKED] Process PID 1 on instruction 46 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 41 to PC = 47, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 4
+Ready Queue: [2, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 1 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 24
+[BLOCKED] Process PID 4 on instruction 26 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 24 to PC = 27, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 1 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 2 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 18
+[BLOCKED] Process PID 7 on instruction 21 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 18 to PC = 22, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 4, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 3 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 25
+[BLOCKED] Process PID 10 on instruction 31 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 25 to PC = 32, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 4, 7]
+[SCHEDULER: ROUND ROBIN] Selected process 1 (position 0 in queue)
+
+[SCHEDULED] Process 1 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 47
+[BLOCKED] Process PID 1 on instruction 47 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 47 to PC = 48, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 4
+Ready Queue: [2, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 1 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 27
+[BLOCKED] Process PID 4 on instruction 38 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 27 to PC = 39, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 1 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 2 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 22
+[BLOCKED] Process PID 7 on instruction 22 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 22 to PC = 23, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 4, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 3 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 32
+[BLOCKED] Process PID 10 on instruction 49 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 32 to PC = 50, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 4, 7]
+[SCHEDULER: ROUND ROBIN] Selected process 1 (position 0 in queue)
+
+[SCHEDULED] Process 1 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 48
+[COMPLETED] Process PID 1 completed
+[STATUS] Process PID 1 moved from PC = 48 to PC = 50, State = 6
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 4
+Ready Queue: [2, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 1 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 39
+[BLOCKED] Process PID 4 on instruction 44 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 39 to PC = 45, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 3
+Ready Queue: [2, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 2 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 50
+[BLOCKED] Process PID 10 on instruction 54 (Long Syscall)
+[COMPLETED] Process PID 10 completed
+[STATUS] Process PID 10 moved from PC = 50 to PC = 55, State = 6
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 3
+Ready Queue: [2, 4, 7]
+[SCHEDULER: ROUND ROBIN] Selected process 2 (position 0 in queue)
+
+[SCHEDULED] Process 2 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 2 starting from PC = 0
+[COMPLETED] Process PID 2 completed
+[STATUS] Process PID 2 moved from PC = 0 to PC = 20, State = 6
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 2
+Ready Queue: [4, 7]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 1 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 23
+[BLOCKED] Process PID 7 on instruction 23 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 23 to PC = 24, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 1
+Ready Queue: [4]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 0 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 45
+[BLOCKED] Process PID 4 on instruction 47 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 45 to PC = 48, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 1
+Ready Queue: [7]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 0 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 24
+[BLOCKED] Process PID 7 on instruction 39 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 24 to PC = 40, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 1
+Ready Queue: [4]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 0 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 48
+[BLOCKED] Process PID 4 on instruction 48 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 48 to PC = 49, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 1
+Ready Queue: [7]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 0 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 40
+[BLOCKED] Process PID 7 on instruction 41 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 40 to PC = 42, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 1
+Ready Queue: [4]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 0 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 49
+[BLOCKED] Process PID 4 on instruction 50 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 49 to PC = 51, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 1
+Ready Queue: [7]
+[SCHEDULER: ROUND ROBIN] Se
+============================================
+ Experiment 1 (K = 64) : MEMORY OFF then MEMORY ON
+============================================
+
+
+--- Run A : MEMORY MANAGER OFF (K=64) ---
+=== Initialising ScisSOS ===
+Process table initialised
+Ready and Block Queues initialised
+=== ScisSOS Initialised ===
+
+[MEMORY] Generated address sequence for PID 1 (type=GOOD, size=50, pages=7)
+Process created: WebBrowser, PID: 1, UID: 3, Priority: 5, Type: 2, MemType: 3
+[MEMORY] Generated address sequence for PID 2 (type=GOOD, size=20, pages=3)
+Process created: Calculator, PID: 2, UID: 6, Priority: 10, Type: 1, MemType: 3
+[MEMORY] Generated address sequence for PID 3 (type=GOOD, size=40, pages=5)
+Process created: TextEditor, PID: 3, UID: 3, Priority: 8, Type: 0, MemType: 3
+[MEMORY] Generated address sequence for PID 4 (type=GOOD, size=60, pages=8)
+Process created: VideoPlayer, PID: 4, UID: 2, Priority: 3, Type: 2, MemType: 3
+[MEMORY] Generated address sequence for PID 5 (type=GOOD, size=80, pages=10)
+Process created: Compiler, PID: 5, UID: 6, Priority: 15, Type: 1, MemType: 3
+[MEMORY] Generated address sequence for PID 6 (type=GOOD, size=35, pages=5)
+Process created: FileManager, PID: 6, UID: 5, Priority: 7, Type: 0, MemType: 3
+[MEMORY] Generated address sequence for PID 7 (type=GOOD, size=70, pages=9)
+Process created: Database, PID: 7, UID: 1, Priority: 4, Type: 2, MemType: 3
+[MEMORY] Generated address sequence for PID 8 (type=GOOD, size=100, pages=10)
+Process created: Game, PID: 8, UID: 5, Priority: 2, Type: 1, MemType: 3
+[MEMORY] Generated address sequence for PID 9 (type=GOOD, size=25, pages=4)
+Process created: Terminal, PID: 9, UID: 7, Priority: 12, Type: 0, MemType: 3
+[MEMORY] Generated address sequence for PID 10 (type=GOOD, size=55, pages=7)
+Process created: ImageEditor, PID: 10, UID: 2, Priority: 6, Type: 2, MemType: 3
+=== Process Creation Complete ===
+Total processes created: 10
+
+=== Initial Process Control Blocks ===
+----------------------------------------
+Process Name: WebBrowser
+PID: 1
+UID: 3
+Size: 50 instructions
+Pages: 7
+Priority: 5
+State: READY (1)
+Type: IO_INTENSIVE (2)
+Memory Type: GOOD (3)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+----------------------------------------
+Process Name: Calculator
+PID: 2
+UID: 6
+Size: 20 instructions
+Pages: 3
+Priority: 10
+State: READY (1)
+Type: COMPUTE_INTENSIVE (1)
+Memory Type: GOOD (3)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+----------------------------------------
+Process Name: TextEditor
+PID: 3
+UID: 3
+Size: 40 instructions
+Pages: 5
+Priority: 8
+State: READY (1)
+Type: REGULAR (0)
+Memory Type: GOOD (3)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+----------------------------------------
+Process Name: VideoPlayer
+PID: 4
+UID: 2
+Size: 60 instructions
+Pages: 8
+Priority: 3
+State: READY (1)
+Type: IO_INTENSIVE (2)
+Memory Type: BAD (4)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+----------------------------------------
+Process Name: Compiler
+PID: 5
+UID: 6
+Size: 80 instructions
+Pages: 10
+Priority: 15
+State: READY (1)
+Type: COMPUTE_INTENSIVE (1)
+Memory Type: BAD (4)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+----------------------------------------
+Process Name: FileManager
+PID: 6
+UID: 5
+Size: 35 instructions
+Pages: 5
+Priority: 7
+State: READY (1)
+Type: REGULAR (0)
+Memory Type: UGLY (5)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+----------------------------------------
+Process Name: Database
+PID: 7
+UID: 1
+Size: 70 instructions
+Pages: 9
+Priority: 4
+State: READY (1)
+Type: IO_INTENSIVE (2)
+Memory Type: UGLY (5)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+----------------------------------------
+Process Name: Game
+PID: 8
+UID: 5
+Size: 100 instructions
+Pages: 10
+Priority: 2
+State: READY (1)
+Type: COMPUTE_INTENSIVE (1)
+Memory Type: UGLY (5)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+----------------------------------------
+Process Name: Terminal
+PID: 9
+UID: 7
+Size: 25 instructions
+Pages: 4
+Priority: 12
+State: READY (1)
+Type: REGULAR (0)
+Memory Type: GOOD (3)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+----------------------------------------
+Process Name: ImageEditor
+PID: 10
+UID: 2
+Size: 55 instructions
+Pages: 7
+Priority: 6
+State: READY (1)
+Type: IO_INTENSIVE (2)
+Memory Type: BAD (4)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+
+--- Scheduling Iteration 1 ---
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 10
+Ready Queue: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 1 (position 0 in queue)
+
+[SCHEDULED] Process 1 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 0
+[BLOCKED] Process PID 1 on instruction 3 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 0 to PC = 4, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 9
+Ready Queue: [2, 3, 4, 5, 6, 7, 8, 9, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 3 (position 1 in queue)
+
+[SCHEDULED] Process 3 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 3 starting from PC = 0
+[BLOCKED] Process PID 3 on instruction 34 (Long Syscall)
+[STATUS] Process PID 3 moved from PC = 0 to PC = 35, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 1 moved to READY state
+Number of ready processes: 9
+Ready Queue: [1, 2, 4, 5, 6, 7, 8, 9, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 2 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 0
+[BLOCKED] Process PID 4 on instruction 1 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 0 to PC = 2, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 3 moved to READY state
+Number of ready processes: 9
+Ready Queue: [1, 2, 3, 5, 6, 7, 8, 9, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 5 (position 3 in queue)
+
+[SCHEDULED] Process 5 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 5 starting from PC = 0
+[COMPLETED] Process PID 5 completed
+[STATUS] Process PID 5 moved from PC = 0 to PC = 80, State = 6
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 9
+Ready Queue: [1, 2, 3, 4, 6, 7, 8, 9, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 6 (position 4 in queue)
+
+[SCHEDULED] Process 6 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 6 starting from PC = 0
+[COMPLETED] Process PID 6 completed
+[STATUS] Process PID 6 moved from PC = 0 to PC = 35, State = 6
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 8
+Ready Queue: [1, 2, 3, 4, 7, 8, 9, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 8 (position 5 in queue)
+
+[SCHEDULED] Process 8 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 8 starting from PC = 0
+[COMPLETED] Process PID 8 completed
+[STATUS] Process PID 8 moved from PC = 0 to PC = 100, State = 6
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 7
+Ready Queue: [1, 2, 3, 4, 7, 9, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 6 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 0
+[BLOCKED] Process PID 10 on instruction 6 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 0 to PC = 7, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 6
+Ready Queue: [1, 2, 3, 4, 7, 9]
+[SCHEDULER: ROUND ROBIN] Selected process 1 (position 0 in queue)
+
+[SCHEDULED] Process 1 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 4
+[BLOCKED] Process PID 1 on instruction 4 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 4 to PC = 5, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 6
+Ready Queue: [2, 3, 4, 7, 9, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 3 (position 1 in queue)
+
+[SCHEDULED] Process 3 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 3 starting from PC = 35
+[COMPLETED] Process PID 3 completed
+[STATUS] Process PID 3 moved from PC = 35 to PC = 40, State = 6
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 1 moved to READY state
+Number of ready processes: 6
+Ready Queue: [1, 2, 4, 7, 9, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 2 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 2
+[BLOCKED] Process PID 4 on instruction 6 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 2 to PC = 7, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 5
+Ready Queue: [1, 2, 7, 9, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 9 (position 3 in queue)
+
+[SCHEDULED] Process 9 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 9 starting from PC = 0
+[COMPLETED] Process PID 9 completed
+[STATUS] Process PID 9 moved from PC = 0 to PC = 25, State = 6
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 5
+Ready Queue: [1, 2, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 4 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 7
+[BLOCKED] Process PID 10 on instruction 7 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 7 to PC = 8, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 4
+Ready Queue: [1, 2, 4, 7]
+[SCHEDULER: ROUND ROBIN] Selected process 1 (position 0 in queue)
+
+[SCHEDULED] Process 1 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 5
+[BLOCKED] Process PID 1 on instruction 5 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 5 to PC = 6, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 4
+Ready Queue: [2, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 1 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 7
+[BLOCKED] Process PID 4 on instruction 9 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 7 to PC = 10, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 1 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 2 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 0
+[BLOCKED] Process PID 7 on instruction 4 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 0 to PC = 5, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 4, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 3 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 8
+[BLOCKED] Process PID 10 on instruction 12 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 8 to PC = 13, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 4, 7]
+[SCHEDULER: ROUND ROBIN] Selected process 1 (position 0 in queue)
+
+[SCHEDULED] Process 1 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 6
+[BLOCKED] Process PID 1 on instruction 9 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 6 to PC = 10, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 4
+Ready Queue: [2, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 1 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 10
+[BLOCKED] Process PID 4 on instruction 17 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 10 to PC = 18, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 1 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 2 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 5
+[BLOCKED] Process PID 7 on instruction 12 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 5 to PC = 13, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 4, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 3 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 13
+[BLOCKED] Process PID 10 on instruction 13 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 13 to PC = 14, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 4, 7]
+[SCHEDULER: ROUND ROBIN] Selected process 1 (position 0 in queue)
+
+[SCHEDULED] Process 1 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 10
+[BLOCKED] Process PID 1 on instruction 10 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 10 to PC = 11, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 4
+Ready Queue: [2, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 1 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 18
+[BLOCKED] Process PID 4 on instruction 22 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 18 to PC = 23, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 1 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 2 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 13
+[BLOCKED] Process PID 7 on instruction 20 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 13 to PC = 21, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 4, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 3 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 14
+[BLOCKED] Process PID 10 on instruction 16 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 14 to PC = 17, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 4, 7]
+[SCHEDULER: ROUND ROBIN] Selected process 1 (position 0 in queue)
+
+[SCHEDULED] Process 1 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 11
+[BLOCKED] Process PID 1 on instruction 11 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 11 to PC = 12, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 4
+Ready Queue: [2, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 1 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 23
+[BLOCKED] Process PID 4 on instruction 25 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 23 to PC = 26, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 1 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 2 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 21
+[BLOCKED] Process PID 7 on instruction 38 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 21 to PC = 39, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 4, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 3 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 17
+[BLOCKED] Process PID 10 on instruction 22 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 17 to PC = 23, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 4, 7]
+[SCHEDULER: ROUND ROBIN] Selected process 1 (position 0 in queue)
+
+[SCHEDULED] Process 1 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 12
+[BLOCKED] Process PID 1 on instruction 16 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 12 to PC = 17, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 4
+Ready Queue: [2, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 1 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 26
+[BLOCKED] Process PID 4 on instruction 26 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 26 to PC = 27, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 1 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 2 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 39
+[BLOCKED] Process PID 7 on instruction 44 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 39 to PC = 45, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 4, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 3 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 23
+[BLOCKED] Process PID 10 on instruction 24 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 23 to PC = 25, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 4, 7]
+[SCHEDULER: ROUND ROBIN] Selected process 1 (position 0 in queue)
+
+[SCHEDULED] Process 1 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 17
+[BLOCKED] Process PID 1 on instruction 30 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 17 to PC = 31, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 4
+Ready Queue: [2, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 1 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 27
+[BLOCKED] Process PID 4 on instruction 27 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 27 to PC = 28, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 1 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 2 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 45
+[BLOCKED] Process PID 7 on instruction 53 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 45 to PC = 54, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 4, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 3 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 25
+[BLOCKED] Process PID 10 on instruction 25 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 25 to PC = 26, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 4, 7]
+[SCHEDULER: ROUND ROBIN] Selected process 1 (position 0 in queue)
+
+[SCHEDULED] Process 1 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 31
+[BLOCKED] Process PID 1 on instruction 39 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 31 to PC = 40, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 4
+Ready Queue: [2, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 1 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 28
+[BLOCKED] Process PID 4 on instruction 34 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 28 to PC = 35, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 1 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 2 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 54
+[BLOCKED] Process PID 7 on instruction 54 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 54 to PC = 55, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 4, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 3 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 26
+[BLOCKED] Process PID 10 on instruction 27 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 26 to PC = 28, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 4, 7]
+[SCHEDULER: ROUND ROBIN] Selected process 1 (position 0 in queue)
+
+[SCHEDULED] Process 1 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 40
+[BLOCKED] Process PID 1 on instruction 42 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 40 to PC = 43, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 4
+Ready Queue: [2, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 1 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 35
+[BLOCKED] Process PID 4 on instruction 41 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 35 to PC = 42, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 1 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 2 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 55
+[BLOCKED] Process PID 7 on instruction 55 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 55 to PC = 56, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 4, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 3 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 28
+[BLOCKED] Process PID 10 on instruction 43 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 28 to PC = 44, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 4, 7]
+[SCHEDULER: ROUND ROBIN] Selected process 1 (position 0 in queue)
+
+[SCHEDULED] Process 1 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 43
+[BLOCKED] Process PID 1 on instruction 43 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 43 to PC = 44, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 4
+Ready Queue: [2, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 1 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 42
+[BLOCKED] Process PID 4 on instruction 45 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 42 to PC = 46, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 1 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 2 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 56
+[BLOCKED] Process PID 7 on instruction 62 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 56 to PC = 63, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 4, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 3 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 44
+[BLOCKED] Process PID 10 on instruction 44 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 44 to PC = 45, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 4, 7]
+[SCHEDULER: ROUND ROBIN] Selected process 1 (position 0 in queue)
+
+[SCHEDULED] Process 1 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 44
+[COMPLETED] Process PID 1 completed
+[STATUS] Process PID 1 moved from PC = 44 to PC = 50, State = 6
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 4
+Ready Queue: [2, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 1 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 46
+[BLOCKED] Process PID 4 on instruction 46 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 46 to PC = 47, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 3
+Ready Queue: [2, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 2 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 45
+[BLOCKED] Process PID 10 on instruction 47 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 45 to PC = 48, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 3
+Ready Queue: [2, 4, 7]
+[SCHEDULER: ROUND ROBIN] Selected process 2 (position 0 in queue)
+
+[SCHEDULED] Process 2 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 2 starting from PC = 0
+[COMPLETED] Process PID 2 completed
+[STATUS] Process PID 2 moved from PC = 0 to PC = 20, State = 6
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 3
+Ready Queue: [4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 1 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 63
+[COMPLETED] Process PID 7 completed
+[STATUS] Process PID 7 moved from PC = 63 to PC = 70, State = 6
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 2
+Ready Queue: [4, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 0 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 47
+[BLOCKED] Process PID 4 on instruction 48 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 47 to PC = 49, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 1
+Ready Queue: [10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 0 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 48
+[BLOCKED] Process PID 10 on instruction 48 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 48 to PC = 49, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 1
+Ready Queue: [4]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 0 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from 
+============================================
+ Experiment 1 (K = 64) : MEMORY OFF then MEMORY ON
+============================================
+
+
+--- Run A : MEMORY MANAGER OFF (K=64) ---
+=== Initialising ScisSOS ===
+Process table initialised
+Ready and Block Queues initialised
+=== ScisSOS Initialised ===
+
+[MEMORY] Generated address sequence for PID 1 (type=GOOD, size=50, pages=7)
+Process created: WebBrowser, PID: 1, UID: 6, Priority: 5, Type: 2, MemType: 3
+[MEMORY] Generated address sequence for PID 2 (type=GOOD, size=20, pages=3)
+Process created: Calculator, PID: 2, UID: 5, Priority: 10, Type: 1, MemType: 3
+[MEMORY] Generated address sequence for PID 3 (type=GOOD, size=40, pages=5)
+Process created: TextEditor, PID: 3, UID: 4, Priority: 8, Type: 0, MemType: 3
+[MEMORY] Generated address sequence for PID 4 (type=GOOD, size=60, pages=8)
+Process created: VideoPlayer, PID: 4, UID: 4, Priority: 3, Type: 2, MemType: 3
+[MEMORY] Generated address sequence for PID 5 (type=GOOD, size=80, pages=10)
+Process created: Compiler, PID: 5, UID: 7, Priority: 15, Type: 1, MemType: 3
+[MEMORY] Generated address sequence for PID 6 (type=GOOD, size=35, pages=5)
+Process created: FileManager, PID: 6, UID: 3, Priority: 7, Type: 0, MemType: 3
+[MEMORY] Generated address sequence for PID 7 (type=GOOD, size=70, pages=9)
+Process created: Database, PID: 7, UID: 3, Priority: 4, Type: 2, MemType: 3
+[MEMORY] Generated address sequence for PID 8 (type=GOOD, size=100, pages=10)
+Process created: Game, PID: 8, UID: 6, Priority: 2, Type: 1, MemType: 3
+[MEMORY] Generated address sequence for PID 9 (type=GOOD, size=25, pages=4)
+Process created: Terminal, PID: 9, UID: 1, Priority: 12, Type: 0, MemType: 3
+[MEMORY] Generated address sequence for PID 10 (type=GOOD, size=55, pages=7)
+Process created: ImageEditor, PID: 10, UID: 3, Priority: 6, Type: 2, MemType: 3
+=== Process Creation Complete ===
+Total processes created: 10
+
+=== Initial Process Control Blocks ===
+----------------------------------------
+Process Name: WebBrowser
+PID: 1
+UID: 6
+Size: 50 instructions
+Pages: 7
+Priority: 5
+State: READY (1)
+Type: IO_INTENSIVE (2)
+Memory Type: GOOD (3)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+----------------------------------------
+Process Name: Calculator
+PID: 2
+UID: 5
+Size: 20 instructions
+Pages: 3
+Priority: 10
+State: READY (1)
+Type: COMPUTE_INTENSIVE (1)
+Memory Type: GOOD (3)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+----------------------------------------
+Process Name: TextEditor
+PID: 3
+UID: 4
+Size: 40 instructions
+Pages: 5
+Priority: 8
+State: READY (1)
+Type: REGULAR (0)
+Memory Type: GOOD (3)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+----------------------------------------
+Process Name: VideoPlayer
+PID: 4
+UID: 4
+Size: 60 instructions
+Pages: 8
+Priority: 3
+State: READY (1)
+Type: IO_INTENSIVE (2)
+Memory Type: BAD (4)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+----------------------------------------
+Process Name: Compiler
+PID: 5
+UID: 7
+Size: 80 instructions
+Pages: 10
+Priority: 15
+State: READY (1)
+Type: COMPUTE_INTENSIVE (1)
+Memory Type: BAD (4)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+----------------------------------------
+Process Name: FileManager
+PID: 6
+UID: 3
+Size: 35 instructions
+Pages: 5
+Priority: 7
+State: READY (1)
+Type: REGULAR (0)
+Memory Type: UGLY (5)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+----------------------------------------
+Process Name: Database
+PID: 7
+UID: 3
+Size: 70 instructions
+Pages: 9
+Priority: 4
+State: READY (1)
+Type: IO_INTENSIVE (2)
+Memory Type: UGLY (5)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+----------------------------------------
+Process Name: Game
+PID: 8
+UID: 6
+Size: 100 instructions
+Pages: 10
+Priority: 2
+State: READY (1)
+Type: COMPUTE_INTENSIVE (1)
+Memory Type: UGLY (5)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+----------------------------------------
+Process Name: Terminal
+PID: 9
+UID: 1
+Size: 25 instructions
+Pages: 4
+Priority: 12
+State: READY (1)
+Type: REGULAR (0)
+Memory Type: GOOD (3)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+----------------------------------------
+Process Name: ImageEditor
+PID: 10
+UID: 3
+Size: 55 instructions
+Pages: 7
+Priority: 6
+State: READY (1)
+Type: IO_INTENSIVE (2)
+Memory Type: BAD (4)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+
+--- Scheduling Iteration 1 ---
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 10
+Ready Queue: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 1 (position 0 in queue)
+
+[SCHEDULED] Process 1 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 0
+[BLOCKED] Process PID 1 on instruction 2 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 0 to PC = 3, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 9
+Ready Queue: [2, 3, 4, 5, 6, 7, 8, 9, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 3 (position 1 in queue)
+
+[SCHEDULED] Process 3 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 3 starting from PC = 0
+[BLOCKED] Process PID 3 on instruction 28 (Long Syscall)
+[STATUS] Process PID 3 moved from PC = 0 to PC = 29, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 1 moved to READY state
+Number of ready processes: 9
+Ready Queue: [1, 2, 4, 5, 6, 7, 8, 9, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 2 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 0
+[BLOCKED] Process PID 4 on instruction 7 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 0 to PC = 8, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 3 moved to READY state
+Number of ready processes: 9
+Ready Queue: [1, 2, 3, 5, 6, 7, 8, 9, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 5 (position 3 in queue)
+
+[SCHEDULED] Process 5 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 5 starting from PC = 0
+[COMPLETED] Process PID 5 completed
+[STATUS] Process PID 5 moved from PC = 0 to PC = 80, State = 6
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 9
+Ready Queue: [1, 2, 3, 4, 6, 7, 8, 9, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 6 (position 4 in queue)
+
+[SCHEDULED] Process 6 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 6 starting from PC = 0
+[BLOCKED] Process PID 6 on instruction 25 (Long Syscall)
+[STATUS] Process PID 6 moved from PC = 0 to PC = 26, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 8
+Ready Queue: [1, 2, 3, 4, 7, 8, 9, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 8 (position 5 in queue)
+
+[SCHEDULED] Process 8 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 8 starting from PC = 0
+[COMPLETED] Process PID 8 completed
+[STATUS] Process PID 8 moved from PC = 0 to PC = 100, State = 6
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 6 moved to READY state
+Number of ready processes: 8
+Ready Queue: [1, 2, 3, 4, 6, 7, 9, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 9 (position 6 in queue)
+
+[SCHEDULED] Process 9 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 9 starting from PC = 0
+[COMPLETED] Process PID 9 completed
+[STATUS] Process PID 9 moved from PC = 0 to PC = 25, State = 6
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 7
+Ready Queue: [1, 2, 3, 4, 6, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 1 (position 0 in queue)
+
+[SCHEDULED] Process 1 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 3
+[BLOCKED] Process PID 1 on instruction 21 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 3 to PC = 22, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 6
+Ready Queue: [2, 3, 4, 6, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 3 (position 1 in queue)
+
+[SCHEDULED] Process 3 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 3 starting from PC = 29
+[COMPLETED] Process PID 3 completed
+[STATUS] Process PID 3 moved from PC = 29 to PC = 40, State = 6
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 1 moved to READY state
+Number of ready processes: 6
+Ready Queue: [1, 2, 4, 6, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 2 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 8
+[BLOCKED] Process PID 4 on instruction 10 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 8 to PC = 11, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 5
+Ready Queue: [1, 2, 6, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 3 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 0
+[BLOCKED] Process PID 7 on instruction 5 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 0 to PC = 6, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 5
+Ready Queue: [1, 2, 4, 6, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 4 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 0
+[BLOCKED] Process PID 10 on instruction 4 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 0 to PC = 5, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 5
+Ready Queue: [1, 2, 4, 6, 7]
+[SCHEDULER: ROUND ROBIN] Selected process 1 (position 0 in queue)
+
+[SCHEDULED] Process 1 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 22
+[BLOCKED] Process PID 1 on instruction 28 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 22 to PC = 29, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 5
+Ready Queue: [2, 4, 6, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 1 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 11
+[BLOCKED] Process PID 4 on instruction 11 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 11 to PC = 12, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 1 moved to READY state
+Number of ready processes: 5
+Ready Queue: [1, 2, 6, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 6 (position 2 in queue)
+
+[SCHEDULED] Process 6 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 6 starting from PC = 26
+[BLOCKED] Process PID 6 on instruction 28 (Long Syscall)
+[STATUS] Process PID 6 moved from PC = 26 to PC = 29, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 5
+Ready Queue: [1, 2, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 3 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 6
+[BLOCKED] Process PID 7 on instruction 6 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 6 to PC = 7, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 6 moved to READY state
+Number of ready processes: 5
+Ready Queue: [1, 2, 4, 6, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 4 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 5
+[BLOCKED] Process PID 10 on instruction 5 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 5 to PC = 6, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 5
+Ready Queue: [1, 2, 4, 6, 7]
+[SCHEDULER: ROUND ROBIN] Selected process 1 (position 0 in queue)
+
+[SCHEDULED] Process 1 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 29
+[BLOCKED] Process PID 1 on instruction 32 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 29 to PC = 33, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 5
+Ready Queue: [2, 4, 6, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 1 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 12
+[BLOCKED] Process PID 4 on instruction 14 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 12 to PC = 15, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 1 moved to READY state
+Number of ready processes: 5
+Ready Queue: [1, 2, 6, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 6 (position 2 in queue)
+
+[SCHEDULED] Process 6 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 6 starting from PC = 29
+[COMPLETED] Process PID 6 completed
+[STATUS] Process PID 6 moved from PC = 29 to PC = 35, State = 6
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 5
+Ready Queue: [1, 2, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 3 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 7
+[BLOCKED] Process PID 7 on instruction 23 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 7 to PC = 24, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 4
+Ready Queue: [1, 2, 4, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 1 (position 0 in queue)
+
+[SCHEDULED] Process 1 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 33
+[BLOCKED] Process PID 1 on instruction 33 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 33 to PC = 34, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 4
+Ready Queue: [2, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 1 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 15
+[BLOCKED] Process PID 4 on instruction 15 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 15 to PC = 16, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 1 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 2 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 24
+[BLOCKED] Process PID 7 on instruction 27 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 24 to PC = 28, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 4, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 3 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 6
+[BLOCKED] Process PID 10 on instruction 6 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 6 to PC = 7, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 4, 7]
+[SCHEDULER: ROUND ROBIN] Selected process 1 (position 0 in queue)
+
+[SCHEDULED] Process 1 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 34
+[BLOCKED] Process PID 1 on instruction 40 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 34 to PC = 41, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 4
+Ready Queue: [2, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 1 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 16
+[BLOCKED] Process PID 4 on instruction 35 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 16 to PC = 36, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 1 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 2 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 28
+[BLOCKED] Process PID 7 on instruction 28 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 28 to PC = 29, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 4, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 3 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 7
+[BLOCKED] Process PID 10 on instruction 8 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 7 to PC = 9, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 4, 7]
+[SCHEDULER: ROUND ROBIN] Selected process 1 (position 0 in queue)
+
+[SCHEDULED] Process 1 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 41
+[BLOCKED] Process PID 1 on instruction 43 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 41 to PC = 44, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 4
+Ready Queue: [2, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 1 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 36
+[BLOCKED] Process PID 4 on instruction 37 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 36 to PC = 38, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 1 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 2 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 29
+[BLOCKED] Process PID 7 on instruction 32 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 29 to PC = 33, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 4, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 3 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 9
+[BLOCKED] Process PID 10 on instruction 14 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 9 to PC = 15, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 4, 7]
+[SCHEDULER: ROUND ROBIN] Selected process 1 (position 0 in queue)
+
+[SCHEDULED] Process 1 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 44
+[COMPLETED] Process PID 1 completed
+[STATUS] Process PID 1 moved from PC = 44 to PC = 50, State = 6
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 4
+Ready Queue: [2, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 1 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 38
+[BLOCKED] Process PID 4 on instruction 38 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 38 to PC = 39, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 3
+Ready Queue: [2, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 2 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 15
+[BLOCKED] Process PID 10 on instruction 16 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 15 to PC = 17, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 3
+Ready Queue: [2, 4, 7]
+[SCHEDULER: ROUND ROBIN] Selected process 2 (position 0 in queue)
+
+[SCHEDULED] Process 2 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 2 starting from PC = 0
+[COMPLETED] Process PID 2 completed
+[STATUS] Process PID 2 moved from PC = 0 to PC = 20, State = 6
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 3
+Ready Queue: [4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 1 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 33
+[BLOCKED] Process PID 7 on instruction 40 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 33 to PC = 41, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 2
+Ready Queue: [4, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 0 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 39
+[BLOCKED] Process PID 4 on instruction 39 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 39 to PC = 40, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 2
+Ready Queue: [7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 1 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 17
+[BLOCKED] Process PID 10 on instruction 28 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 17 to PC = 29, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 2
+Ready Queue: [4, 7]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 0 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 40
+[BLOCKED] Process PID 4 on instruction 42 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 40 to PC = 43, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 2
+Ready Queue: [7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 1 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 29
+[BLOCKED] Process PID 10 on instruction 30 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 29 to PC = 31, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 2
+Ready Queue: [4, 7]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 0 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 43
+[BLOCKED] Process PID 4 on instruction 50 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 43 to PC = 51, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 2
+Ready Queue: [7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 1 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 31
+[BLOCKED] Process PID 10 on instruction 34 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 31 to PC = 35, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 2
+Ready Queue: [4, 7]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 0 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 51
+[COMPLETED] Process PID 4 completed
+[STATUS] Process PID 4 moved from PC = 51 to PC = 60, State = 6
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 2
+Ready Queue: [7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 1 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 35
+[BLOCKED] Process PID 10 on instruction 37 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 35 to PC = 38, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 1
+Ready Queue: [7]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 0 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 41
+[BLOCKED] Process PID 7 on instruction 44 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 41 to PC = 45, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 1
+Ready Queue: [10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 0 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 38
+[BLOCKED] Process PID 10 on instruction 48 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 38 to PC = 49, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 1
+Ready Queue: [7]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 0 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 45
+[BLOCKED] Process PID 7 on instruction 51 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 45 to PC = 52, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 1
+Ready Queue: [10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 0 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 49
+[BLOCKED] Process PID 10 on instruction 54 (Long Syscall)
+[COMPLETED] Process PID 10 completed
+[STATUS] Process PID 10 moved from PC = 49 to PC = 55, State = 6
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 1
+Ready Queue: [7]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 0 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 52
+[BLOCKED] Process PID 7 on instruction 55 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 52 to PC = 56, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 0
+Invalid process with PID -100 selected for scheduling
+Scheduler terminating
+=== SCHEDULER TERMINATED ===
+
+--- Scheduling Iteration 2 ---
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 1
+Ready Queue: [7]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 0 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 56
+[BLOCKED] Process PID 7 on instruction 58 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 56 to PC = 59, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 0
+Invalid process with PID -100 selected for scheduling
+Scheduler terminating
+=== SCHEDULER TERMINATED ===
+
+--- Scheduling Iteration 3 ---
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 1
+Ready Queue: [7]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 0 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 59
+[BLOCKED] Process PID 7 on instruction 62 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 59 to PC = 63, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 0
+Invalid process with PID -100 selected for scheduling
+Scheduler terminating
+=== SCHEDULER TERMINATED ===
+
+--- Scheduling Iteration 4 ---
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 1
+Ready Queue: [7]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 0 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 63
+[COMPLETED] Process PID 7 completed
+[STATUS] Process PID 7 moved from PC = 63 to PC = 70, State = 6
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 0
+No active processes --- Scheduler terminating
+=== SCHEDULER TERMINATED ===
+
+[INFO] All processes completed after 4 scheduling iterations
+
+=== Memory Manager Statistics
+============================================
+ Experiment 1 (K = 64) : MEMORY OFF then MEMORY ON
+============================================
+
+
+--- Run A : MEMORY MANAGER OFF (K=64) ---
+=== Initialising ScisSOS ===
+Process table initialised
+Ready and Block Queues initialised
+=== ScisSOS Initialised ===
+
+[MEMORY] Generated address sequence for PID 1 (type=GOOD, size=50, pages=7)
+Process created: WebBrowser, PID: 1, UID: 6, Priority: 5, Type: 2, MemType: 3
+[MEMORY] Generated address sequence for PID 2 (type=GOOD, size=20, pages=3)
+Process created: Calculator, PID: 2, UID: 1, Priority: 10, Type: 1, MemType: 3
+[MEMORY] Generated address sequence for PID 3 (type=GOOD, size=40, pages=5)
+Process created: TextEditor, PID: 3, UID: 9, Priority: 8, Type: 0, MemType: 3
+[MEMORY] Generated address sequence for PID 4 (type=GOOD, size=60, pages=8)
+Process created: VideoPlayer, PID: 4, UID: 7, Priority: 3, Type: 2, MemType: 3
+[MEMORY] Generated address sequence for PID 5 (type=GOOD, size=80, pages=10)
+Process created: Compiler, PID: 5, UID: 3, Priority: 15, Type: 1, MemType: 3
+[MEMORY] Generated address sequence for PID 6 (type=GOOD, size=35, pages=5)
+Process created: FileManager, PID: 6, UID: 10, Priority: 7, Type: 0, MemType: 3
+[MEMORY] Generated address sequence for PID 7 (type=GOOD, size=70, pages=9)
+Process created: Database, PID: 7, UID: 1, Priority: 4, Type: 2, MemType: 3
+[MEMORY] Generated address sequence for PID 8 (type=GOOD, size=100, pages=10)
+Process created: Game, PID: 8, UID: 2, Priority: 2, Type: 1, MemType: 3
+[MEMORY] Generated address sequence for PID 9 (type=GOOD, size=25, pages=4)
+Process created: Terminal, PID: 9, UID: 1, Priority: 12, Type: 0, MemType: 3
+[MEMORY] Generated address sequence for PID 10 (type=GOOD, size=55, pages=7)
+Process created: ImageEditor, PID: 10, UID: 7, Priority: 6, Type: 2, MemType: 3
+=== Process Creation Complete ===
+Total processes created: 10
+
+=== Initial Process Control Blocks ===
+----------------------------------------
+Process Name: WebBrowser
+PID: 1
+UID: 6
+Size: 50 instructions
+Pages: 7
+Priority: 5
+State: READY (1)
+Type: IO_INTENSIVE (2)
+Memory Type: GOOD (3)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+----------------------------------------
+Process Name: Calculator
+PID: 2
+UID: 1
+Size: 20 instructions
+Pages: 3
+Priority: 10
+State: READY (1)
+Type: COMPUTE_INTENSIVE (1)
+Memory Type: GOOD (3)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+----------------------------------------
+Process Name: TextEditor
+PID: 3
+UID: 9
+Size: 40 instructions
+Pages: 5
+Priority: 8
+State: READY (1)
+Type: REGULAR (0)
+Memory Type: GOOD (3)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+----------------------------------------
+Process Name: VideoPlayer
+PID: 4
+UID: 7
+Size: 60 instructions
+Pages: 8
+Priority: 3
+State: READY (1)
+Type: IO_INTENSIVE (2)
+Memory Type: BAD (4)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+----------------------------------------
+Process Name: Compiler
+PID: 5
+UID: 3
+Size: 80 instructions
+Pages: 10
+Priority: 15
+State: READY (1)
+Type: COMPUTE_INTENSIVE (1)
+Memory Type: BAD (4)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+----------------------------------------
+Process Name: FileManager
+PID: 6
+UID: 10
+Size: 35 instructions
+Pages: 5
+Priority: 7
+State: READY (1)
+Type: REGULAR (0)
+Memory Type: UGLY (5)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+----------------------------------------
+Process Name: Database
+PID: 7
+UID: 1
+Size: 70 instructions
+Pages: 9
+Priority: 4
+State: READY (1)
+Type: IO_INTENSIVE (2)
+Memory Type: UGLY (5)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+----------------------------------------
+Process Name: Game
+PID: 8
+UID: 2
+Size: 100 instructions
+Pages: 10
+Priority: 2
+State: READY (1)
+Type: COMPUTE_INTENSIVE (1)
+Memory Type: UGLY (5)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+----------------------------------------
+Process Name: Terminal
+PID: 9
+UID: 1
+Size: 25 instructions
+Pages: 4
+Priority: 12
+State: READY (1)
+Type: REGULAR (0)
+Memory Type: GOOD (3)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+----------------------------------------
+Process Name: ImageEditor
+PID: 10
+UID: 7
+Size: 55 instructions
+Pages: 7
+Priority: 6
+State: READY (1)
+Type: IO_INTENSIVE (2)
+Memory Type: BAD (4)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+
+--- Scheduling Iteration 1 ---
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 10
+Ready Queue: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 1 (position 0 in queue)
+
+[SCHEDULED] Process 1 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 0
+[BLOCKED] Process PID 1 on instruction 5 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 0 to PC = 6, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 9
+Ready Queue: [2, 3, 4, 5, 6, 7, 8, 9, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 3 (position 1 in queue)
+
+[SCHEDULED] Process 3 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 3 starting from PC = 0
+[BLOCKED] Process PID 3 on instruction 20 (Long Syscall)
+[STATUS] Process PID 3 moved from PC = 0 to PC = 21, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 1 moved to READY state
+Number of ready processes: 9
+Ready Queue: [1, 2, 4, 5, 6, 7, 8, 9, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 2 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 0
+[BLOCKED] Process PID 4 on instruction 23 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 0 to PC = 24, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 3 moved to READY state
+Number of ready processes: 9
+Ready Queue: [1, 2, 3, 5, 6, 7, 8, 9, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 5 (position 3 in queue)
+
+[SCHEDULED] Process 5 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 5 starting from PC = 0
+[BLOCKED] Process PID 5 on instruction 17 (Long Syscall)
+[STATUS] Process PID 5 moved from PC = 0 to PC = 18, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 9
+Ready Queue: [1, 2, 3, 4, 6, 7, 8, 9, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 6 (position 4 in queue)
+
+[SCHEDULED] Process 6 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 6 starting from PC = 0
+[BLOCKED] Process PID 6 on instruction 29 (Long Syscall)
+[STATUS] Process PID 6 moved from PC = 0 to PC = 30, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 5 moved to READY state
+Number of ready processes: 9
+Ready Queue: [1, 2, 3, 4, 5, 7, 8, 9, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 5 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 0
+[BLOCKED] Process PID 7 on instruction 15 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 0 to PC = 16, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 6 moved to READY state
+Number of ready processes: 9
+Ready Queue: [1, 2, 3, 4, 5, 6, 8, 9, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 8 (position 6 in queue)
+
+[SCHEDULED] Process 8 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 8 starting from PC = 0
+[COMPLETED] Process PID 8 completed
+[STATUS] Process PID 8 moved from PC = 0 to PC = 100, State = 6
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 9
+Ready Queue: [1, 2, 3, 4, 5, 6, 7, 9, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 9 (position 7 in queue)
+
+[SCHEDULED] Process 9 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 9 starting from PC = 0
+[COMPLETED] Process PID 9 completed
+[STATUS] Process PID 9 moved from PC = 0 to PC = 25, State = 6
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 8
+Ready Queue: [1, 2, 3, 4, 5, 6, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 1 (position 0 in queue)
+
+[SCHEDULED] Process 1 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 6
+[BLOCKED] Process PID 1 on instruction 17 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 6 to PC = 18, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 7
+Ready Queue: [2, 3, 4, 5, 6, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 3 (position 1 in queue)
+
+[SCHEDULED] Process 3 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 3 starting from PC = 21
+[BLOCKED] Process PID 3 on instruction 26 (Long Syscall)
+[STATUS] Process PID 3 moved from PC = 21 to PC = 27, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 1 moved to READY state
+Number of ready processes: 7
+Ready Queue: [1, 2, 4, 5, 6, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 2 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 24
+[BLOCKED] Process PID 4 on instruction 32 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 24 to PC = 33, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 3 moved to READY state
+Number of ready processes: 7
+Ready Queue: [1, 2, 3, 5, 6, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 5 (position 3 in queue)
+
+[SCHEDULED] Process 5 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 5 starting from PC = 18
+[COMPLETED] Process PID 5 completed
+[STATUS] Process PID 5 moved from PC = 18 to PC = 80, State = 6
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 7
+Ready Queue: [1, 2, 3, 4, 6, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 6 (position 4 in queue)
+
+[SCHEDULED] Process 6 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 6 starting from PC = 30
+[COMPLETED] Process PID 6 completed
+[STATUS] Process PID 6 moved from PC = 30 to PC = 35, State = 6
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 6
+Ready Queue: [1, 2, 3, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 5 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 0
+[BLOCKED] Process PID 10 on instruction 0 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 0 to PC = 1, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 5
+Ready Queue: [1, 2, 3, 4, 7]
+[SCHEDULER: ROUND ROBIN] Selected process 1 (position 0 in queue)
+
+[SCHEDULED] Process 1 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 18
+[BLOCKED] Process PID 1 on instruction 21 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 18 to PC = 22, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 5
+Ready Queue: [2, 3, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 3 (position 1 in queue)
+
+[SCHEDULED] Process 3 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 3 starting from PC = 27
+[COMPLETED] Process PID 3 completed
+[STATUS] Process PID 3 moved from PC = 27 to PC = 40, State = 6
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 1 moved to READY state
+Number of ready processes: 5
+Ready Queue: [1, 2, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 2 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 33
+[BLOCKED] Process PID 4 on instruction 33 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 33 to PC = 34, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 4
+Ready Queue: [1, 2, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 3 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 1
+[BLOCKED] Process PID 10 on instruction 1 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 1 to PC = 2, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 4, 7]
+[SCHEDULER: ROUND ROBIN] Selected process 1 (position 0 in queue)
+
+[SCHEDULED] Process 1 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 22
+[BLOCKED] Process PID 1 on instruction 29 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 22 to PC = 30, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 4
+Ready Queue: [2, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 1 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 34
+[BLOCKED] Process PID 4 on instruction 34 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 34 to PC = 35, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 1 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 2 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 16
+[BLOCKED] Process PID 7 on instruction 35 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 16 to PC = 36, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 4, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 3 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 2
+[BLOCKED] Process PID 10 on instruction 2 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 2 to PC = 3, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 4, 7]
+[SCHEDULER: ROUND ROBIN] Selected process 1 (position 0 in queue)
+
+[SCHEDULED] Process 1 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 30
+[BLOCKED] Process PID 1 on instruction 35 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 30 to PC = 36, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 4
+Ready Queue: [2, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 1 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 35
+[BLOCKED] Process PID 4 on instruction 41 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 35 to PC = 42, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 1 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 2 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 36
+[BLOCKED] Process PID 7 on instruction 44 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 36 to PC = 45, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 4, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 3 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 3
+[BLOCKED] Process PID 10 on instruction 21 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 3 to PC = 22, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 4
+Ready Queue: [1, 2, 4, 7]
+[SCHEDULER: ROUND ROBIN] Selected process 1 (position 0 in queue)
+
+[SCHEDULED] Process 1 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 36
+[COMPLETED] Process PID 1 completed
+[STATUS] Process PID 1 moved from PC = 36 to PC = 50, State = 6
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 4
+Ready Queue: [2, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 1 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 42
+[BLOCKED] Process PID 4 on instruction 49 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 42 to PC = 50, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 3
+Ready Queue: [2, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 2 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 22
+[BLOCKED] Process PID 10 on instruction 25 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 22 to PC = 26, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 3
+Ready Queue: [2, 4, 7]
+[SCHEDULER: ROUND ROBIN] Selected process 2 (position 0 in queue)
+
+[SCHEDULED] Process 2 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 2 starting from PC = 0
+[COMPLETED] Process PID 2 completed
+[STATUS] Process PID 2 moved from PC = 0 to PC = 20, State = 6
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 3
+Ready Queue: [4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 1 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 45
+[BLOCKED] Process PID 7 on instruction 47 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 45 to PC = 48, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 2
+Ready Queue: [4, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 0 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 50
+[BLOCKED] Process PID 4 on instruction 54 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 50 to PC = 55, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 2
+Ready Queue: [7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 1 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 26
+[BLOCKED] Process PID 10 on instruction 26 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 26 to PC = 27, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 2
+Ready Queue: [4, 7]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 0 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 55
+[BLOCKED] Process PID 4 on instruction 58 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 55 to PC = 59, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 2
+Ready Queue: [7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 1 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 27
+[BLOCKED] Process PID 10 on instruction 37 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 27 to PC = 38, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 2
+Ready Queue: [4, 7]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 0 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 59
+[BLOCKED] Process PID 4 on instruction 59 (Long Syscall)
+[COMPLETED] Process PID 4 completed
+[STATUS] Process PID 4 moved from PC = 59 to PC = 60, State = 6
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 2
+Ready Queue: [7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 1 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 38
+[BLOCKED] Process PID 10 on instruction 40 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 38 to PC = 41, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 1
+Ready Queue: [7]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 0 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 48
+[BLOCKED] Process PID 7 on instruction 48 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 48 to PC = 49, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 1
+Ready Queue: [10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 0 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 41
+[BLOCKED] Process PID 10 on instruction 44 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 41 to PC = 45, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 1
+Ready Queue: [7]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 0 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 49
+[BLOCKED] Process PID 7 on instruction 57 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 49 to PC = 58, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 1
+Ready Queue: [10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 0 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 45
+[BLOCKED] Process PID 10 on instruction 46 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 45 to PC = 47, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 1
+Ready Queue: [7]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 0 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 58
+[BLOCKED] Process PID 7 on instruction 58 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 58 to PC = 59, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 1
+Ready Queue: [10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 0 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 47
+[BLOCKED] Process PID 10 on instruction 51 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 47 to PC = 52, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 1
+Ready Queue: [7]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 0 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 59
+[BLOCKED] Process PID 7 on instruction 68 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 59 to PC = 69, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 1
+Ready Queue: [10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 0 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 52
+[COMPLETED] Process PID 10 completed
+[STATUS] Process PID 10 moved from PC = 52 to PC = 55, State = 6
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 1
+Ready Queue: [7]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 0 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 69
+[BLOCKED] Process PID 7 on instruction 69 (Long Syscall)
+[COMPLETED] Process PID 7 completed
+[STATUS] Process PID 7 moved from PC = 69 to PC = 70, State = 6
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 0
+No active processes --- Scheduler terminating
+=== SCHEDULER TERMINATED ===
+
+[INFO] All processes completed after 1 scheduling iterations
+
+=== Memory Manager Statistics ===
+Memory manager disabled or not initialised — skipping memory stats.
+
+=== Process Timing Information ===
+
+--- Timing Information for PID 1 ---
+Memory Type: GOOD
+Response Time: 61 microseconds (0.061 ms)
+Running Time: 80 microseconds (0.080 ms)
+Wait Time: 66 microseconds (0.066 ms)
+Number of Schedules: 6
+Page Faults: 0
+References: 0
+--------------------------------------
+
+--- Timing Information for PID 2 ---
+Memory Type: GOOD
+Response Time: 148 microseconds (0.148 ms)
+Running Time: 0 microseconds (0.000 ms)
+Wait Time: 92 microseconds (0.092 ms)
+Number of Schedules: 1
+Page Faults: 0
+References: 0
+--------------------------------------
+
+--- Timing Information for PID 3 ---
+Memory Type: GOOD
+Response Time: 59 microseconds (0.059 ms)
+Running Time: 46 microseconds (0.046 ms)
+Wait Time: 43 microseconds (0.043 ms)
+Number of Schedules: 3
+Page Faults: 0
+References: 0
+--------------------------------------
+
+--- Timing Information for PID 4 ---
+Memory Type: BAD
+Response Time: 59 microseconds (0.059 ms)
+Running Time: 98 microseconds (0.098 ms)
+Wait Time: 79 microseconds (0.079 ms)
+Number of Schedules: 9
+Page Faults: 0
+References: 0
+--------------------------------------
+
+--- Timing Information for PID 5 ---
+Memory Type: BAD
+Response Time: 57 microseconds (0.057 ms)
+Running Time: 29 microseconds (0.029 ms)
+Wait Time: 36 microseconds (0.036 ms)
+Number of Schedules: 2
+Page Faults: 0
+References: 0
+--------------------------------------
+
+--- Timing Information for PID 6 ---
+Memory Type: UGLY
+Response Time: 58 microseconds (0.058 ms)
+Running Time: 27 microseconds (0.027 ms)
+Wait Time: 39 microseconds (0.039 ms)
+Number of Schedules: 2
+Page Faults: 0
+References: 0
+--------------------------------------
+
+--- Timing Information for PID 7 ---
+Memory Type: UGLY
+Response Time: 57 microseconds (0.057 ms)
+Running Time: 118 microseconds (0.118 ms)
+Wait Time: 112 microseconds (0.112 ms)
+Number of Schedules: 9
+Page Faults: 0
+References: 0
+--------------------------------------
+
+--- Timing Information for PID 8 ---
+Memory Type: UGLY
+Response Time: 54 microseconds (0.054 ms)
+Running Time: 2 microseconds (0.002 ms)
+Wait Time: 20 microseconds (0.020 ms)
+Number of Schedules: 1
+Page Faults: 0
+References: 0
+--------------------------------------
+
+--- Timing Information for PID 9 ---
+Memory Type: GOOD
+Response Time: 54 microseconds (0.054 ms)
+Running Time: 2 microseconds (0.002 ms)
+Wait Time: 23 microseconds (0.023 ms)
+Number of Schedules: 1
+Page Faults: 0
+References: 0
+--------------------------------------
+
+--- Timing Information for PID 10 ---
+Memory Type: BAD
+Response Time: 74 microseconds (0.074 ms)
+Running Time: 88 microseconds (0.088 ms)
+Wait Time: 94 microseconds (0.094 ms)
+Number of Schedules: 12
+Page Faults: 0
+References: 0
+--------------------------------------
+Process PID 1 deleted from system
+Process PID 2 deleted from system
+Process PID 3 deleted from system
+Process PID 4 deleted from system
+Process PID 5 deleted from system
+Process PID 6 deleted from system
+Process PID 7 deleted from system
+Process PID 8 deleted from system
+Process PID 9 deleted from system
+Process PID 10 deleted from system
+[MEMORY] Memory manager initialized with 64 frames (Page size: 4096 bytes)
+
+--- Run B : MEMORY MANAGER ON (K=64) ---
+=== Initialising ScisSOS ===
+Process table initialised
+Ready and Block Queues initialised
+[MEMORY] Memory manager initialized with 64 frames (Page size: 4096 bytes)
+=== ScisSOS Initialised ===
+
+[MEMORY] Generated address sequence for PID 11 (type=GOOD, size=50, pages=7)
+Process created: WebBrowser, PID: 11, UID: 6, Priority: 5, Type: 2, MemType: 3
+[MEMORY] Generated address sequence for PID 12 (type=GOOD, size=20, pages=3)
+Process created: Calculator, PID: 12, UID: 1, Priority: 10, Type: 1, MemType: 3
+[MEMORY] Generated address sequence for PID 13 (type=GOOD, size=40, pages=5)
+Process created: TextEditor, PID: 13, UID: 9, Priority: 8, Type: 0, MemType: 3
+[MEMORY] Generated address sequence for PID 14 (type=GOOD, size=60, pages=8)
+Process created: VideoPlayer, PID: 14, UID: 7, Priority: 3, Type: 2, MemType: 3
+[MEMORY] Generated address sequence for PID 15 (type=GOOD, size=80, pages=10)
+Process created: Compiler, PID: 15, UID: 3, Priority: 15, Type: 1, MemType: 3
+[MEMORY] Generated address sequence for PID 16 (type=GOOD, size=35, pages=5)
+Process created: FileManager, PID: 16, UID: 10, Priority: 7, Type: 0, MemType: 3
+[MEMORY] Generated address sequence for PID 17 (type=GOOD, size=70, pages=9)
+Process created: Database, PID: 17, UID: 1, Priority: 4, Type: 2, MemType: 3
+[MEMORY] Generated address sequence for PID 18 (type=GOOD, size=100, pages=10)
+Process created: Game, PID: 18, UID: 2, Priority: 2, Type: 1, MemType: 3
+[MEMORY] Generated address sequence for PID 19 (type=GOOD, size=25, pages=4)
+Process created: Terminal, PID: 19, UID: 1, Priority: 12, Type: 0, MemType: 3
+[MEMORY] Generated address sequence for PID 20 (type=GOOD, size=55, pages=7)
+Process created: ImageEditor, PID: 20, UID: 7, Priority: 6, Type: 2, MemType: 3
+=== Process Creation Complete ===
+Total processes created: 10
+
+=== Initial Process Control Blocks ===
+----------------------------------------
+Process Name: WebBrowser
+PID: 11
+UID: 6
+Size: 50 instructions
+Pages: 7
+Priority: 5
+State: READY (1)
+Type: IO_INTENSIVE (2)
+Memory Type: GOOD (3)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+----------------------------------------
+Process Name: Calculator
+PID: 12
+UID: 1
+Size: 20 instructions
+Pages: 3
+Priority: 10
+State: READY (1)
+Type: COMPUTE_INTENSIVE (1)
+Memory Type: GOOD (3)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+----------------------------------------
+Process Name: TextEditor
+PID: 13
+UID: 9
+Size: 40 instructions
+Pages: 5
+Priority: 8
+State: READY (1)
+Type: REGULAR (0)
+Memory Type: GOOD (3)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+----------------------------------------
+Process Name: VideoPlayer
+PID: 14
+UID: 7
+Size: 60 instructions
+Pages: 8
+Priority: 3
+State: READY (1)
+Type: IO_INTENSIVE (2)
+Memory Type: BAD (4)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+----------------------------------------
+Process Name: Compiler
+PID: 15
+UID: 3
+Size: 80 instructions
+Pages: 10
+Priority: 15
+State: READY (1)
+Type: COMPUTE_INTENSIVE (1)
+Memory Type: BAD (4)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+----------------------------------------
+Process Name: FileManager
+PID: 16
+UID: 10
+Size: 35 instructions
+Pages: 5
+Priority: 7
+State: READY (1)
+Type: REGULAR (0)
+Memory Type: UGLY (5)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+----------------------------------------
+Process Name: Database
+PID: 17
+UID: 1
+Size: 70 instructions
+Pages: 9
+Priority: 4
+State: READY (1)
+Type: IO_INTENSIVE (2)
+Memory Type: UGLY (5)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+----------------------------------------
+Process Name: Game
+PID: 18
+UID: 2
+Size: 100 instructions
+Pages: 10
+Priority: 2
+State: READY (1)
+Type: COMPUTE_INTENSIVE (1)
+Memory Type: UGLY (5)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+----------------------------------------
+Process Name: Terminal
+PID: 19
+UID: 1
+Size: 25 instructions
+Pages: 4
+Priority: 12
+State: READY (1)
+Type: REGULAR (0)
+Memory Type: GOOD (3)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+----------------------------------------
+Process Name: ImageEditor
+PID: 20
+UID: 7
+Size: 55 instructions
+Pages: 7
+Priority: 6
+State: READY (1)
+Type: IO_INTENSIVE (2)
+Memory Type: BAD (4)
+Program Counter: 0
+Time Slice: 6239
+Page Faults: 0
+----------------------------------------
+
+
+--- Scheduling Iteration 1 ---
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 10
+Ready Queue: [11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+[SCHEDULER: ROUND ROBIN] Selected process 12 (position 1 in queue)
+
+[SCHEDULED] Process 12 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 12 starting from PC = 0
+[PAGE FAULT] PID 12 - Page 0 (Fault #1)
+[MEMORY] Loaded page 0 of PID 12 into frame 0
+[PAGE FAULT] PID 12 - Page 1 (Fault #2)
+[MEMORY] Loaded page 1 of PID 12 into frame 1
+[PAGE FAULT] PID 12 - Page 2 (Fault #3)
+[MEMORY] Loaded page 2 of PID 12 into frame 2
+[COMPLETED] Process PID 12 completed
+[STATUS] Process PID 12 moved from PC = 0 to PC = 20, State = 6
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 9
+Ready Queue: [11, 13, 14, 15, 16, 17, 18, 19, 20]
+[SCHEDULER: ROUND ROBIN] Selected process 14 (position 2 in queue)
+
+[SCHEDULED] Process 14 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 14 starting from PC = 0
+[PAGE FAULT] PID 14 - Page 4 (Fault #1)
+[MEMORY] Loaded page 4 of PID 14 into frame 3
+[PAGE FAULT] PID 14 - Page 7 (Fault #2)
+[MEMORY] Loaded page 7 of PID 14 into frame 4
+[PAGE FAULT] PID 14 - Page 2 (Fault #3)
+[MEMORY] Loaded page 2 of PID 14 into frame 5
+[PAGE FAULT] PID 14 - Page 5 (Fault #4)
+[MEMORY] Loaded page 5 of PID 14 into frame 6
+[PAGE FAULT] PID 14 - Page 1 (Fault #5)
+[MEMORY] Loaded page 1 of PID 14 into frame 7
+[PAGE FAULT] PID 14 - Page 0 (Fault #6)
+[MEMORY] Loaded page 0 of PID 14 into frame 8
+[PAGE FAULT] PID 14 - Page 6 (Fault #7)
+[MEMORY] Loaded page 6 of PID 14 into frame 9
+[PAGE FAULT] PID 14 - Page 3 (Fault #8)
+[MEMORY] Loaded page 3 of PID 14 into frame 10
+[BLOCKED] Process PID 14 on instruction 23 (Long Syscall)
+[STATUS] Process PID 14 moved from PC = 0 to PC = 24, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 8
+Ready Queue: [11, 13, 15, 16, 17, 18, 19, 20]
+[SCHEDULER: ROUND ROBIN] Selected process 16 (position 3 in queue)
+
+[SCHEDULED] Process 16 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 16 starting from PC = 0
+[PAGE FAULT] PID 16 - Page 2 (Fault #1)
+[MEMORY] Loaded page 2 of PID 16 into frame 11
+[PAGE FAULT] PID 16 - Page 1 (Fault #2)
+[MEMORY] Loaded page 1 of PID 16 into frame 12
+[PAGE FAULT] PID 16 - Page 4 (Fault #3)
+[MEMORY] Loaded page 4 of PID 16 into frame 13
+[PAGE FAULT] PID 16 - Page 0 (Fault #4)
+[MEMORY] Loaded page 0 of PID 16 into frame 14
+[PAGE FAULT] PID 16 - Page 3 (Fault #5)
+[MEMORY] Loaded page 3 of PID 16 into frame 15
+[BLOCKED] Process PID 16 on instruction 29 (Long Syscall)
+[STATUS] Process PID 16 moved from PC = 0 to PC = 30, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 14 moved to READY state
+Number of ready processes: 8
+Ready Queue: [11, 13, 14, 15, 17, 18, 19, 20]
+[SCHEDULER: ROUND ROBIN] Selected process 17 (position 4 in queue)
+
+[SCHEDULED] Process 17 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 17 starting from PC = 0
+[PAGE FAULT] PID 17 - Page 7 (Fault #1)
+[MEMORY] Loaded page 7 of PID 17 into frame 16
+[PAGE FAULT] PID 17 - Page 3 (Fault #2)
+[MEMORY] Loaded page 3 of PID 17 into frame 17
+[PAGE FAULT] PID 17 - Page 2 (Fault #3)
+[MEMORY] Loaded page 2 of PID 17 into frame 18
+[PAGE FAULT] PID 17 - Page 0 (Fault #4)
+[MEMORY] Loaded page 0 of PID 17 into frame 19
+[PAGE FAULT] PID 17 - Page 1 (Fault #5)
+[MEMORY] Loaded page 1 of PID 17 into frame 20
+[PAGE FAULT] PID 17 - Page 8 (Fault #6)
+[MEMORY] Loaded page 8 of PID 17 into frame 21
+[PAGE FAULT] PID 17 - Page 6 (Fault #7)
+[MEMORY] Loaded page 6 of PID 17 into frame 22
+[PAGE FAULT] PID 17 - Page 4 (Fault #8)
+[MEMORY] Loaded page 4 of PID 17 into frame 23
+[PAGE FAULT] PID 17 - Page 5 (Fault #9)
+[MEMORY] Loaded page 5 of PID 17 into frame 24
+[BLOCKED] Process PID 17 on instruction 15 (Long Syscall)
+[STATUS] Process PID 17 moved from PC = 0 to PC = 16, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 16 moved to READY state
+Number of ready processes: 8
+Ready Queue: [11, 13, 14, 15, 16, 18, 19, 20]
+[SCHEDULER: ROUND ROBIN] Selected process 18 (position 5 in queue)
+
+[SCHEDULED] Process 18 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 18 starting from PC = 0
+[PAGE FAULT] PID 18 - Page 4 (Fault #1)
+[MEMORY] Loaded page 4 of PID 18 into frame 25
+[PAGE FAULT] PID 18 - Page 7 (Fault #2)
+[MEMORY] Loaded page 7 of PID 18 into frame 26
+[PAGE FAULT] PID 18 - Page 5 (Fault #3)
+[MEMORY] Loaded page 5 of PID 18 into frame 27
+[PAGE FAULT] PID 18 - Page 6 (Fault #4)
+[MEMORY] Loaded page 6 of PID 18 into frame 28
+[PAGE FAULT] PID 18 - Page 9 (Fault #5)
+[MEMORY] Loaded page 9 of PID 18 into frame 29
+[PAGE FAULT] PID 18 - Page 8 (Fault #6)
+[MEMORY] Loaded page 8 of PID 18 into frame 30
+[PAGE FAULT] PID 18 - Page 3 (Fault #7)
+[MEMORY] Loaded page 3 of PID 18 into frame 31
+[PAGE FAULT] PID 18 - Page 1 (Fault #8)
+[MEMORY] Loaded page 1 of PID 18 into frame 32
+[PAGE FAULT] PID 18 - Page 2 (Fault #9)
+[MEMORY] Loaded page 2 of PID 18 into frame 33
+[PAGE FAULT] PID 18 - Page 0 (Fault #10)
+[MEMORY] Loaded page 0 of PID 18 into frame 34
+[COMPLETED] Process PID 18 completed
+[STATUS] Process PID 18 moved from PC = 0 to PC = 100, State = 6
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 17 moved to READY state
+Number of ready processes: 8
+Ready Queue: [11, 13, 14, 15, 16, 17, 19, 20]
+[SCHEDULER: ROUND ROBIN] Selected process 19 (position 6 in queue)
+
+[SCHEDULED] Process 19 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 19 starting from PC = 0
+[PAGE FAULT] PID 19 - Page 3 (Fault #1)
+[MEMORY] Loaded page 3 of PID 19 into frame 35
+[PAGE FAULT] PID 19 - Page 2 (Fault #2)
+[MEMORY] Loaded page 2 of PID 19 into frame 36
+[PAGE FAULT] PID 19 - Page 0 (Fault #3)
+[MEMORY] Loaded page 0 of PID 19 into frame 37
+[PAGE FAULT] PID 19 - Page 1 (Fault #4)
+[MEMORY] Loaded page 1 of PID 19 into frame 38
+[COMPLETED] Process PID 19 completed
+[STATUS] Process PID 19 moved from PC = 0 to PC = 25, State = 6
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 7
+Ready Queue: [11, 13, 14, 15, 16, 17, 20]
+[SCHEDULER: ROUND ROBIN] Selected process 11 (position 0 in queue)
+
+[SCHEDULED] Process 11 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 11 starting from PC = 0
+[PAGE FAULT] PID 11 - Page 5 (Fault #1)
+[MEMORY] Loaded page 5 of PID 11 into frame 39
+[PAGE FAULT] PID 11 - Page 0 (Fault #2)
+[MEMORY] Loaded page 0 of PID 11 into frame 40
+[PAGE FAULT] PID 11 - Page 6 (Fault #3)
+[MEMORY] Loaded page 6 of PID 11 into frame 41
+[BLOCKED] Process PID 11 on instruction 5 (Long Syscall)
+[STATUS] Process PID 11 moved from PC = 0 to PC = 6, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 6
+Ready Queue: [13, 14, 15, 16, 17, 20]
+[SCHEDULER: ROUND ROBIN] Selected process 14 (position 1 in queue)
+
+[SCHEDULED] Process 14 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 14 starting from PC = 24
+[BLOCKED] Process PID 14 on instruction 32 (Long Syscall)
+[STATUS] Process PID 14 moved from PC = 24 to PC = 33, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 11 moved to READY state
+Number of ready processes: 6
+Ready Queue: [11, 13, 15, 16, 17, 20]
+[SCHEDULER: ROUND ROBIN] Selected process 15 (position 2 in queue)
+
+[SCHEDULED] Process 15 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 15 starting from PC = 0
+[PAGE FAULT] PID 15 - Page 5 (Fault #1)
+[MEMORY] Loaded page 5 of PID 15 into frame 42
+[PAGE FAULT] PID 15 - Page 0 (Fault #2)
+[MEMORY] Loaded page 0 of PID 15 into frame 43
+[PAGE FAULT] PID 15 - Page 4 (Fault #3)
+[MEMORY] Loaded page 4 of PID 15 into frame 44
+[PAGE FAULT] PID 15 - Page 6 (Fault #4)
+[MEMORY] Loaded page 6 of PID 15 into frame 45
+[PAGE FAULT] PID 15 - Page 1 (Fault #5)
+[MEMORY] Loaded page 1 of PID 15 into frame 46
+[PAGE FAULT] PID 15 - Page 7 (Fault #6)
+[MEMORY] Loaded page 7 of PID 15 into frame 47
+[PAGE FAULT] PID 15 - Page 2 (Fault #7)
+[MEMORY] Loaded page 2 of PID 15 into frame 48
+[PAGE FAULT] PID 15 - Page 8 (Fault #8)
+[MEMORY] Loaded page 8 of PID 15 into frame 49
+[BLOCKED] Process PID 15 on instruction 17 (Long Syscall)
+[STATUS] Process PID 15 moved from PC = 0 to PC = 18, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 14 moved to READY state
+Number of ready processes: 6
+Ready Queue: [11, 13, 14, 16, 17, 20]
+[SCHEDULER: ROUND ROBIN] Selected process 16 (position 3 in queue)
+
+[SCHEDULED] Process 16 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 16 starting from PC = 30
+[COMPLETED] Process PID 16 completed
+[STATUS] Process PID 16 moved from PC = 30 to PC = 35, State = 6
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 15 moved to READY state
+Number of ready processes: 6
+Ready Queue: [11, 13, 14, 15, 17, 20]
+[SCHEDULER: ROUND ROBIN] Selected process 17 (position 4 in queue)
+
+[SCHEDULED] Process 17 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 17 starting from PC = 16
+[BLOCKED] Process PID 17 on instruction 35 (Long Syscall)
+[STATUS] Process PID 17 moved from PC = 16 to PC = 36, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 5
+Ready Queue: [11, 13, 14, 15, 20]
+[SCHEDULER: ROUND ROBIN] Selected process 11 (position 0 in queue)
+
+[SCHEDULED] Process 11 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 11 starting from PC = 6
+[PAGE FAULT] PID 11 - Page 2 (Fault #4)
+[MEMORY] Loaded page 2 of PID 11 into frame 50
+[PAGE FAULT] PID 11 - Page 1 (Fault #5)
+[MEMORY] Loaded page 1 of PID 11 into frame 51
+[PAGE FAULT] PID 11 - Page 4 (Fault #6)
+[MEMORY] Loaded page 4 of PID 11 into frame 52
+[BLOCKED] Process PID 11 on instruction 17 (Long Syscall)
+[STATUS] Process PID 11 moved from PC = 6 to PC = 18, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 17 moved to READY state
+Number of ready processes: 5
+Ready Queue: [13, 14, 15, 17, 20]
+[SCHEDULER: ROUND ROBIN] Selected process 14 (position 1 in queue)
+
+[SCHEDULED] Process 14 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 14 starting from PC = 33
+[BLOCKED] Process PID 14 on instruction 33 (Long Syscall)
+[STATUS] Process PID 14 moved from PC = 33 to PC = 34, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 11 moved to READY state
+Number of ready processes: 5
+Ready Queue: [11, 13, 15, 17, 20]
+[SCHEDULER: ROUND ROBIN] Selected process 15 (position 2 in queue)
+
+[SCHEDULED] Process 15 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 15 starting from PC = 18
+[PAGE FAULT] PID 15 - Page 9 (Fault #9)
+[MEMORY] Loaded page 9 of PID 15 into frame 53
+[PAGE FAULT] PID 15 - Page 3 (Fault #10)
+[MEMORY] Loaded page 3 of PID 15 into frame 54
+[COMPLETED] Process PID 15 completed
+[STATUS] Process PID 15 moved from PC = 18 to PC = 80, State = 6
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 14 moved to READY state
+Number of ready processes: 5
+Ready Queue: [11, 13, 14, 17, 20]
+[SCHEDULER: ROUND ROBIN] Selected process 17 (position 3 in queue)
+
+[SCHEDULED] Process 17 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 17 starting from PC = 36
+[BLOCKED] Process PID 17 on instruction 44 (Long Syscall)
+[STATUS] Process PID 17 moved from PC = 36 to PC = 45, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 4
+Ready Queue: [11, 13, 14, 20]
+[SCHEDULER: ROUND ROBIN] Selected process 11 (position 0 in queue)
+
+[SCHEDULED] Process 11 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 11 starting from PC = 18
+[BLOCKED] Process PID 11 on instruction 21 (Long Syscall)
+[STATUS] Process PID 11 moved from PC = 18 to PC = 22, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 17 moved to READY state
+Number of ready processes: 4
+Ready Queue: [13, 14, 17, 20]
+[SCHEDULER: ROUND ROBIN] Selected process 14 (position 1 in queue)
+
+[SCHEDULED] Process 14 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 14 starting from PC = 34
+[BLOCKED] Process PID 14 on instruction 34 (Long Syscall)
+[STATUS] Process PID 14 moved from PC = 34 to PC = 35, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 11 moved to READY state
+Number of ready processes: 4
+Ready Queue: [11, 13, 17, 20]
+[SCHEDULER: ROUND ROBIN] Selected process 17 (position 2 in queue)
+
+[SCHEDULED] Process 17 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 17 starting from PC = 45
+[BLOCKED] Process PID 17 on instruction 47 (Long Syscall)
+[STATUS] Process PID 17 moved from PC = 45 to PC = 48, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 14 moved to READY state
+Number of ready processes: 4
+Ready Queue: [11, 13, 14, 20]
+[SCHEDULER: ROUND ROBIN] Selected process 20 (position 3 in queue)
+
+[SCHEDULED] Process 20 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 20 starting from PC = 0
+[PAGE FAULT] PID 20 - Page 5 (Fault #1)
+[MEMORY] Loaded page 5 of PID 20 into frame 55
+[BLOCKED] Process PID 20 on instruction 0 (Long Syscall)
+[STATUS] Process PID 20 moved from PC = 0 to PC = 1, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 17 moved to READY state
+Number of ready processes: 4
+Ready Queue: [11, 13, 14, 17]
+[SCHEDULER: ROUND ROBIN] Selected process 11 (position 0 in queue)
+
+[SCHEDULED] Process 11 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 11 starting from PC = 22
+[PAGE FAULT] PID 11 - Page 3 (Fault #7)
+[MEMORY] Loaded page 3 of PID 11 into frame 56
+[BLOCKED] Process PID 11 on instruction 29 (Long Syscall)
+[STATUS] Process PID 11 moved from PC = 22 to PC = 30, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 20 moved to READY state
+Number of ready processes: 4
+Ready Queue: [13, 14, 17, 20]
+[SCHEDULER: ROUND ROBIN] Selected process 14 (position 1 in queue)
+
+[SCHEDULED] Process 14 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 14 starting from PC = 35
+[BLOCKED] Process PID 14 on instruction 41 (Long Syscall)
+[STATUS] Process PID 14 moved from PC = 35 to PC = 42, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 11 moved to READY state
+Number of ready processes: 4
+Ready Queue: [11, 13, 17, 20]
+[SCHEDULER: ROUND ROBIN] Selected process 17 (position 2 in queue)
+
+[SCHEDULED] Process 17 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 17 starting from PC = 48
+[BLOCKED] Process PID 17 on instruction 48 (Long Syscall)
+[STATUS] Process PID 17 moved from PC = 48 to PC = 49, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 14 moved to READY state
+Number of ready processes: 4
+Ready Queue: [11, 13, 14, 20]
+[SCHEDULER: ROUND ROBIN] Selected process 20 (position 3 in queue)
+
+[SCHEDULED] Process 20 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 20 starting from PC = 1
+[PAGE FAULT] PID 20 - Page 6 (Fault #2)
+[MEMORY] Loaded page 6 of PID 20 into frame 57
+[BLOCKED] Process PID 20 on instruction 1 (Long Syscall)
+[STATUS] Process PID 20 moved from PC = 1 to PC = 2, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 17 moved to READY state
+Number of ready processes: 4
+Ready Queue: [11, 13, 14, 17]
+[SCHEDULER: ROUND ROBIN] Selected process 11 (position 0 in queue)
+
+[SCHEDULED] Process 11 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 11 starting from PC = 30
+[BLOCKED] Process PID 11 on instruction 35 (Long Syscall)
+[STATUS] Process PID 11 moved from PC = 30 to PC = 36, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 20 moved to READY state
+Number of ready processes: 4
+Ready Queue: [13, 14, 17, 20]
+[SCHEDULER: ROUND ROBIN] Selected process 14 (position 1 in queue)
+
+[SCHEDULED] Process 14 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 14 starting from PC = 42
+[BLOCKED] Process PID 14 on instruction 49 (Long Syscall)
+[STATUS] Process PID 14 moved from PC = 42 to PC = 50, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 11 moved to READY state
+Number of ready processes: 4
+Ready Queue: [11, 13, 17, 20]
+[SCHEDULER: ROUND ROBIN] Selected process 17 (position 2 in queue)
+
+[SCHEDULED] Process 17 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 17 starting from PC = 49
+[BLOCKED] Process PID 17 on instruction 57 (Long Syscall)
+[STATUS] Process PID 17 moved from PC = 49 to PC = 58, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 14 moved to READY state
+Number of ready processes: 4
+Ready Queue: [11, 13, 14, 20]
+[SCHEDULER: ROUND ROBIN] Selected process 20 (position 3 in queue)
+
+[SCHEDULED] Process 20 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 20 starting from PC = 2
+[PAGE FAULT] PID 20 - Page 0 (Fault #3)
+[MEMORY] Loaded page 0 of PID 20 into frame 58
+[BLOCKED] Process PID 20 on instruction 2 (Long Syscall)
+[STATUS] Process PID 20 moved from PC = 2 to PC = 3, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 17 moved to READY state
+Number of ready processes: 4
+Ready Queue: [11, 13, 14, 17]
+[SCHEDULER: ROUND ROBIN] Selected process 11 (position 0 in queue)
+
+[SCHEDULED] Process 11 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 11 starting from PC = 36
+[COMPLETED] Process PID 11 completed
+[STATUS] Process PID 11 moved from PC = 36 to PC = 50, State = 6
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 20 moved to READY state
+Number of ready processes: 4
+Ready Queue: [13, 14, 17, 20]
+[SCHEDULER: ROUND ROBIN] Selected process 14 (position 1 in queue)
+
+[SCHEDULED] Process 14 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 14 starting from PC = 50
+[BLOCKED] Process PID 14 on instruction 54 (Long Syscall)
+[STATUS] Process PID 14 moved from PC = 50 to PC = 55, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 3
+Ready Queue: [13, 17, 20]
+[SCHEDULER: ROUND ROBIN] Selected process 20 (position 2 in queue)
+
+[SCHEDULED] Process 20 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 20 starting from PC = 3
+[PAGE FAULT] PID 20 - Page 2 (Fault #4)
+[MEMORY] Loaded page 2 of PID 20 into frame 59
+[PAGE FAULT] PID 20 - Page 4 (Fault #5)
+[MEMORY] Loaded page 4 of PID 20 into frame 60
+[PAGE FAULT] PID 20 - Page 1 (Fault #6)
+[MEMORY] Loaded page 1 of PID 20 into frame 61
+[BLOCKED] Process PID 20 on instruction 21 (Long Syscall)
+[STATUS] Process PID 20 moved from PC = 3 to PC = 22, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 14 moved to READY state
+Number of ready processes: 3
+Ready Queue: [13, 14, 17]
+[SCHEDULER: ROUND ROBIN] Selected process 13 (position 0 in queue)
+
+[SCHEDULED] Process 13 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 13 starting from PC = 0
+[PAGE FAULT] PID 13 - Page 1 (Fault #1)
+[MEMORY] Loaded page 1 of PID 13 into frame 62
+[PAGE FAULT] PID 13 - Page 4 (Fault #2)
+[MEMORY] Loaded page 4 of PID 13 into frame 63
+[PAGE FAULT] PID 13 - Page 0 (Fault #3)
+[LRU] Replacing page 1 of PID 12 in frame 1 (last_ref=17)
+[MEMORY] Loaded page 0 of PID 13 into frame 1
+[PAGE FAULT] PID 13 - Page 2 (Fault #4)
+[LRU] Replacing page 2 of PID 12 in frame 2 (last_ref=18)
+[MEMORY] Loaded page 2 of PID 13 into frame 2
+[PAGE FAULT] PID 13 - Page 3 (Fault #5)
+[LRU] Replacing page 0 of PID 12 in frame 0 (last_ref=20)
+[MEMORY] Loaded page 3 of PID 13 into frame 0
+[BLOCKED] Process PID 13 on instruction 20 (Long Syscall)
+[STATUS] Process PID 13 moved from PC = 0 to PC = 21, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 20 moved to READY state
+Number of ready processes: 3
+Ready Queue: [14, 17, 20]
+[SCHEDULER: ROUND ROBIN] Selected process 17 (position 1 in queue)
+
+[SCHEDULED] Process 17 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 17 starting from PC = 58
+[BLOCKED] Process PID 17 on instruction 58 (Long Syscall)
+[STATUS] Process PID 17 moved from PC = 58 to PC = 59, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 13 moved to READY state
+Number of ready processes: 3
+Ready Queue: [13, 14, 20]
+[SCHEDULER: ROUND ROBIN] Selected process 20 (position 2 in queue)
+
+[SCHEDULED] Process 20 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 20 starting from PC = 22
+[PAGE FAULT] PID 20 - Page 3 (Fault #7)
+[LRU] Replacing page 4 of PID 16 in frame 13 (last_ref=67)
+[MEMORY] Loaded page 3 of PID 20 into frame 13
+[BLOCKED] Process PID 20 on instruction 25 (Long Syscall)
+[STATUS] Process PID 20 moved from PC = 22 to PC = 26, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 17 moved to READY state
+Number of ready processes: 3
+Ready Queue: [13, 14, 17]
+[SCHEDULER: ROUND ROBIN] Selected process 13 (position 0 in queue)
+
+[SCHEDULED] Process 13 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 13 starting from PC = 21
+[BLOCKED] Process PID 13 on instruction 26 (Long Syscall)
+[STATUS] Process PID 13 moved from PC = 21 to PC = 27, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 20 moved to READY state
+Number of ready processes: 3
+Ready Queue: [14, 17, 20]
+[SCHEDULER: ROUND ROBIN] Selected process 17 (position 1 in queue)
+
+[SCHEDULED] Process 17 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 17 starting from PC = 59
+[BLOCKED] Process PID 17 on instruction 68 (Long Syscall)
+[STATUS] Process PID 17 moved from PC = 59 to PC = 69, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 13 moved to READY state
+Number of ready processes: 3
+Ready Queue: [13, 14, 20]
+[SCHEDULER: ROUND ROBIN] Selected process 20 (position 2 in queue)
+
+[SCHEDULED] Process 20 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 20 starting from PC = 26
+[BLOCKED] Process PID 20 on instruction 26 (Long Syscall)
+[STATUS] Process PID 20 moved from PC = 26 to PC = 27, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 17 moved to READY state
+Number of ready processes: 3
+Ready Queue: [13, 14, 17]
+[SCHEDULER: ROUND ROBIN] Selected process 13 (position 0 in queue)
+
+[SCHEDULED] Process 13 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 13 starting from PC = 27
+[COMPLETED] Process PID 13 completed
+[STATUS] Process PID 13 moved from PC = 27 to PC = 40, State = 6
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 20 moved to READY state
+Number of ready processes: 3
+Ready Queue: [14, 17, 20]
+[SCHEDULER: ROUND ROBIN] Selected process 17 (position 1 in queue)
+
+[SCHEDULED] Process 17 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 17 starting from PC = 69
+[BLOCKED] Process PID 17 on instruction 69 (Long Syscall)
+[COMPLETED] Process PID 17 completed
+[STATUS] Process PID 17 moved from PC = 69 to PC = 70, State = 6
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 2
+Ready Queue: [14, 20]
+[SCHEDULER: ROUND ROBIN] Selected process 14 (position 0 in queue)
+
+[SCHEDULED] Process 14 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 14 starting from PC = 55
+[BLOCKED] Process PID 14 on instruction 58 (Long Syscall)
+[STATUS] Process PID 14 moved from PC = 55 to PC = 59, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 1
+Ready Queue: [20]
+[SCHEDULER: ROUND ROBIN] Selected process 20 (position 0 in queue)
+
+[SCHEDULED] Process 20 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 20 starting from PC = 27
+[BLOCKED] Process PID 20 on instruction 37 (Long Syscall)
+[STATUS] Process PID 20 moved from PC = 27 to PC = 38, State = 3
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 14 moved to READY state
+Number of ready processes: 1
+Ready Queue: [14]
+[SCHEDULER: ROUND ROBIN] Selected process 14 (position 0 in queue)
+
+[SCHEDULED] Process 14 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 14 starting from PC = 59
+[BLOCKED] Process PID 14 on instruction 59 (Long Syscall)
+[COMPLETED] Process PID 14 completed
+[STATUS] Process PID 14 moved from PC = 59 to PC = 60, State = 6
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 20 moved to READY state
+Number of ready processes: 1
+Ready Queue: [20]
+[SCHEDULER: ROUND ROBIN] Selected process 20 (position 0 in queue)
+
+[SCHEDULED] Process 20 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 20 starting from PC = 38
+[BLOCKED] Process PID 20 on instruction 40 (Long Syscall)
+[STATUS] Process PID 20 moved from PC = 38 to PC = 41, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 0
+Invalid process with PID -100 selected for scheduling
+Scheduler terminating
+=== SCHEDULER TERMINATED ===
+
+--- Scheduling Iteration 2 ---
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 20 moved to READY state
+Number of ready processes: 1
+Ready Queue: [20]
+[SCHEDULER: ROUND ROBIN] Selected process 20 (position 0 in queue)
+
+[SCHEDULED] Process 20 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 20 starting from PC = 41
+[BLOCKED] Process PID 20 on instruction 44 (Long Syscall)
+[STATUS] Process PID 20 moved from PC = 41 to PC = 45, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 0
+Invalid process with PID -100 selected for scheduling
+Scheduler terminating
+=== SCHEDULER TERMINATED ===
+
+--- Scheduling Iteration 3 ---
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 20 moved to READY state
+Number of ready processes: 1
+Ready Queue: [20]
+[SCHEDULER: ROUND ROBIN] Selected process 20 (position 0 in queue)
+
+[SCHEDULED] Process 20 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 20 starting from PC = 45
+[BLOCKED] Process PID 20 on instruction 46 (Long Syscall)
+[STATUS] Process PID 20 moved from PC = 45 to PC = 47, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 0
+Invalid process with PID -100 selected for scheduling
+Scheduler terminating
+=== SCHEDULER TERMINATED ===
+
+--- Scheduling Iteration 4 ---
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 20 moved to READY state
+Number of ready processes: 1
+Ready Queue: [20]
+[SCHEDULER: ROUND ROBIN] Selected process 20 (position 0 in queue)
+
+[SCHEDULED] Process 20 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 20 starting from PC = 47
+[BLOCKED] Process PID 20 on instruction 51 (Long Syscall)
+[STATUS] Process PID 20 moved from PC = 47 to PC = 52, State = 3
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 0
+Invalid process with PID -100 selected for scheduling
+Scheduler terminating
+=== SCHEDULER TERMINATED ===
+
+--- Scheduling Iteration 5 ---
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 20 moved to READY state
+Number of ready processes: 1
+Ready Queue: [20]
+[SCHEDULER: ROUND ROBIN] Selected process 20 (position 0 in queue)
+
+[SCHEDULED] Process 20 selected for execution
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 20 starting from PC = 52
+[COMPLETED] Process PID 20 completed
+[STATUS] Process PID 20 moved from PC = 52 to PC = 55, State = 6
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 0
+No active processes --- Scheduler terminating
+=== SCHEDULER TERMINATED ===
+
+[INFO] All processes completed after 5 scheduling iterations
+
+=== Memory Manager Statistics ===
+
+=== Memory Manager Statistics ===
+Page Size: 4096 bytes
+Total Page Faults: 68
+Total Page Replacements: 4
+Total Page Loads: 68
+Number of Frames: 64
+Used Frames: 64/64 (100.0%)
+Page Fault Rate: 12.71%
+==================================
+
+=== Process Timing Information ===
+
+--- Timing Information for PID 11 ---
+Memory Type: GOOD
+Response Time: 84 microseconds (0.084 ms)
+Running Time: 84 microseconds (0.084 ms)
+Wait Time: 108 microseconds (0.108 ms)
+Number of Schedules: 6
+Page Faults: 7
+References: 50
+--------------------------------------
+
+--- Timing Information for PID 12 ---
+Memory Type: GOOD
+Response Time: 43 microseconds (0.043 ms)
+Running Time: 4 microseconds (0.004 ms)
+Wait Time: 6 microseconds (0.006 ms)
+Number of Schedules: 1
+Page Faults: 3
+References: 20
+--------------------------------------
+
+--- Timing Information for PID 13 ---
+Memory Type: GOOD
+Response Time: 174 microseconds (0.174 ms)
+Running Time: 26 microseconds (0.026 ms)
+Wait Time: 152 microseconds (0.152 ms)
+Number of Schedules: 3
+Page Faults: 5
+References: 40
+--------------------------------------
+
+--- Timing Information for PID 14 ---
+Memory Type: BAD
+Response Time: 39 microseconds (0.039 ms)
+Running Time: 166 microseconds (0.166 ms)
+Wait Time: 127 microseconds (0.127 ms)
+Number of Schedules: 9
+Page Faults: 8
+References: 60
+--------------------------------------
+
+--- Timing Information for PID 15 ---
+Memory Type: BAD
+Response Time: 77 microseconds (0.077 ms)
+Running Time: 30 microseconds (0.030 ms)
+Wait Time: 66 microseconds (0.066 ms)
+Number of Schedules: 2
+Page Faults: 10
+References: 80
+--------------------------------------
+
+--- Timing Information for PID 16 ---
+Memory Type: UGLY
+Response Time: 40 microseconds (0.040 ms)
+Running Time: 44 microseconds (0.044 ms)
+Wait Time: 53 microseconds (0.053 ms)
+Number of Schedules: 2
+Page Faults: 5
+References: 35
+--------------------------------------
+
+--- Timing Information for PID 17 ---
+Memory Type: UGLY
+Response Time: 42 microseconds (0.042 ms)
+Running Time: 145 microseconds (0.145 ms)
+Wait Time: 114 microseconds (0.114 ms)
+Number of Schedules: 9
+Page Faults: 9
+References: 70
+--------------------------------------
+
+--- Timing Information for PID 18 ---
+Memory Type: UGLY
+Response Time: 42 microseconds (0.042 ms)
+Running Time: 18 microseconds (0.018 ms)
+Wait Time: 29 microseconds (0.029 ms)
+Number of Schedules: 1
+Page Faults: 10
+References: 100
+--------------------------------------
+
+--- Timing Information for PID 19 ---
+Memory Type: GOOD
+Response Time: 53 microseconds (0.053 ms)
+Running Time: 4 microseconds (0.004 ms)
+Wait Time: 41 microseconds (0.041 ms)
+Number of Schedules: 1
+Page Faults: 4
+References: 25
+--------------------------------------
+
+--- Timing Information for PID 20 ---
+Memory Type: BAD
+Response Time: 106 microseconds (0.106 ms)
+Running Time: 104 microseconds (0.104 ms)
+Wait Time: 155 microseconds (0.155 ms)
+Number of Schedules: 12
+Page Faults: 7
+References: 55
+--------------------------------------
+Process PID 11 deleted from system
+Process PID 12 deleted from system
+Process PID 13 deleted from system
+Process PID 14 deleted from system
+Process PID 15 deleted from system
+Process PID 16 deleted from system
+Process PID 17 deleted from system
+Process PID 18 deleted from system
+Process PID 19 deleted from system
+Process PID 20 deleted from system

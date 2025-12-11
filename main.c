@@ -1,9 +1,14 @@
+/* main.c - corrected to match ScisSos API names and headers */
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
 #include "ScisSos.h"
 #include "scheduling_algo.h"
 
 #define NUM_PROCESSES 10
 
-// Function to create 10 processes with different characteristics
+/* Function to create 10 processes with different characteristics */
 void create_processes(ScisSosProcess *processes[])
 {
     processes[0] = scissos_proc_create("WebBrowser", 50, 5, PT_IOE);
@@ -27,18 +32,20 @@ int main(int argc, char *argv[])
     {
         fprintf(stderr, "Usage: %s <scheduler_name>\n", argv[0]);
         fprintf(stdout, "Available schedulers: fcfs, sjf, priority, rr\n");
-        return 1;
+        return EXIT_FAILURE;
     }
 
-    // Step 1: Initialize OS (this now also initializes memory manager)
+    /* Step 1: Initialize OS (this also initialises memory manager if enabled) */
     scissos_initialise();
 
-    // Step 2: Create processes
+    /* Step 2: Create processes */
     fprintf(stdout, "=== Creating Processes ===\n\n");
     ScisSosProcess *processes[NUM_PROCESSES];
+    for (int i = 0; i < NUM_PROCESSES; ++i)
+        processes[i] = NULL;
     create_processes(processes);
 
-    // Step 3: Print initial PCBs
+    /* Step 3: Print initial PCBs */
     fprintf(stdout, "=== Initial Process Control Blocks ===\n");
     for (int i = 0; i < NUM_PROCESSES; i++)
     {
@@ -49,7 +56,7 @@ int main(int argc, char *argv[])
         }
     }
 
-    // Validate scheduler choice
+    /* Validate scheduler choice */
     int valid_scheduler = 0;
     if (strcmp(argv[1], "fcfs") == 0 || strcmp(argv[1], "sjf") == 0 ||
         strcmp(argv[1], "priority") == 0 || strcmp(argv[1], "rr") == 0)
@@ -61,14 +68,17 @@ int main(int argc, char *argv[])
     {
         fprintf(stderr, "Error: Unknown scheduler '%s'\n", argv[1]);
         fprintf(stdout, "Available schedulers: fcfs, sjf, priority, rr\n");
-        return 1;
+        return EXIT_FAILURE;
     }
 
-    // Step 4: Start scheduling loop
+    /* Step 4: Start scheduling loop */
     fprintf(stdout, "=== Starting Scheduling with '%s' Algorithm ===\n", argv[1]);
 
-    // Loop until all processes are completed
+    /* Loop until all processes are completed */
     int iteration = 0;
+
+    /* NOTE: Use the API function from ScisSos.h that reports active processes.
+       Ensure the function name matches your header (scissos_active_processes). */
     while (scissos_active_processes())
     {
         iteration++;
@@ -76,7 +86,7 @@ int main(int argc, char *argv[])
 
         scissos_call_scheduler(argv[1]);
 
-        // Safety check to prevent infinite loops
+        /* Safety check to prevent infinite loops */
         if (iteration > 10000)
         {
             fprintf(stderr, "\n[ERROR] Maximum iterations exceeded!\n");
@@ -87,7 +97,7 @@ int main(int argc, char *argv[])
 
     printf("\n[INFO] All processes completed after %d scheduling iterations\n", iteration);
 
-    // Step 5: Final statistics
+    /* Step 5: Final statistics */
     fprintf(stdout, "\n=== Final Statistics ===\n");
 
     fprintf(stdout, "=== Final Process States ===\n");
@@ -100,8 +110,10 @@ int main(int argc, char *argv[])
         if (_proctable[i] != NULL)
         {
             fprintf(stdout, "Process %d: %s (PC=%d/%d)\n",
-                    _proctable[i]->pid, state_str[_proctable[i]->ps_state],
-                    _proctable[i]->pc, _proctable[i]->size);
+                    _proctable[i]->pid,
+                    (_proctable[i]->ps_state >= 0 && _proctable[i]->ps_state <= PS_DEAD) ? state_str[_proctable[i]->ps_state] : "UNKNOWN",
+                    _proctable[i]->pc,
+                    _proctable[i]->size);
 
             if (_proctable[i]->ps_state == PS_DEAD)
                 dead_count++;
@@ -113,12 +125,12 @@ int main(int argc, char *argv[])
     fprintf(stdout, "\nCompleted Processes: %d\n", dead_count);
     fprintf(stdout, "Active Processes: %d\n", active_count);
 
-    // Print memory statistics if memory manager is enabled
+    /* Print memory statistics if memory manager is enabled */
     if (_memory_manager_enabled)
     {
         memory_print_stats(stdout);
 
-        // Print timing info for all processes
+        /* Print timing info for all processes */
         fprintf(stdout, "\n=== Process Timing Information ===\n");
         for (int i = 0; i < MAXPROC; i++)
         {
@@ -129,10 +141,10 @@ int main(int argc, char *argv[])
         }
     }
 
-    // Step 6: Cleanup
+    /* Step 6: Cleanup */
     fprintf(stdout, "\n=== Cleaning up resources ===\n");
 
-    // Delete all processes
+    /* Delete all processes */
     for (int i = 0; i < MAXPROC; i++)
     {
         if (_proctable[i] != NULL)
@@ -142,12 +154,12 @@ int main(int argc, char *argv[])
         }
     }
 
-    // Cleanup memory manager
+    /* Cleanup memory manager */
     if (_memory_manager_enabled)
     {
         memory_manager_cleanup();
     }
 
     fprintf(stdout, "\nSimulation terminated successfully.\n\n");
-    return 0;
+    return EXIT_SUCCESS;
 }
