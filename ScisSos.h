@@ -128,6 +128,7 @@ void scisos_update_queues(void);              /* Update the ready and block queu
 int scissos_count_ready_processes(void);      /* Count ready processes */
 void scissos_unblock_process(void);           /* Unblock processes */
 int scisos_active_processes(void);            /* Check for active processes */
+void scissos_print_timings(void);             /* Print timing statistics */
 
 /* Memory functions*/
 void memory_initialise(void);                        /* Initialise memory management */
@@ -143,5 +144,7 @@ struct timeval difference_times(struct timeval start, struct timeval end); /* Ca
 struct timeval add_times(struct timeval t1, struct timeval t2);            /* Add two timeval structs */
 void print_time(struct timeval t);                                         /* Print timeval struct */
 double timeval_to_seconds(struct timeval t);                               /* Convert timeval to seconds */
+
+void write_process_times_csv(const char *filename);                          /* Write process times to CSV */
 
 #endif

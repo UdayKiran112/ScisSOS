@@ -124,6 +124,9 @@ int main(int argc, char *argv[])
 
     printf("\n\n[INFO] All processes completed after %d scheduling iterations\n", iteration);
 
+    /* write timings*/
+    scissos_print_timings();
+
     /* Print final statistics */
     printf("\n===================== FINAL STATISTICS =================================\n");
 

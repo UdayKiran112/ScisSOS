@@ -1239,3 +1239,1378 @@ Cleanup complete!
 
 Simulation terminated successfully.
 
+./run_os sched fcfs no-memory
+
+============ OS Simulator ================
+
+=== Initialising ScisSOS ===
+Base time set is : 1765485188 seconds and 275569 microseconds
+=== Initialising Memory Management System ===
+Memory management system initialised with 64 frames
+Process table initialised
+Ready and Block Queues initialised
+=== ScisSOS Initialised ===
+
+Configuration:
+  Memory Management: DISABLED
+  Scheduling Algorithm: fcfs
+  Number of Frames: 64
+  Page Size: 4096 bytes
+  Time Slice: 6239 instructions
+
+===================== CREATING PROCESSES ===============================
+
+=== Creating Process: WebBrowser ===
+Process created: WebBrowser, PID: 1, UID: 6, Priority: 5, Type: 2, Memory Type: 3
+Timeslice: 6239
+Process PID 1 moved from NEW to READY state
+=== Creating Process: Calculator ===
+Process created: Calculator, PID: 2, UID: 10, Priority: 10, Type: 1, Memory Type: 4
+Timeslice: 6239
+Process PID 2 moved from NEW to READY state
+=== Creating Process: TextEditor ===
+Process created: TextEditor, PID: 3, UID: 1, Priority: 8, Type: 0, Memory Type: 3
+Timeslice: 6239
+Process PID 3 moved from NEW to READY state
+=== Creating Process: VideoPlayer ===
+Process created: VideoPlayer, PID: 4, UID: 8, Priority: 3, Type: 2, Memory Type: 5
+Timeslice: 6239
+Process PID 4 moved from NEW to READY state
+=== Creating Process: Compiler ===
+Process created: Compiler, PID: 5, UID: 3, Priority: 15, Type: 1, Memory Type: 4
+Timeslice: 6239
+Process PID 5 moved from NEW to READY state
+=== Creating Process: FileManager ===
+Process created: FileManager, PID: 6, UID: 6, Priority: 7, Type: 0, Memory Type: 3
+Timeslice: 6239
+Process PID 6 moved from NEW to READY state
+=== Creating Process: Database ===
+Process created: Database, PID: 7, UID: 5, Priority: 4, Type: 2, Memory Type: 5
+Timeslice: 6239
+Process PID 7 moved from NEW to READY state
+=== Creating Process: Game ===
+Process created: Game, PID: 8, UID: 2, Priority: 2, Type: 1, Memory Type: 4
+Timeslice: 6239
+Process PID 8 moved from NEW to READY state
+=== Creating Process: Terminal ===
+Process created: Terminal, PID: 9, UID: 3, Priority: 12, Type: 0, Memory Type: 3
+Timeslice: 6239
+Process PID 9 moved from NEW to READY state
+=== Creating Process: ImageEditor ===
+Process created: ImageEditor, PID: 10, UID: 6, Priority: 6, Type: 2, Memory Type: 5
+Timeslice: 6239
+Process PID 10 moved from NEW to READY state
+
+========================================
+   ALL PROCESSES CREATED
+   Total Processes: 10
+========================================
+
+===================== INITIAL PROCESS STATES ===========================
+----------------------------------------
+Process Name: WebBrowser
+PID: 1
+UID: 6
+Size: 50
+Priority: 5
+State: READY (1)
+Type: IO_INTENSIVE (2)
+Memory Type: 3
+Program Counter: 0
+Time Slice: 6239
+No. of loaded pages: 0
+
+Page Table:
+Page | Frame | Loaded
+-----+-------+-------
+  0  |  -100  |   NO
+  1  |  -100  |   NO
+  2  |  -100  |   NO
+  3  |  -100  |   NO
+  4  |  -100  |   NO
+----------------------------------------
+
+----------------------------------------
+Process Name: Calculator
+PID: 2
+UID: 10
+Size: 20
+Priority: 10
+State: READY (1)
+Type: COMPUTE_INTENSIVE (1)
+Memory Type: 4
+Program Counter: 0
+Time Slice: 6239
+No. of loaded pages: 0
+
+Page Table:
+Page | Frame | Loaded
+-----+-------+-------
+  0  |  -100  |   NO
+  1  |  -100  |   NO
+  2  |  -100  |   NO
+  3  |  -100  |   NO
+  4  |  -100  |   NO
+----------------------------------------
+
+----------------------------------------
+Process Name: TextEditor
+PID: 3
+UID: 1
+Size: 40
+Priority: 8
+State: READY (1)
+Type: REGULAR (0)
+Memory Type: 3
+Program Counter: 0
+Time Slice: 6239
+No. of loaded pages: 0
+
+Page Table:
+Page | Frame | Loaded
+-----+-------+-------
+  0  |  -100  |   NO
+  1  |  -100  |   NO
+  2  |  -100  |   NO
+  3  |  -100  |   NO
+  4  |  -100  |   NO
+----------------------------------------
+
+----------------------------------------
+Process Name: VideoPlayer
+PID: 4
+UID: 8
+Size: 60
+Priority: 3
+State: READY (1)
+Type: IO_INTENSIVE (2)
+Memory Type: 5
+Program Counter: 0
+Time Slice: 6239
+No. of loaded pages: 0
+
+Page Table:
+Page | Frame | Loaded
+-----+-------+-------
+  0  |  -100  |   NO
+  1  |  -100  |   NO
+  2  |  -100  |   NO
+  3  |  -100  |   NO
+  4  |  -100  |   NO
+----------------------------------------
+
+----------------------------------------
+Process Name: Compiler
+PID: 5
+UID: 3
+Size: 80
+Priority: 15
+State: READY (1)
+Type: COMPUTE_INTENSIVE (1)
+Memory Type: 4
+Program Counter: 0
+Time Slice: 6239
+No. of loaded pages: 0
+
+Page Table:
+Page | Frame | Loaded
+-----+-------+-------
+  0  |  -100  |   NO
+  1  |  -100  |   NO
+  2  |  -100  |   NO
+  3  |  -100  |   NO
+  4  |  -100  |   NO
+----------------------------------------
+
+----------------------------------------
+Process Name: FileManager
+PID: 6
+UID: 6
+Size: 35
+Priority: 7
+State: READY (1)
+Type: REGULAR (0)
+Memory Type: 3
+Program Counter: 0
+Time Slice: 6239
+No. of loaded pages: 0
+
+Page Table:
+Page | Frame | Loaded
+-----+-------+-------
+  0  |  -100  |   NO
+  1  |  -100  |   NO
+  2  |  -100  |   NO
+  3  |  -100  |   NO
+  4  |  -100  |   NO
+----------------------------------------
+
+----------------------------------------
+Process Name: Database
+PID: 7
+UID: 5
+Size: 70
+Priority: 4
+State: READY (1)
+Type: IO_INTENSIVE (2)
+Memory Type: 5
+Program Counter: 0
+Time Slice: 6239
+No. of loaded pages: 0
+
+Page Table:
+Page | Frame | Loaded
+-----+-------+-------
+  0  |  -100  |   NO
+  1  |  -100  |   NO
+  2  |  -100  |   NO
+  3  |  -100  |   NO
+  4  |  -100  |   NO
+----------------------------------------
+
+----------------------------------------
+Process Name: Game
+PID: 8
+UID: 2
+Size: 100
+Priority: 2
+State: READY (1)
+Type: COMPUTE_INTENSIVE (1)
+Memory Type: 4
+Program Counter: 0
+Time Slice: 6239
+No. of loaded pages: 0
+
+Page Table:
+Page | Frame | Loaded
+-----+-------+-------
+  0  |  -100  |   NO
+  1  |  -100  |   NO
+  2  |  -100  |   NO
+  3  |  -100  |   NO
+  4  |  -100  |   NO
+----------------------------------------
+
+----------------------------------------
+Process Name: Terminal
+PID: 9
+UID: 3
+Size: 25
+Priority: 12
+State: READY (1)
+Type: REGULAR (0)
+Memory Type: 3
+Program Counter: 0
+Time Slice: 6239
+No. of loaded pages: 0
+
+Page Table:
+Page | Frame | Loaded
+-----+-------+-------
+  0  |  -100  |   NO
+  1  |  -100  |   NO
+  2  |  -100  |   NO
+  3  |  -100  |   NO
+  4  |  -100  |   NO
+----------------------------------------
+
+----------------------------------------
+Process Name: ImageEditor
+PID: 10
+UID: 6
+Size: 55
+Priority: 6
+State: READY (1)
+Type: IO_INTENSIVE (2)
+Memory Type: 5
+Program Counter: 0
+Time Slice: 6239
+No. of loaded pages: 0
+
+Page Table:
+Page | Frame | Loaded
+-----+-------+-------
+  0  |  -100  |   NO
+  1  |  -100  |   NO
+  2  |  -100  |   NO
+  3  |  -100  |   NO
+  4  |  -100  |   NO
+----------------------------------------
+
+===================== STARTING SCHEDULER ===============================
+Starting scheduler with 'fcfs' algorithm...
+
+
+--- Scheduling Iteration 1 ---
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 10
+Ready Queue: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 1 selected for execution
+[RESPONSE TIME] Process PID 1 response time: 0.182000 ms
+[WAITING TIME] Process PID 1 total waiting time updated to: 0.000176 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 0
+[BLOCKED] Process PID 1 on instruction 8 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 0 to PC = 9, State = 3
+[TIME TAKEN] Process PID 1 took 0.000000 seconds to execute 9 instructions
+[BLOCKED] Process PID 1 moved to READY state
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 9
+Ready Queue: [2, 3, 4, 5, 6, 7, 8, 9, 10]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 2 selected for execution
+[RESPONSE TIME] Process PID 2 response time: 0.192000 ms
+[WAITING TIME] Process PID 2 total waiting time updated to: 0.000191 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 2 starting from PC = 0
+[COMPLETED] Process PID 2 completed
+[STATUS] Process PID 2 moved from PC = 0 to PC = 20, State = 6
+[TIME TAKEN] Process PID 2 took -0.000001 seconds to execute 20 instructions
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 1 moved to READY state
+Number of ready processes: 9
+Ready Queue: [1, 3, 4, 5, 6, 7, 8, 9, 10]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 1 selected for execution
+[WAITING TIME] Process PID 1 total waiting time updated to: 0.000238 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 9
+[BLOCKED] Process PID 1 on instruction 14 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 9 to PC = 15, State = 3
+[TIME TAKEN] Process PID 1 took -0.000001 seconds to execute 6 instructions
+[BLOCKED] Process PID 1 moved to READY state
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 8
+Ready Queue: [3, 4, 5, 6, 7, 8, 9, 10]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 3 selected for execution
+[RESPONSE TIME] Process PID 3 response time: 0.251000 ms
+[WAITING TIME] Process PID 3 total waiting time updated to: 0.000250 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 3 starting from PC = 0
+[BLOCKED] Process PID 3 on instruction 3 (Long Syscall)
+[STATUS] Process PID 3 moved from PC = 0 to PC = 4, State = 3
+[TIME TAKEN] Process PID 3 took -0.000001 seconds to execute 4 instructions
+[BLOCKED] Process PID 3 moved to READY state
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 1 moved to READY state
+Number of ready processes: 8
+Ready Queue: [1, 4, 5, 6, 7, 8, 9, 10]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 1 selected for execution
+[WAITING TIME] Process PID 1 total waiting time updated to: 0.000269 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 15
+[BLOCKED] Process PID 1 on instruction 15 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 15 to PC = 16, State = 3
+[TIME TAKEN] Process PID 1 took -140724227548470.406250 seconds to execute 1 instructions
+[BLOCKED] Process PID 1 moved to READY state
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 3 moved to READY state
+Number of ready processes: 8
+Ready Queue: [3, 4, 5, 6, 7, 8, 9, 10]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 3 selected for execution
+[WAITING TIME] Process PID 3 total waiting time updated to: 0.000280 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 3 starting from PC = 4
+[COMPLETED] Process PID 3 completed
+[STATUS] Process PID 3 moved from PC = 4 to PC = 40, State = 6
+[TIME TAKEN] Process PID 3 took -0.000002 seconds to execute 36 instructions
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 1 moved to READY state
+Number of ready processes: 8
+Ready Queue: [1, 4, 5, 6, 7, 8, 9, 10]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 1 selected for execution
+[WAITING TIME] Process PID 1 total waiting time updated to: 0.000298 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 16
+[BLOCKED] Process PID 1 on instruction 17 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 16 to PC = 18, State = 3
+[TIME TAKEN] Process PID 1 took 0.000000 seconds to execute 2 instructions
+[BLOCKED] Process PID 1 moved to READY state
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 7
+Ready Queue: [4, 5, 6, 7, 8, 9, 10]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 4 selected for execution
+[RESPONSE TIME] Process PID 4 response time: 0.304000 ms
+[WAITING TIME] Process PID 4 total waiting time updated to: 0.000303 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 0
+[BLOCKED] Process PID 4 on instruction 0 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 0 to PC = 1, State = 3
+[TIME TAKEN] Process PID 4 took -140724227547702.406250 seconds to execute 1 instructions
+[BLOCKED] Process PID 4 moved to READY state
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 1 moved to READY state
+Number of ready processes: 7
+Ready Queue: [1, 5, 6, 7, 8, 9, 10]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 1 selected for execution
+[WAITING TIME] Process PID 1 total waiting time updated to: 0.000327 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 18
+[BLOCKED] Process PID 1 on instruction 28 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 18 to PC = 29, State = 3
+[TIME TAKEN] Process PID 1 took -0.000001 seconds to execute 11 instructions
+[BLOCKED] Process PID 1 moved to READY state
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 7
+Ready Queue: [4, 5, 6, 7, 8, 9, 10]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 4 selected for execution
+[WAITING TIME] Process PID 4 total waiting time updated to: 0.000354 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 1
+[BLOCKED] Process PID 4 on instruction 7 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 1 to PC = 8, State = 3
+[TIME TAKEN] Process PID 4 took 0.000000 seconds to execute 7 instructions
+[BLOCKED] Process PID 4 moved to READY state
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 1 moved to READY state
+Number of ready processes: 7
+Ready Queue: [1, 5, 6, 7, 8, 9, 10]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 1 selected for execution
+[WAITING TIME] Process PID 1 total waiting time updated to: 0.000355 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 29
+[BLOCKED] Process PID 1 on instruction 29 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 29 to PC = 30, State = 3
+[TIME TAKEN] Process PID 1 took -140724227546934.406250 seconds to execute 1 instructions
+[BLOCKED] Process PID 1 moved to READY state
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 7
+Ready Queue: [4, 5, 6, 7, 8, 9, 10]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 4 selected for execution
+[WAITING TIME] Process PID 4 total waiting time updated to: 0.000382 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 8
+[BLOCKED] Process PID 4 on instruction 14 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 8 to PC = 15, State = 3
+[TIME TAKEN] Process PID 4 took 0.000000 seconds to execute 7 instructions
+[BLOCKED] Process PID 4 moved to READY state
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 1 moved to READY state
+Number of ready processes: 7
+Ready Queue: [1, 5, 6, 7, 8, 9, 10]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 1 selected for execution
+[WAITING TIME] Process PID 1 total waiting time updated to: 0.000382 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 30
+[BLOCKED] Process PID 1 on instruction 31 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 30 to PC = 32, State = 3
+[TIME TAKEN] Process PID 1 took 0.000000 seconds to execute 2 instructions
+[BLOCKED] Process PID 1 moved to READY state
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 7
+Ready Queue: [4, 5, 6, 7, 8, 9, 10]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 4 selected for execution
+[WAITING TIME] Process PID 4 total waiting time updated to: 0.000409 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 15
+[BLOCKED] Process PID 4 on instruction 16 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 15 to PC = 17, State = 3
+[TIME TAKEN] Process PID 4 took 0.000000 seconds to execute 2 instructions
+[BLOCKED] Process PID 4 moved to READY state
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 1 moved to READY state
+Number of ready processes: 7
+Ready Queue: [1, 5, 6, 7, 8, 9, 10]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 1 selected for execution
+[WAITING TIME] Process PID 1 total waiting time updated to: 0.000409 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 32
+[BLOCKED] Process PID 1 on instruction 32 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 32 to PC = 33, State = 3
+[TIME TAKEN] Process PID 1 took -140724227545910.406250 seconds to execute 1 instructions
+[BLOCKED] Process PID 1 moved to READY state
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 7
+Ready Queue: [4, 5, 6, 7, 8, 9, 10]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 4 selected for execution
+[WAITING TIME] Process PID 4 total waiting time updated to: 0.000456 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 17
+[BLOCKED] Process PID 4 on instruction 19 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 17 to PC = 20, State = 3
+[TIME TAKEN] Process PID 4 took 0.000000 seconds to execute 3 instructions
+[BLOCKED] Process PID 4 moved to READY state
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 1 moved to READY state
+Number of ready processes: 7
+Ready Queue: [1, 5, 6, 7, 8, 9, 10]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 1 selected for execution
+[WAITING TIME] Process PID 1 total waiting time updated to: 0.000459 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 33
+[BLOCKED] Process PID 1 on instruction 33 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 33 to PC = 34, State = 3
+[TIME TAKEN] Process PID 1 took -140724227545398.406250 seconds to execute 1 instructions
+[BLOCKED] Process PID 1 moved to READY state
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 7
+Ready Queue: [4, 5, 6, 7, 8, 9, 10]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 4 selected for execution
+[WAITING TIME] Process PID 4 total waiting time updated to: 0.000491 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 20
+[BLOCKED] Process PID 4 on instruction 27 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 20 to PC = 28, State = 3
+[TIME TAKEN] Process PID 4 took 0.000000 seconds to execute 8 instructions
+[BLOCKED] Process PID 4 moved to READY state
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 1 moved to READY state
+Number of ready processes: 7
+Ready Queue: [1, 5, 6, 7, 8, 9, 10]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 1 selected for execution
+[WAITING TIME] Process PID 1 total waiting time updated to: 0.000493 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 34
+[BLOCKED] Process PID 1 on instruction 38 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 34 to PC = 39, State = 3
+[TIME TAKEN] Process PID 1 took 0.000000 seconds to execute 5 instructions
+[BLOCKED] Process PID 1 moved to READY state
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 7
+Ready Queue: [4, 5, 6, 7, 8, 9, 10]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 4 selected for execution
+[WAITING TIME] Process PID 4 total waiting time updated to: 0.000524 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 28
+[BLOCKED] Process PID 4 on instruction 30 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 28 to PC = 31, State = 3
+[TIME TAKEN] Process PID 4 took 0.000000 seconds to execute 3 instructions
+[BLOCKED] Process PID 4 moved to READY state
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 1 moved to READY state
+Number of ready processes: 7
+Ready Queue: [1, 5, 6, 7, 8, 9, 10]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 1 selected for execution
+[WAITING TIME] Process PID 1 total waiting time updated to: 0.000526 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 39
+[BLOCKED] Process PID 1 on instruction 47 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 39 to PC = 48, State = 3
+[TIME TAKEN] Process PID 1 took -0.000001 seconds to execute 9 instructions
+[BLOCKED] Process PID 1 moved to READY state
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 7
+Ready Queue: [4, 5, 6, 7, 8, 9, 10]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 4 selected for execution
+[WAITING TIME] Process PID 4 total waiting time updated to: 0.000563 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 31
+[BLOCKED] Process PID 4 on instruction 37 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 31 to PC = 38, State = 3
+[TIME TAKEN] Process PID 4 took 0.000000 seconds to execute 7 instructions
+[BLOCKED] Process PID 4 moved to READY state
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 1 moved to READY state
+Number of ready processes: 7
+Ready Queue: [1, 5, 6, 7, 8, 9, 10]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 1 selected for execution
+[WAITING TIME] Process PID 1 total waiting time updated to: 0.000576 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 48
+[BLOCKED] Process PID 1 on instruction 48 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 48 to PC = 49, State = 3
+[TIME TAKEN] Process PID 1 took -140724227543862.406250 seconds to execute 1 instructions
+[BLOCKED] Process PID 1 moved to READY state
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 7
+Ready Queue: [4, 5, 6, 7, 8, 9, 10]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 4 selected for execution
+[WAITING TIME] Process PID 4 total waiting time updated to: 0.000598 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 38
+[BLOCKED] Process PID 4 on instruction 45 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 38 to PC = 46, State = 3
+[TIME TAKEN] Process PID 4 took -0.000001 seconds to execute 8 instructions
+[BLOCKED] Process PID 4 moved to READY state
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 1 moved to READY state
+Number of ready processes: 7
+Ready Queue: [1, 5, 6, 7, 8, 9, 10]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 1 selected for execution
+[WAITING TIME] Process PID 1 total waiting time updated to: 0.000609 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 49
+[COMPLETED] Process PID 1 completed
+[STATUS] Process PID 1 moved from PC = 49 to PC = 50, State = 6
+[TIME TAKEN] Process PID 1 took 0.000000 seconds to execute 1 instructions
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 7
+Ready Queue: [4, 5, 6, 7, 8, 9, 10]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 4 selected for execution
+[WAITING TIME] Process PID 4 total waiting time updated to: 0.000631 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 46
+[BLOCKED] Process PID 4 on instruction 55 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 46 to PC = 56, State = 3
+[TIME TAKEN] Process PID 4 took 0.000000 seconds to execute 10 instructions
+[BLOCKED] Process PID 4 moved to READY state
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 6
+Ready Queue: [5, 6, 7, 8, 9, 10]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 5 selected for execution
+[RESPONSE TIME] Process PID 5 response time: 0.675000 ms
+[WAITING TIME] Process PID 5 total waiting time updated to: 0.000674 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 5 starting from PC = 0
+[BLOCKED] Process PID 5 on instruction 78 (Long Syscall)
+[STATUS] Process PID 5 moved from PC = 0 to PC = 79, State = 3
+[TIME TAKEN] Process PID 5 took -0.000004 seconds to execute 79 instructions
+[BLOCKED] Process PID 5 moved to READY state
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 4 moved to READY state
+Number of ready processes: 6
+Ready Queue: [4, 6, 7, 8, 9, 10]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 4 selected for execution
+[WAITING TIME] Process PID 4 total waiting time updated to: 0.000669 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 56
+[COMPLETED] Process PID 4 completed
+[STATUS] Process PID 4 moved from PC = 56 to PC = 60, State = 6
+[TIME TAKEN] Process PID 4 took 0.000000 seconds to execute 4 instructions
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 5 moved to READY state
+Number of ready processes: 6
+Ready Queue: [5, 6, 7, 8, 9, 10]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 5 selected for execution
+[WAITING TIME] Process PID 5 total waiting time updated to: 0.000707 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 5 starting from PC = 79
+[COMPLETED] Process PID 5 completed
+[STATUS] Process PID 5 moved from PC = 79 to PC = 80, State = 6
+[TIME TAKEN] Process PID 5 took 0.000000 seconds to execute 1 instructions
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 5
+Ready Queue: [6, 7, 8, 9, 10]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 6 selected for execution
+[RESPONSE TIME] Process PID 6 response time: 0.748000 ms
+[WAITING TIME] Process PID 6 total waiting time updated to: 0.000747 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 6 starting from PC = 0
+[COMPLETED] Process PID 6 completed
+[STATUS] Process PID 6 moved from PC = 0 to PC = 35, State = 6
+[TIME TAKEN] Process PID 6 took -0.000001 seconds to execute 35 instructions
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 4
+Ready Queue: [7, 8, 9, 10]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 7 selected for execution
+[RESPONSE TIME] Process PID 7 response time: 0.754000 ms
+[WAITING TIME] Process PID 7 total waiting time updated to: 0.000754 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 0
+[BLOCKED] Process PID 7 on instruction 4 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 0 to PC = 5, State = 3
+[TIME TAKEN] Process PID 7 took -0.000001 seconds to execute 5 instructions
+[BLOCKED] Process PID 7 moved to READY state
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 3
+Ready Queue: [8, 9, 10]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 8 selected for execution
+[RESPONSE TIME] Process PID 8 response time: 0.770000 ms
+[WAITING TIME] Process PID 8 total waiting time updated to: 0.000769 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 8 starting from PC = 0
+[COMPLETED] Process PID 8 completed
+[STATUS] Process PID 8 moved from PC = 0 to PC = 100, State = 6
+[TIME TAKEN] Process PID 8 took -0.000005 seconds to execute 100 instructions
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 3
+Ready Queue: [7, 9, 10]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 7 selected for execution
+[WAITING TIME] Process PID 7 total waiting time updated to: 0.000803 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 5
+[BLOCKED] Process PID 7 on instruction 5 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 5 to PC = 6, State = 3
+[TIME TAKEN] Process PID 7 took -140724227541302.406250 seconds to execute 1 instructions
+[BLOCKED] Process PID 7 moved to READY state
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 2
+Ready Queue: [9, 10]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 9 selected for execution
+[RESPONSE TIME] Process PID 9 response time: 0.808000 ms
+[WAITING TIME] Process PID 9 total waiting time updated to: 0.000807 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 9 starting from PC = 0
+[COMPLETED] Process PID 9 completed
+[STATUS] Process PID 9 moved from PC = 0 to PC = 25, State = 6
+[TIME TAKEN] Process PID 9 took -0.000001 seconds to execute 25 instructions
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 2
+Ready Queue: [7, 10]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 7 selected for execution
+[WAITING TIME] Process PID 7 total waiting time updated to: 0.000837 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 6
+[BLOCKED] Process PID 7 on instruction 12 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 6 to PC = 13, State = 3
+[TIME TAKEN] Process PID 7 took 0.000000 seconds to execute 7 instructions
+[BLOCKED] Process PID 7 moved to READY state
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 1
+Ready Queue: [10]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 10 selected for execution
+[RESPONSE TIME] Process PID 10 response time: 0.835000 ms
+[WAITING TIME] Process PID 10 total waiting time updated to: 0.000834 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 0
+[BLOCKED] Process PID 10 on instruction 1 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 0 to PC = 2, State = 3
+[TIME TAKEN] Process PID 10 took 0.000000 seconds to execute 2 instructions
+[BLOCKED] Process PID 10 moved to READY state
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 1
+Ready Queue: [7]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 7 selected for execution
+[WAITING TIME] Process PID 7 total waiting time updated to: 0.000888 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 13
+[BLOCKED] Process PID 7 on instruction 13 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 13 to PC = 14, State = 3
+[TIME TAKEN] Process PID 7 took -140724227540278.406250 seconds to execute 1 instructions
+[BLOCKED] Process PID 7 moved to READY state
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 1
+Ready Queue: [10]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 10 selected for execution
+[WAITING TIME] Process PID 10 total waiting time updated to: 0.000873 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 2
+[BLOCKED] Process PID 10 on instruction 7 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 2 to PC = 8, State = 3
+[TIME TAKEN] Process PID 10 took 0.000000 seconds to execute 6 instructions
+[BLOCKED] Process PID 10 moved to READY state
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 1
+Ready Queue: [7]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 7 selected for execution
+[WAITING TIME] Process PID 7 total waiting time updated to: 0.000922 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 14
+[BLOCKED] Process PID 7 on instruction 16 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 14 to PC = 17, State = 3
+[TIME TAKEN] Process PID 7 took 0.000000 seconds to execute 3 instructions
+[BLOCKED] Process PID 7 moved to READY state
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 1
+Ready Queue: [10]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 10 selected for execution
+[WAITING TIME] Process PID 10 total waiting time updated to: 0.000906 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 8
+[BLOCKED] Process PID 10 on instruction 11 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 8 to PC = 12, State = 3
+[TIME TAKEN] Process PID 10 took 0.000000 seconds to execute 4 instructions
+[BLOCKED] Process PID 10 moved to READY state
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 1
+Ready Queue: [7]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 7 selected for execution
+[WAITING TIME] Process PID 7 total waiting time updated to: 0.000953 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 17
+[BLOCKED] Process PID 7 on instruction 17 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 17 to PC = 18, State = 3
+[TIME TAKEN] Process PID 7 took -140724227539254.406250 seconds to execute 1 instructions
+[BLOCKED] Process PID 7 moved to READY state
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 1
+Ready Queue: [10]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 10 selected for execution
+[WAITING TIME] Process PID 10 total waiting time updated to: 0.000934 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 12
+[BLOCKED] Process PID 10 on instruction 18 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 12 to PC = 19, State = 3
+[TIME TAKEN] Process PID 10 took 0.000000 seconds to execute 7 instructions
+[BLOCKED] Process PID 10 moved to READY state
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 1
+Ready Queue: [7]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 7 selected for execution
+[WAITING TIME] Process PID 7 total waiting time updated to: 0.000997 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 18
+[BLOCKED] Process PID 7 on instruction 20 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 18 to PC = 21, State = 3
+[TIME TAKEN] Process PID 7 took 0.000000 seconds to execute 3 instructions
+[BLOCKED] Process PID 7 moved to READY state
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 1
+Ready Queue: [10]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 10 selected for execution
+[WAITING TIME] Process PID 10 total waiting time updated to: 0.000979 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 19
+[BLOCKED] Process PID 10 on instruction 30 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 19 to PC = 31, State = 3
+[TIME TAKEN] Process PID 10 took -0.000001 seconds to execute 12 instructions
+[BLOCKED] Process PID 10 moved to READY state
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 1
+Ready Queue: [7]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 7 selected for execution
+[WAITING TIME] Process PID 7 total waiting time updated to: 0.001025 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 21
+[BLOCKED] Process PID 7 on instruction 22 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 21 to PC = 23, State = 3
+[TIME TAKEN] Process PID 7 took 0.000000 seconds to execute 2 instructions
+[BLOCKED] Process PID 7 moved to READY state
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 1
+Ready Queue: [10]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 10 selected for execution
+[WAITING TIME] Process PID 10 total waiting time updated to: 0.001007 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 31
+[BLOCKED] Process PID 10 on instruction 31 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 31 to PC = 32, State = 3
+[TIME TAKEN] Process PID 10 took -140724227537974.406250 seconds to execute 1 instructions
+[BLOCKED] Process PID 10 moved to READY state
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 1
+Ready Queue: [7]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 7 selected for execution
+[WAITING TIME] Process PID 7 total waiting time updated to: 0.001054 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 23
+[BLOCKED] Process PID 7 on instruction 23 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 23 to PC = 24, State = 3
+[TIME TAKEN] Process PID 7 took -140724227537718.406250 seconds to execute 1 instructions
+[BLOCKED] Process PID 7 moved to READY state
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 1
+Ready Queue: [10]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 10 selected for execution
+[WAITING TIME] Process PID 10 total waiting time updated to: 0.001036 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 32
+[BLOCKED] Process PID 10 on instruction 48 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 32 to PC = 49, State = 3
+[TIME TAKEN] Process PID 10 took 0.000000 seconds to execute 17 instructions
+[BLOCKED] Process PID 10 moved to READY state
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 1
+Ready Queue: [7]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 7 selected for execution
+[WAITING TIME] Process PID 7 total waiting time updated to: 0.001085 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 24
+[BLOCKED] Process PID 7 on instruction 26 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 24 to PC = 27, State = 3
+[TIME TAKEN] Process PID 7 took 0.000000 seconds to execute 3 instructions
+[BLOCKED] Process PID 7 moved to READY state
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 10 moved to READY state
+Number of ready processes: 1
+Ready Queue: [10]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 10 selected for execution
+[WAITING TIME] Process PID 10 total waiting time updated to: 0.001087 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 49
+[BLOCKED] Process PID 10 on instruction 54 (Long Syscall)
+[COMPLETED] Process PID 10 completed
+[STATUS] Process PID 10 moved from PC = 49 to PC = 55, State = 6
+[TIME TAKEN] Process PID 10 took 0.000000 seconds to execute 6 instructions
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 1
+Ready Queue: [7]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 7 selected for execution
+[WAITING TIME] Process PID 7 total waiting time updated to: 0.001119 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 27
+[BLOCKED] Process PID 7 on instruction 29 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 27 to PC = 30, State = 3
+[TIME TAKEN] Process PID 7 took 0.000000 seconds to execute 3 instructions
+[BLOCKED] Process PID 7 moved to READY state
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 0
+Invalid process with PID -100 selected for scheduling
+Scheduler terminating
+=== SCHEDULER TERMINATED ===
+
+--- Scheduling Iteration 2 ---
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 1
+Ready Queue: [7]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 7 selected for execution
+[WAITING TIME] Process PID 7 total waiting time updated to: 0.001153 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 30
+[BLOCKED] Process PID 7 on instruction 33 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 30 to PC = 34, State = 3
+[TIME TAKEN] Process PID 7 took 0.000000 seconds to execute 4 instructions
+[BLOCKED] Process PID 7 moved to READY state
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 0
+Invalid process with PID -100 selected for scheduling
+Scheduler terminating
+=== SCHEDULER TERMINATED ===
+
+--- Scheduling Iteration 3 ---
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 1
+Ready Queue: [7]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 7 selected for execution
+[WAITING TIME] Process PID 7 total waiting time updated to: 0.001185 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 34
+[BLOCKED] Process PID 7 on instruction 38 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 34 to PC = 39, State = 3
+[TIME TAKEN] Process PID 7 took 0.000000 seconds to execute 5 instructions
+[BLOCKED] Process PID 7 moved to READY state
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 0
+Invalid process with PID -100 selected for scheduling
+Scheduler terminating
+=== SCHEDULER TERMINATED ===
+
+--- Scheduling Iteration 4 ---
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 1
+Ready Queue: [7]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 7 selected for execution
+[WAITING TIME] Process PID 7 total waiting time updated to: 0.001217 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 39
+[BLOCKED] Process PID 7 on instruction 43 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 39 to PC = 44, State = 3
+[TIME TAKEN] Process PID 7 took 0.000000 seconds to execute 5 instructions
+[BLOCKED] Process PID 7 moved to READY state
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 0
+Invalid process with PID -100 selected for scheduling
+Scheduler terminating
+=== SCHEDULER TERMINATED ===
+
+--- Scheduling Iteration 5 ---
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 1
+Ready Queue: [7]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 7 selected for execution
+[WAITING TIME] Process PID 7 total waiting time updated to: 0.001270 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 44
+[BLOCKED] Process PID 7 on instruction 55 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 44 to PC = 56, State = 3
+[TIME TAKEN] Process PID 7 took -0.000001 seconds to execute 12 instructions
+[BLOCKED] Process PID 7 moved to READY state
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 0
+Invalid process with PID -100 selected for scheduling
+Scheduler terminating
+=== SCHEDULER TERMINATED ===
+
+--- Scheduling Iteration 6 ---
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 1
+Ready Queue: [7]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 7 selected for execution
+[WAITING TIME] Process PID 7 total waiting time updated to: 0.001303 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 56
+[BLOCKED] Process PID 7 on instruction 56 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 56 to PC = 57, State = 3
+[TIME TAKEN] Process PID 7 took -140724227549494.406250 seconds to execute 1 instructions
+[BLOCKED] Process PID 7 moved to READY state
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 0
+Invalid process with PID -100 selected for scheduling
+Scheduler terminating
+=== SCHEDULER TERMINATED ===
+
+--- Scheduling Iteration 7 ---
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 1
+Ready Queue: [7]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 7 selected for execution
+[WAITING TIME] Process PID 7 total waiting time updated to: 0.001335 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 57
+[BLOCKED] Process PID 7 on instruction 59 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 57 to PC = 60, State = 3
+[TIME TAKEN] Process PID 7 took 0.000000 seconds to execute 3 instructions
+[BLOCKED] Process PID 7 moved to READY state
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 0
+Invalid process with PID -100 selected for scheduling
+Scheduler terminating
+=== SCHEDULER TERMINATED ===
+
+--- Scheduling Iteration 8 ---
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 1
+Ready Queue: [7]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 7 selected for execution
+[WAITING TIME] Process PID 7 total waiting time updated to: 0.001367 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 60
+[BLOCKED] Process PID 7 on instruction 65 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 60 to PC = 66, State = 3
+[TIME TAKEN] Process PID 7 took 0.000000 seconds to execute 6 instructions
+[BLOCKED] Process PID 7 moved to READY state
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 0
+Invalid process with PID -100 selected for scheduling
+Scheduler terminating
+=== SCHEDULER TERMINATED ===
+
+--- Scheduling Iteration 9 ---
+
+=== SCHEDULER INVOKED ===
+[UNBLOCKED] Process PID 7 moved to READY state
+Number of ready processes: 1
+Ready Queue: [7]
+[SCHEDULER: FCFS] Selecting first process in queue
+
+[SCHEDULED] Process 7 selected for execution
+[WAITING TIME] Process PID 7 total waiting time updated to: 0.001399 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 66
+[COMPLETED] Process PID 7 completed
+[STATUS] Process PID 7 moved from PC = 66 to PC = 70, State = 6
+[TIME TAKEN] Process PID 7 took 0.000000 seconds to execute 4 instructions
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 0
+No active processes --- Scheduler terminating
+=== SCHEDULER TERMINATED ===
+
+
+[INFO] All processes completed after 9 scheduling iterations
+
+========================================
+   PROCESS TIMING STATISTICS
+========================================
+PID   Response(ms)    Turnaround(ms)  Wait(ms)        Status         
+------------------------------------------------------------------------
+P0    0.18            N/A             0.61            DEAD
+P1    0.19            N/A             0.19            DEAD
+P2    0.25            N/A             0.28            DEAD
+P3    0.30            N/A             0.67            DEAD
+P4    0.68            N/A             0.71            DEAD
+P5    0.75            N/A             0.75            DEAD
+P6    0.75            N/A             1.40            DEAD
+P7    0.77            N/A             0.77            DEAD
+P8    0.81            N/A             0.81            DEAD
+P9    0.84            N/A             1.09            DEAD
+========================================
+Total Instructions Executed: 0
+Total Page Faults: 0
+========================================
+
+
+===================== FINAL STATISTICS =================================
+
+=== Final Process States ===
+Process PID 1: DEAD (PC=50/50)
+Process PID 2: DEAD (PC=20/20)
+Process PID 3: DEAD (PC=40/40)
+Process PID 4: DEAD (PC=60/60)
+Process PID 5: DEAD (PC=80/80)
+Process PID 6: DEAD (PC=35/35)
+Process PID 7: DEAD (PC=70/70)
+Process PID 8: DEAD (PC=100/100)
+Process PID 9: DEAD (PC=25/25)
+Process PID 10: DEAD (PC=55/55)
+
+Completed Processes: 10
+Active Processes: 0
+
+======================= CLEANUP ========================================
+Deleting process PID 1...
+Process PID 1 deleted from system
+Deleting process PID 2...
+Process PID 2 deleted from system
+Deleting process PID 3...
+Process PID 3 deleted from system
+Deleting process PID 4...
+Process PID 4 deleted from system
+Deleting process PID 5...
+Process PID 5 deleted from system
+Deleting process PID 6...
+Process PID 6 deleted from system
+Deleting process PID 7...
+Process PID 7 deleted from system
+Deleting process PID 8...
+Process PID 8 deleted from system
+Deleting process PID 9...
+Process PID 9 deleted from system
+Deleting process PID 10...
+Process PID 10 deleted from system
+Cleanup complete!
+========================================================================
+
+Simulation terminated successfully.
+

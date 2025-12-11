@@ -13,6 +13,25 @@ Frame frame_table[NUMFRAMES];
 // Memory management global variables
 int _memory_enabled = 0; // Initialize here
 int page_faults = 0;     // Initialize here
+int _total_instructions = 0; // Declare and initialize _total_instructions
+
+
+/* Map process state number → human-readable text */
+const char *get_state_name(int state)
+{
+    switch (state)
+    {
+        case PS_NEW:   return "NEW";
+        case PS_RDY:   return "READY";
+        case PS_RUN:   return "RUNNING";
+        case PS_BLK:   return "BLOCKED";
+        case PS_SRDY:  return "SUSP_READY";
+        case PS_SBLK:  return "SUSP_BLOCKED";
+        case PS_DEAD:  return "DEAD";
+        default:       return "UNKNOWN";
+    }
+}
+
 
 // Initialise the OS
 void scissos_initialise(void)
@@ -326,4 +345,85 @@ double timeval_to_seconds(struct timeval t)
 void print_time(struct timeval t)
 {
     fprintf(stdout, "%ld seconds and %ld microseconds\n", t.tv_sec, t.tv_usec);
+}
+
+/* Place this in os.c (or times.c) and compile with the rest of the project. */
+#include <stdio.h>
+
+/* small helper: true if timeval is non-zero */
+static inline int timeval_is_set(struct timeval t)
+{
+    return (t.tv_sec != 0 || t.tv_usec != 0);
+}
+
+/* helper to convert timeval to milliseconds */
+double tv_to_ms(struct timeval t)
+{
+    return timeval_to_seconds(t) * 1000.0;
+};
+
+/* Print timing statistics (uses process_times[], difference_times(), timeval_to_seconds()) */
+void scissos_print_timings(void)
+{
+    int i;
+    struct timeval response_tv, turnaround_tv;
+
+    printf("\n========================================\n");
+    printf("   PROCESS TIMING STATISTICS\n");
+    printf("========================================\n");
+    printf("%-5s %-15s %-15s %-15s %-15s\n",
+           "PID", "Response(ms)", "Turnaround(ms)", "Wait(ms)", "Status");
+    printf("------------------------------------------------------------------------\n");
+
+    for (i = 0; i < MAXPROC; i++)
+    {
+        if (_proctable[i] != NULL)
+        {
+            /* Defensive: make sure index i maps to process_times[] correctly.
+               In your code process_times is indexed by pid-1 in many places,
+               but earlier prints used table index i; to remain consistent with
+               your provided snippet we use index i here. If your pid is stored
+               as 1..N and you want to index by pid-1, change process_times[i]
+               to process_times[_proctable[i]->pid - 1]. */
+            Time t = process_times[i];
+
+            /* Response time = first_scheduled_time - create_time (if scheduled) */
+            if (t.response_flag && (t.first_scheduled_time.tv_sec || t.first_scheduled_time.tv_usec))
+            {
+                response_tv = difference_times(t.create_time, t.first_scheduled_time);
+            }
+            else
+            {
+                response_tv.tv_sec = 0;
+                response_tv.tv_usec = 0;
+            }
+
+            /* Turnaround = terminate_time - create_time (only if terminated) */
+            if (_proctable[i]->ps_state == PS_DEAD &&
+                (t.terminate_time.tv_sec || t.terminate_time.tv_usec))
+            {
+                turnaround_tv = difference_times(t.create_time, t.terminate_time);
+
+                printf("P%-4d %-15.2f %-15.2f %-15.2f COMPLETED\n",
+                       i,
+                       tv_to_ms(response_tv),
+                       tv_to_ms(turnaround_tv),
+                       tv_to_ms(t.wait_time));
+            }
+            else
+            {
+                printf("P%-4d %-15.2f %-15s %-15.2f %s\n",
+                       i,
+                       tv_to_ms(response_tv),
+                       "N/A",
+                       tv_to_ms(t.wait_time),
+                       get_state_name(_proctable[i]->ps_state));
+            }
+        }
+    }
+
+    printf("========================================\n");
+    printf("Total Instructions Executed: %d\n", _total_instructions);
+    printf("Total Page Faults: %d\n", page_faults);
+    printf("========================================\n\n");
 }
