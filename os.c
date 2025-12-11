@@ -26,6 +26,13 @@ void scissos_initialise(void)
 
     fprintf(stdout, "Process table initialised\n");
     fprintf(stdout, "Ready and Block Queues initialised\n");
+
+    // Initialize memory manager if enabled
+    if (_memory_manager_enabled)
+    {
+        memory_manager_init(NUMFRAMES);
+    }
+
     fprintf(stdout, "=== ScisSOS Initialised ===\n\n");
 }
 
@@ -176,14 +183,6 @@ void scissos_call_scheduler(char *scheduler)
         fprintf(stdout, "=== SCHEDULER TERMINATED ===\n");
         return;
     }
-
-    // // if no ready processes --> terminate
-    // if (ready_count == 0)
-    // {
-    //     fprintf(stdout, "No ready processes --- Scheduler terminating\n");
-    //     fprintf(stdout, "=== SCHEDULER TERMINATED ===\n");
-    //     return;
-    // }
 
     // Change current running process to READY (if exists)
     if (_currentPID != EMPTY && _currentPID > 0 && _currentPID <= MAXPROC)

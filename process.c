@@ -1,5 +1,5 @@
 #include "ScisSos.h"
-#include "ScisosMem.h" 
+#include "ScisosMem.h" /* Include ONLY here as per assignment instructions */
 
 static int pid_counter = 1;
 
@@ -67,7 +67,7 @@ ScisSosInst **scissos_generate_code(int size, int p_type)
         }
 
         /* Memory address will be set from the generated sequence */
-        code[i]->_addref = 0; /* Will be updated from address_sequence */
+        code[i]->_addref = 0;
     }
 
     return code;
@@ -99,14 +99,19 @@ void scissos_create_pcb(ScisSosProcess *process, int pid, int uid, int size,
     process->_pcb->address_sequence = NULL;
 
     /* Calculate number of pages needed */
-    /* Assuming each instruction represents one memory reference */
-    process->_pcb->num_pages = (size * PAGESIZE + PAGESIZE - 1) / PAGESIZE;
+    process->_pcb->num_pages = (size + PAGESIZE - 1) / PAGESIZE;
     if (process->_pcb->num_pages > MAXPGES)
     {
         process->_pcb->num_pages = MAXPGES;
     }
 
-    /* Generate memory address reference sequence using ScisSosMem library */
+    /* CRITICAL: Initialize GRANULE before calling memory_gen_addrefstrings */
+    extern int GRANULE;
+    GRANULE = size / 8; /* Heuristic: size divided by 8 */
+    if (GRANULE < 1)
+        GRANULE = 1;
+
+    /* Generate memory address reference sequence */
     process->_pcb->address_sequence = memory_gen_addrefstrings(size, m_type);
 
     if (process->_pcb->address_sequence == NULL)
@@ -136,22 +141,20 @@ void scissos_create_pcb(ScisSosProcess *process, int pid, int uid, int size,
     /* Page table initialization */
     for (int i = 0; i < MAXPGES; i++)
     {
-        process->_pcb->pg_table[i][0] = i;     /* Page number */
-        process->_pcb->pg_table[i][1] = EMPTY; /* Frame number (initially not loaded) */
+        process->_pcb->pg_table[i][0] = i;
+        process->_pcb->pg_table[i][1] = EMPTY;
     }
 }
 
 /* Create a new process */
 ScisSosProcess *scissos_proc_create(char *process_name, int size, int priority, int p_type)
 {
-    // Check size validity
     if (size <= 0)
     {
         fprintf(stderr, "Error: Invalid size %d. Must be positive.\n", size);
         return NULL;
     }
 
-    // Check if we have space in process table
     if (pid_counter > MAXPROC)
     {
         fprintf(stderr, "Error: Process table full. Cannot create more processes.\n");
@@ -160,11 +163,9 @@ ScisSosProcess *scissos_proc_create(char *process_name, int size, int priority, 
 
     int pid = pid_counter++;
     int uid = rand() % MAXUSRS + 1;
+    int m_type = MT_GOOD; /* Default memory type */
 
-    /* Default memory type - will be set by caller if needed */
-    int m_type = MT_GOOD;
-
-    // Generate code for process
+    /* Generate code for process */
     ScisSosInst **code = scissos_generate_code(size, p_type);
     if (!code)
     {
@@ -172,12 +173,11 @@ ScisSosProcess *scissos_proc_create(char *process_name, int size, int priority, 
         return NULL;
     }
 
-    // Memory allocation for process structure
+    /* Allocate process structure */
     ScisSosProcess *new_process = (ScisSosProcess *)malloc(sizeof(ScisSosProcess));
     if (!new_process)
     {
         fprintf(stderr, "Error: Memory allocation failed for process structure.\n");
-        // Free the code
         for (int i = 0; i < size; i++)
         {
             free(code[i]);
@@ -211,7 +211,6 @@ ScisSosProcess *scissos_proc_create(char *process_name, int size, int priority, 
 /* Print PCB information */
 void scissos_print_pcb(ScisSosProcess *process, FILE *pcb_info)
 {
-    // Error handling
     if (process == NULL || pcb_info == NULL || process->_pcb == NULL)
     {
         fprintf(stderr, "Error: Invalid process or pcb_info.\n");
@@ -287,14 +286,12 @@ int scissos_proc_save(ScisSosProcess *process, FILE *process_info)
 /* Run process with given PID */
 int scissos_proc_run(int pid, char *scheduler)
 {
-    // Validate PID
     if (pid < 1 || pid > MAXPROC)
     {
         fprintf(stderr, "Error: Invalid PID %d.\n", pid);
         return -1;
     }
 
-    // get pcb from process table
     ScisSosPCB *pcb = _proctable[pid - 1];
 
     if (pcb == NULL)
@@ -330,8 +327,6 @@ int scissos_proc_run(int pid, char *scheduler)
         if (_memory_manager_enabled)
         {
             int logical_addr = instr->_addref;
-
-            /* Get frame (will handle page fault if needed) */
             int frame = memory_get_frame(pid, logical_addr);
             if (frame < 0)
             {
@@ -396,7 +391,6 @@ int scissos_proc_run(int pid, char *scheduler)
 /* Delete process */
 void scissos_proc_delete(int pid)
 {
-    // Error handling
     if (pid < 1 || pid > MAXPROC)
     {
         fprintf(stderr, "Error: Invalid PID %d.\n", pid);
@@ -407,7 +401,6 @@ void scissos_proc_delete(int pid)
 
     if (pcb == NULL)
     {
-        // Process already deleted or doesn't exist
         return;
     }
 

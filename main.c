@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    // Step 1: Initialize OS
+    // Step 1: Initialize OS (this now also initializes memory manager)
     scissos_initialise();
 
     // Step 2: Create processes
@@ -76,7 +76,7 @@ int main(int argc, char *argv[])
 
         scissos_call_scheduler(argv[1]);
 
-        // Safety check to prevent infinite loops during development
+        // Safety check to prevent infinite loops
         if (iteration > 10000)
         {
             fprintf(stderr, "\n[ERROR] Maximum iterations exceeded!\n");
@@ -113,6 +113,22 @@ int main(int argc, char *argv[])
     fprintf(stdout, "\nCompleted Processes: %d\n", dead_count);
     fprintf(stdout, "Active Processes: %d\n", active_count);
 
+    // Print memory statistics if memory manager is enabled
+    if (_memory_manager_enabled)
+    {
+        memory_print_stats(stdout);
+
+        // Print timing info for all processes
+        fprintf(stdout, "\n=== Process Timing Information ===\n");
+        for (int i = 0; i < MAXPROC; i++)
+        {
+            if (_proctable[i] != NULL && _proctable[i]->ps_state == PS_DEAD)
+            {
+                scissos_print_timing_info(_proctable[i], stdout);
+            }
+        }
+    }
+
     // Step 6: Cleanup
     fprintf(stdout, "\n=== Cleaning up resources ===\n");
 
@@ -124,6 +140,12 @@ int main(int argc, char *argv[])
             int pid = _proctable[i]->pid;
             scissos_proc_delete(pid);
         }
+    }
+
+    // Cleanup memory manager
+    if (_memory_manager_enabled)
+    {
+        memory_manager_cleanup();
     }
 
     fprintf(stdout, "\nSimulation terminated successfully.\n\n");

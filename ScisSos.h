@@ -13,14 +13,14 @@
 #define MAXUSRS 10    /* Max number of users */
 #define DEFPRIO 20    /* Default priority for process */
 #define EMPTY -100    /* Unfilled entries */
-#define MAXPGES 100   /* Max number of pages/process (increased for larger processes) */
+#define MAXPGES 100   /* Max number of pages/process */
 #define DEFTS 6239    /* Default time slice */
 #define REG_THR 0.02  /* Normal process: 2% long calls */
 #define CMP_THR 0.001 /* Compute Intensive: 0.1% */
 #define IOE_THR 0.2   /* IO Intensive: 20% long calls */
 
 /**** Memory Management Constants ************************************/
-#define PAGESIZE 4096         /* Size of each page in bytes (from ScisSosMem.h) */
+#define PAGESIZE 4096         /* Size of each page in bytes */
 #define NUMFRAMES 64          /* Default number of frames in physical memory */
 #define REFERENCE_WINDOW 1024 /* Reference window for page replacement */
 
@@ -161,5 +161,8 @@ int page_replace_clock(int pid, int page_number);
 
 /** Utility functions **/
 long get_time_diff_us(struct timeval start, struct timeval end);
+
+/** Memory address generator function from library **/
+int *memory_gen_addrefstrings(int size, int mtype);
 
 #endif
