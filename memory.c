@@ -79,6 +79,9 @@ int is_page_loaded(int pid, int page_number)
 /* FIFO Page Replacement Algorithm */
 int page_replace_fifo(int pid, int page_number)
 {
+    (void)pid;
+    (void)page_number;
+
     int oldest_frame = 0;
     int oldest_time = _physical_memory[0].load_time;
 
@@ -117,6 +120,9 @@ int page_replace_fifo(int pid, int page_number)
 /* LRU Page Replacement Algorithm */
 int page_replace_lru(int pid, int page_number)
 {
+    (void)pid;
+    (void)page_number;
+
     int lru_frame = 0;
     long lru_time = _physical_memory[0].last_reference;
 
@@ -156,6 +162,9 @@ int page_replace_lru(int pid, int page_number)
 /* Clock (Second Chance) Page Replacement Algorithm */
 int page_replace_clock(int pid, int page_number)
 {
+    (void)pid;
+    (void)page_number;
+
     int victim_frame = EMPTY;
     int iterations = 0;
     int max_iterations = _num_frames * 2; /* Prevent infinite loop */
@@ -282,7 +291,7 @@ int memory_get_frame(int pid, int logical_address)
 {
     if (!_memory_manager_enabled)
     {
-        return 0; /* Memory manager disabled */
+        return EMPTY; /* Memory manager disabled */
     }
 
     if (pid < 1 || pid > MAXPROC || _proctable[pid - 1] == NULL)
@@ -294,7 +303,7 @@ int memory_get_frame(int pid, int logical_address)
 
     /* Calculate page number from logical address */
     int page_number = logical_address / PAGESIZE;
-    int offset = logical_address % PAGESIZE;
+    (void)(logical_address % PAGESIZE); /* offset is intentionally unused */
 
     /* Validate page number */
     if (page_number < 0 || page_number >= pcb->num_pages)

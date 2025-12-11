@@ -1,114 +1,151 @@
-# Makefile for ScisSOS
+# Makefile for ScisSOS (objects go to obj/)
 
 # Compiler and flags
-CC = gcc
-CFLAGS = -Wall -Wextra -g -O2
-LDFLAGS = -L. -lscismem -lm
+CC      := gcc
+CFLAGS  := -Wall -Wextra -g -O2
+LDFLAGS := -L. -lscismem -lm
 
 # Object directory
-OBJ = obj
+OBJ := obj
 
-# Source files
-SOURCES = main.c os.c process.c scheduling_algo.c memory.c
-OBJECTS = $(addprefix $(OBJ)/, $(SOURCES:.c=.o))
-HEADERS = ScisSos.h scheduling_algo.h
+# Sources and objects
+SOURCES := main.c os.c process.c scheduling_algo.c memory.c
+OBJECTS := $(addprefix $(OBJ)/, $(SOURCES:.c=.o))
+HEADERS := ScisSos.h scheduling_algo.h
 
 # Executables
-TARGET = run_os
-TEST_TARGET = test_perf
-MEM_TEST = test_memory_gen
+TARGET      := run_os
+TEST_TARGET := test_perf
+MEM_TEST    := test_memory_gen
 
 # Default target
+.PHONY: all
 all: $(TARGET)
 
-# Ensure object directory exists
+# Create object dir if missing
 $(OBJ):
-	mkdir -p $(OBJ)
+	@mkdir -p $(OBJ)
 
-# Build main executable
+# Link main executable
 $(TARGET): $(OBJECTS)
 	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
 	@echo "Build complete: $(TARGET)"
 
-# Build test executable
+# Link test executable (performance)
 $(TEST_TARGET): $(OBJ)/test_perf.o $(OBJ)/os.o $(OBJ)/process.o $(OBJ)/scheduling_algo.o $(OBJ)/memory.o
 	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
 	@echo "Build complete: $(TEST_TARGET)"
 
-# Build memory test
+# Link memory test
 $(MEM_TEST): $(OBJ)/test_memory_gen.o
 	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
 	@echo "Build complete: $(MEM_TEST)"
 
-# Compile source files → OBJ directory
+# Compile .c -> obj/.o (depends on headers)
 $(OBJ)/%.o: %.c $(HEADERS) | $(OBJ)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-# Clean build artifacts
+# Clean
+.PHONY: clean
 clean:
 	rm -rf $(OBJ) $(TARGET) $(TEST_TARGET) $(MEM_TEST)
 	@echo "Clean complete"
 
-# Run targets with different schedulers
+# ---------------------------
+# Convenience run targets
+# ---------------------------
+
+# Default scheduler/run variables for the flexible 'run' target
+SCHED ?= rr
+EXP   ?=
+FRAMES ?= 64
+
+# Generic run target:
+# - If EXP is empty, only SCHED is passed.
+# - If EXP is set, pass SCHED EXP FRAMES.
+.PHONY: run
+run: $(TARGET)
+	./$(TARGET) $(SCHED) $(if $(EXP),$(EXP) $(FRAMES))
+
+# Common one-liner scheduler helpers (single-arg calls)
+.PHONY: run_fcfs run_sjf run_priority run_rr
 run_fcfs: $(TARGET)
-	./$(TARGET) fcfs 1 64
+	./$(TARGET) fcfs
 
 run_sjf: $(TARGET)
-	./$(TARGET) sjf 1 64
+	./$(TARGET) sjf
 
 run_priority: $(TARGET)
-	./$(TARGET) priority 1 64
+	./$(TARGET) priority
 
 run_rr: $(TARGET)
-	./$(TARGET) rr 1 64
+	./$(TARGET) rr
+
+# ---------------------------
+# Experiment targets
+# ---------------------------
 
 # Experiment 1: Compare with/without memory manager
+.PHONY: experiment1_nomem experiment1_mem
 experiment1_nomem: $(TARGET)
 	@echo "=== Experiment 1a: Without Memory Manager ==="
-	./$(TARGET) rr 1 64 > results_exp1_nomem.txt
+	./$(TARGET) rr > results_exp1_nomem.txt
 
 experiment1_mem: $(TARGET)
 	@echo "=== Experiment 1b: With Memory Manager ==="
-	./$(TARGET) rr 1 64 > results_exp1_mem.txt
+	./$(TARGET) rr > results_exp1_mem.txt
 
-# Experiment 2: Vary frame count
+# Experiment 2: Vary frame count (single-run fallback)
+.PHONY: experiment2
 experiment2: $(TARGET)
 	@echo "=== Experiment 2: Varying Frame Count ==="
-	./$(TARGET) rr 2 32 > results_exp2_f32.txt
-	./$(TARGET) rr 2 48 > results_exp2_f48.txt
-	./$(TARGET) rr 2 64 > results_exp2_f64.txt
-	./$(TARGET) rr 2 80 > results_exp2_f80.txt
-	./$(TARGET) rr 2 96 > results_exp2_f96.txt
-	./$(TARGET) rr 2 112 > results_exp2_f112.txt
-	./$(TARGET) rr 2 128 > results_exp2_f128.txt
-	@echo "Results saved to results_exp2_*.txt"
+	./$(TARGET) rr > results_exp2_f_all.txt
+	@echo "Results saved to results_exp2_f_all.txt"
 
-# Run performance tests
+# Flexible experiment run using variables:
+# Example usage:
+#   make run SCHED=rr EXP=2 FRAMES=64
+# This will call: ./run_os rr 2 64
+.PHONY: run_with_params
+run_with_params: $(TARGET)
+	@if [ -z "$(EXP)" ]; then \
+	  echo "EXP not set; use 'make run SCHED=rr EXP=1 FRAMES=64' to pass experiment/frame args"; \
+	else \
+	  ./$(TARGET) $(SCHED) $(EXP) $(FRAMES); \
+	fi
+
+# ---------------------------
+# Tests & utilities
+# ---------------------------
+
+.PHONY: run_test_perf test_memgen
 run_test_perf: $(TEST_TARGET)
 	./$(TEST_TARGET)
 
-# Test memory generator library
 test_memgen: $(MEM_TEST)
 	./$(MEM_TEST)
 
-# Help target
+# Help
+.PHONY: help
 help:
 	@echo "Available targets:"
 	@echo "  all              - Build main executable (default)"
 	@echo "  clean            - Remove build artifacts"
 	@echo "  test_memgen      - Test ScisSosMem library integration"
-	@echo "  run_fcfs         - Run with FCFS scheduler"
-	@echo "  run_sjf          - Run with SJF scheduler"
-	@echo "  run_priority     - Run with Priority scheduler"
-	@echo "  run_rr           - Run with Round Robin scheduler"
-	@echo "  experiment1_mem  - Run Experiment 1 with memory manager"
-	@echo "  experiment2      - Run Experiment 2 (varying frames)"
-	@echo "  run_test_perf    - Run performance tests"
+	@echo "  run_fcfs         - Run with FCFS scheduler (single-arg)"
+	@echo "  run_sjf          - Run with SJF scheduler (single-arg)"
+	@echo "  run_priority     - Run with Priority scheduler (single-arg)"
+	@echo "  run_rr           - Run with Round Robin scheduler (single-arg)"
+	@echo "  run              - Flexible run target: ./run_os SCHED [EXP FRAMES]"
+	@echo "                     Example: make run SCHED=rr"
+	@echo "                     Example: make run SCHED=rr EXP=1 FRAMES=64"
+	@echo "  run_with_params  - Alternative: checks EXP and runs with params"
+	@echo "  experiment1_mem  - Run experiment 1 (memory manager ON)"
+	@echo "  experiment2      - Run experiment 2 (varying frames) - simplified"
 	@echo ""
-	@echo "Manual usage:"
-	@echo "  ./run_os <scheduler> [experiment] [num_frames]"
-	@echo "    scheduler:  fcfs, sjf, priority, rr"
-	@echo "    experiment: 1 (default), 2"
-	@echo "    num_frames: 32-128 (default: 64)"
+	@echo "Manual usage examples:"
+	@echo "  make run SCHED=rr"
+	@echo "  make run SCHED=rr EXP=1 FRAMES=64"
+	@echo "  make test_memgen"
 
-.PHONY: all clean run_fcfs run_sjf run_priority run_rr experiment1_nomem experiment1_mem experiment2 run_test_perf test_memgen help
+.PHONY: all clean run run_fcfs run_sjf run_priority run_rr experiment1_nomem experiment1_mem experiment2 run_test_perf test_memgen help
