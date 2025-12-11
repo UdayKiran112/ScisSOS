@@ -116,6 +116,7 @@ ScisSosProcess *scissos_proc_create(char *process_name, int size, int priority, 
         return NULL;
     }
 
+
     int pid = pid_counter++;
     int uid = rand() % MAXUSRS + 1; // Random UID between 1 and MAXUSRS
 
@@ -131,17 +132,17 @@ ScisSosProcess *scissos_proc_create(char *process_name, int size, int priority, 
     new_process->_PID = pid;
     new_process->_psize = size;
 
-    // PCB creation and initialisation
-    scissos_create_pcb(new_process, pid, uid, size, priority, p_type, m_type, new_process->_CODE);
-
-    // Generate memory address references
+    // Generate memory address references FIRST
     int *reference_addr = memory_gen_addrefstrings(size, m_type);
 
-    if (reference_addr == 0)
+    fprintf(stdout, "=== Creating Process: %s ===\n", process_name);
+
+
+    if (reference_addr == NULL) // FIX: Check for NULL, not 0
     {
-        fprintf(stdout, "Error: Memory allocation failed for memory address references.\n");
-        free(new_process->_pcb);
-        return NULL;
+        fprintf(stderr, "Error: Memory allocation failed for memory address references.\n");
+        free(new_process);
+        return NULL; // FIX: Return NULL instead of just returning
     }
 
     // Generate code for process
@@ -149,11 +150,18 @@ ScisSosProcess *scissos_proc_create(char *process_name, int size, int priority, 
     if (!code)
     {
         fprintf(stderr, "Error: Failed to generate code for process.\n");
+        free(reference_addr);
+        free(new_process);
         return NULL;
     }
 
+    // Now set the CODE pointer
     new_process->_CODE = code;
 
+    // PCB creation and initialisation - pass the actual code now
+    scissos_create_pcb(new_process, pid, uid, size, priority, p_type, m_type, code);
+
+    // Free the reference addresses - no longer needed
     free(reference_addr);
 
     // Add process to process table
@@ -181,7 +189,7 @@ ScisSosProcess *scissos_proc_create(char *process_name, int size, int priority, 
             new_process->_pcb->pg_table[first][1] = frame;
             new_process->_pcb->page_loaded[first] = 1;
             new_process->_pcb->num_mem_pages++;
-            fprintf(stdout, "First page :-> frame %d\n", frame);
+            fprintf(stdout, "First page loaded into frame %d\n", frame);
         }
     }
 
@@ -189,7 +197,7 @@ ScisSosProcess *scissos_proc_create(char *process_name, int size, int priority, 
     new_process->_pcb->ps_state = PS_RDY;
     gettimeofday(&process_times[pid - 1].last_ready_time, NULL);
 
-    fprintf(stdout, "Process %d moved from NEW to READY state\n", pid - 1);
+    fprintf(stdout, "Process PID %d moved from NEW to READY state\n", pid);
 
     return new_process;
 }

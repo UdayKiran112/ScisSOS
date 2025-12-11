@@ -10,6 +10,10 @@ struct timeval base_time;
 Time process_times[MAXPROC];
 Frame frame_table[NUMFRAMES];
 
+// Memory management global variables
+int _memory_enabled = 0; // Initialize here
+int page_faults = 0;     // Initialize here
+
 // Initialise the OS
 void scissos_initialise(void)
 {

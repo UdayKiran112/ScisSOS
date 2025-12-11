@@ -8,7 +8,7 @@ LDFLAGS = libscismem.a -lm
 OBJ_DIR = obj
 
 # Source files
-SOURCES = main.c os.c process.c scheduling_algo.c memory.c
+SOURCES = main.c os.c process.c scheduling_algo.c memory.c memory_override.c
 TEST_SRC = test_perf.c
 OBJECTS = $(addprefix $(OBJ_DIR)/, $(SOURCES:.c=.o))
 EXECUTABLE = run_os

@@ -3,9 +3,6 @@
 
 #define NUM_PROCESSES 10
 
-int _memory_enabled = 0;
-int page_faults = 0;
-
 // Function to create processes with different characteristics
 void create_processes(ScisSosProcess *processes[])
 {

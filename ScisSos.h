@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/time.h>
+#include "ScisosMem.h"
 
 /****
  *  Constants defining OS parameters
@@ -39,7 +40,7 @@
 #define INS_SHR 20 /* Short instruction */
 
 /**** Constants for Memory Management *********************************/
-#define PAGESIZE 1024  /* Size of a Page of memory */
+#define PAGESIZE 4096  /* Size of a Page of memory */
 #define NUMFRAMES 64   /* No of Frames in Physical Memory */
 #define REFWINDOW 1024 /* Reference window */
 
@@ -135,7 +136,7 @@ int memory_get_page(int pid, int address);           /* Get page number for addr
 int memory_fifo(void);                               /* FIFO page replacement */
 int memory_lru(void);                                /* LRU page replacement */
 void print_memory_stats(void);                       /* Print memory stats */
-int *memory_gen_addrefstrings(int size, int m_type); /* Generate address reference strings */
+//int *memory_gen_addrefstrings(int size, int m_type); /* Generate address reference strings */
 
 /* Time calculation functions*/
 struct timeval difference_times(struct timeval start, struct timeval end); /* Calculate difference between two timeval structs*/
