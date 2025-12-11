@@ -110,9 +110,11 @@ extern int _currentPID;                 /* Current running process PID */
 extern struct timeval base_time;        /* Base time for scheduling */
 extern Time process_times[MAXPROC];     /* Time tracking for processes */
 extern Frame frame_table[NUMFRAMES];    /* Frame Table --> Physical Memory */
+extern int _memory_enabled;
+extern int page_faults;
 
 /** Process-related functions found in process.c file **/
-ScisSosProcess *scissos_proc_create(char *process_name, int size, int priority, int p_type); /* Create a new process */
+ScisSosProcess *scissos_proc_create(char *process_name, int size, int priority, int p_type, int m_type); /* Create a new process */
 int scissos_proc_save(ScisSosProcess *process, FILE *process_info);                          /* Save process info to file */
 void scissos_print_pcb(ScisSosProcess *process, FILE *pcb_info);                             /* Print PCB info */
 int scissos_proc_run(int pid, char *scheduler);                                              /* Run the process with given PID */

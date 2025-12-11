@@ -3,7 +3,7 @@
 static int pid_counter = 1; // Global PID counter
 
 // Generate code for a process based on its type
-ScisSosInst **scissos_generate_code(int size, int p_type)
+ScisSosInst **scissos_generate_code(int size, int p_type, int *reference_addrs)
 {
     if (size <= 0)
     {
@@ -60,8 +60,8 @@ ScisSosInst **scissos_generate_code(int size, int p_type)
             code[i]->_syscall = INS_SHR;
         }
 
-        // Generate random memory address reference
-        code[i]->_addref = rand() % 1000;
+        // Set address references for this instruction
+        code[i]->_addref = reference_addrs[i];
     }
 
     return code;
@@ -69,7 +69,7 @@ ScisSosInst **scissos_generate_code(int size, int p_type)
 
 // Create and initialise a PCB
 void scissos_create_pcb(ScisSosProcess *process, int pid, int uid, int size,
-                        int priority, int p_type, ScisSosInst **code)
+                        int priority, int p_type, int m_type, ScisSosInst **code)
 {
     process->_pcb = (ScisSosPCB *)malloc(sizeof(ScisSosPCB));
     if (!process->_pcb)
@@ -84,21 +84,23 @@ void scissos_create_pcb(ScisSosProcess *process, int pid, int uid, int size,
     process->_pcb->priority_value = priority;
     process->_pcb->ps_state = PS_NEW; // Initial state is New
     process->_pcb->p_type = p_type;
-    process->_pcb->m_type = MT_GOOD;
+    process->_pcb->m_type = m_type;
     process->_pcb->pc = 0; // Program counter starts at 0
     process->_pcb->p_code = code;
     process->_pcb->p_timeslice = DEFTS; // Initial time slice
+    process->_pcb->num_mem_pages = 0;
 
     // Page table initialisation
     for (int i = 0; i < MAXPGES; i++)
     {
         process->_pcb->pg_table[i][0] = i;
         process->_pcb->pg_table[i][1] = EMPTY;
+        process->_pcb->page_loaded[i] = 0;
     }
 }
 
 // Create a new process and return its pointer
-ScisSosProcess *scissos_proc_create(char *process_name, int size, int priority, int p_type)
+ScisSosProcess *scissos_proc_create(char *process_name, int size, int priority, int p_type, int m_type)
 {
     // Check size validity
     if (size <= 0)
@@ -117,44 +119,77 @@ ScisSosProcess *scissos_proc_create(char *process_name, int size, int priority, 
     int pid = pid_counter++;
     int uid = rand() % MAXUSRS + 1; // Random UID between 1 and MAXUSRS
 
-    // Generate code for process
-    ScisSosInst **code = scissos_generate_code(size, p_type);
-    if (!code)
-    {
-        fprintf(stderr, "Error: Failed to generate code for process.\n");
-        return NULL;
-    }
-
     // Memory allocation for process structure
     ScisSosProcess *new_process = (ScisSosProcess *)malloc(sizeof(ScisSosProcess));
     if (!new_process)
     {
         fprintf(stderr, "Error: Memory allocation failed for process structure.\n");
-        // Free the code
-        for (int i = 0; i < size; i++)
-        {
-            free(code[i]);
-        }
-        free(code);
         return NULL;
     }
 
     snprintf(new_process->_pname, sizeof(new_process->_pname), "%s", process_name);
     new_process->_PID = pid;
     new_process->_psize = size;
-    new_process->_CODE = code;
 
     // PCB creation and initialisation
-    scissos_create_pcb(new_process, pid, uid, size, priority, p_type, new_process->_CODE);
+    scissos_create_pcb(new_process, pid, uid, size, priority, p_type, m_type, new_process->_CODE);
+
+    // Generate memory address references
+    int *reference_addr = memory_gen_addrefstrings(size, m_type);
+
+    if (reference_addr == 0)
+    {
+        fprintf(stdout, "Error: Memory allocation failed for memory address references.\n");
+        free(new_process->_pcb);
+        return NULL;
+    }
+
+    // Generate code for process
+    ScisSosInst **code = scissos_generate_code(size, p_type, reference_addr);
+    if (!code)
+    {
+        fprintf(stderr, "Error: Failed to generate code for process.\n");
+        return NULL;
+    }
+
+    new_process->_CODE = code;
+
+    free(reference_addr);
 
     // Add process to process table
     _proctable[pid - 1] = new_process->_pcb;
 
+    // timings initialisation
+    gettimeofday(&process_times[pid - 1].create_time, NULL);
+    process_times[pid - 1].response_flag = 0;
+    process_times[pid - 1].wait_time.tv_sec = 0;
+    process_times[pid - 1].wait_time.tv_usec = 0;
+    process_times[pid - 1].last_ready_time.tv_sec = 0;
+    process_times[pid - 1].last_ready_time.tv_usec = 0;
+
+    fprintf(stdout, "Process created: %s, PID: %d, UID: %d, Priority: %d, Type: %d, Memory Type: %d\n",
+            process_name, pid, uid, priority, p_type, m_type);
+    fprintf(stdout, "Timeslice: %d\n", new_process->_pcb->p_timeslice);
+
+    // if memory is enabled, load the first page
+    if (_memory_enabled)
+    {
+        int first = 0;
+        int frame = memory_get_page(pid - 1, first);
+        if (frame != -1)
+        {
+            new_process->_pcb->pg_table[first][1] = frame;
+            new_process->_pcb->page_loaded[first] = 1;
+            new_process->_pcb->num_mem_pages++;
+            fprintf(stdout, "First page :-> frame %d\n", frame);
+        }
+    }
+
     // set process state to ready
     new_process->_pcb->ps_state = PS_RDY;
+    gettimeofday(&process_times[pid - 1].last_ready_time, NULL);
 
-    fprintf(stdout, "Process created: %s, PID: %d, UID: %d, Priority: %d, Type: %d\n",
-            process_name, pid, uid, priority, p_type);
+    fprintf(stdout, "Process %d moved from NEW to READY state\n", pid - 1);
 
     return new_process;
 }
@@ -184,6 +219,20 @@ void scissos_print_pcb(ScisSosProcess *process, FILE *pcb_info)
     fprintf(pcb_info, "Memory Type: %d\n", process->_pcb->m_type);
     fprintf(pcb_info, "Program Counter: %d\n", process->_pcb->pc);
     fprintf(pcb_info, "Time Slice: %d\n", process->_pcb->p_timeslice);
+    fprintf(pcb_info, "No. of loaded pages: %d\n", process->_pcb->num_mem_pages);
+
+    // page table printing -> print only few pages(5)
+    fprintf(pcb_info, "\nPage Table:\n");
+    fprintf(pcb_info, "Page | Frame | Loaded\n");
+    fprintf(pcb_info, "-----+-------+-------\n");
+    for (int i = 0; i < 5; i++)
+    {
+        fprintf(pcb_info, " %2d  |  %3d  |   %s\n",
+                process->_pcb->pg_table[i][0],
+                process->_pcb->pg_table[i][1],
+                process->_pcb->page_loaded[i] ? "YES" : "NO");
+    }
+
     fprintf(pcb_info, "----------------------------------------\n");
 }
 
@@ -227,13 +276,37 @@ int scissos_proc_run(int pid, char *scheduler)
 
     fprintf(stdout, "\n[RUNNING] Process PID %d starting from PC = %d\n", pid, pcb->pc);
 
+    struct timeval start_time, end_time;
+
     int exec_instr = 0; /* Number of instructions executed */
+    gettimeofday(&start_time, NULL);
     int start_pc = pcb->pc;
 
     // Execute instructions
     while (pcb->pc < pcb->size)
     {
         ScisSosInst *instr = pcb->p_code[pcb->pc];
+        int adrs = instr->_addref;
+        int page_number = adrs / PAGESIZE;
+
+        if (_memory_enabled)
+        {
+            if (!pcb->page_loaded[page_number])
+            {
+                fprintf(stdout, "[PC = %d] PAGE FAULT OCCURED\n", pcb->pc);
+                page_faults++;
+
+                int frame = memory_page_fault_handler(pid, page_number);
+
+                if (frame != -1)
+                {
+                    pcb->pg_table[page_number][1] = frame;
+                    pcb->page_loaded[page_number] = 1;
+                    pcb->num_mem_pages++;
+                    fprintf(stdout, "[PC = %d] PAGE FAULT HANDLED, FRAME = %d\n", pcb->pc, frame);
+                }
+            }
+        }
 
         // long system call -> block the process
         if (instr->_syscall == INS_LNG)
@@ -246,11 +319,13 @@ int scissos_proc_run(int pid, char *scheduler)
             break;
         }
 
-        // short system call -> continue execution
+        // continue execution
         // fprintf(stdout, "[EXECUTING] Process PID %d executing instruction %d (Short Syscall)\n",
         //         pid, instr->_inum);
         pcb->pc++; // Move to next instruction
         exec_instr++;
+
+        gettimeofday(&end_time, NULL);
 
         // time quantum exhaustion case
         if (exec_instr >= pcb->p_timeslice)
@@ -271,6 +346,17 @@ int scissos_proc_run(int pid, char *scheduler)
 
     fprintf(stdout, "[STATUS] Process PID %d moved from PC = %d to PC = %d, State = %d\n",
             pid, start_pc, pcb->pc, pcb->ps_state);
+
+    struct timeval time_taken = difference_times(end_time, start_time);
+
+    fprintf(stdout, "[TIME TAKEN] Process PID %d took %lf seconds to execute %d instructions\n",
+            pid, timeval_to_seconds(time_taken), exec_instr);
+
+    if (pcb->ps_state == PS_BLK)
+    {
+        gettimeofday(&process_times[pid - 1].last_ready_time, NULL);
+        fprintf(stdout, "[BLOCKED] Process PID %d moved to READY state\n", pid);
+    }
 
     // call scheduler recursively
     scissos_call_scheduler(scheduler);

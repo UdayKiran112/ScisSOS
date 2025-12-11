@@ -6,9 +6,9 @@ int _currentPID = EMPTY;
 ScisSosPCB *_proctable[MAXPROC] = {NULL};
 int _readyQ[MAXPROC] = {EMPTY};
 int _blockQ[MAXPROC] = {EMPTY};
-struct timeval base_time;        
-Time process_times[MAXPROC];     
-Frame frame_table[NUMFRAMES];    
+struct timeval base_time;
+Time process_times[MAXPROC];
+Frame frame_table[NUMFRAMES];
 
 // Initialise the OS
 void scissos_initialise(void)
@@ -29,8 +29,8 @@ void scissos_initialise(void)
     srand((unsigned int)time(NULL));
 
     gettimeofday(&base_time, NULL);
-    fprintf(stdout, "Base time set is : %ld seconds and %ld microseconds\n",
-            base_time.tv_sec, base_time.tv_usec);
+
+    fprintf(stdout, "Base time set is : %ld seconds and %ld microseconds\n", (long)base_time.tv_sec, (long)base_time.tv_usec);
 
     // Initialize memory management here
     memory_initialise();
@@ -141,6 +141,7 @@ void scissos_unblock_process(void)
             if (pcb != NULL && pcb->ps_state == PS_BLK)
             {
                 pcb->ps_state = PS_RDY;
+                _blockQ[i] = EMPTY;
                 fprintf(stdout, "[UNBLOCKED] Process PID %d moved to READY state\n", pcb->pid);
             }
         }
@@ -258,24 +259,67 @@ void scissos_call_scheduler(char *scheduler)
     {
         process_times[selected_pid - 1].first_scheduled_time = curr_time;
         process_times[selected_pid - 1].response_flag = 1;
-        struct timeval response = difference_times(curr_time, process_times[selected_pid - 1].create_time);
-        fprintf(stdout, "[RESPONSE TIME] Process PID %d response time: %f mss\n",
+
+        struct timeval response = difference_times(process_times[selected_pid - 1].create_time, curr_time);
+        fprintf(stdout, "[RESPONSE TIME] Process PID %d response time: %f ms\n",
                 selected_pid,
-                timeval_to_seconds(response));
+                timeval_to_seconds(response) * 1000);
     }
 
     // Waiting time update
-    if(process_times[selected_pid -1].last_ready_time.tv_sec != 0 || process_times[selected_pid -1].last_ready_time.tv_usec != 0)
+    if (process_times[selected_pid - 1].last_ready_time.tv_sec != 0 || process_times[selected_pid - 1].last_ready_time.tv_usec != 0)
     {
-        struct timeval wait_diff = difference_times(process_times[selected_pid -1].last_ready_time, curr_time);
-        process_times[selected_pid -1].wait_time = add_times(process_times[selected_pid -1].wait_time, wait_diff);
+        struct timeval wait_diff = difference_times(process_times[selected_pid - 1].last_ready_time, curr_time);
+        process_times[selected_pid - 1].wait_time = add_times(process_times[selected_pid - 1].wait_time, wait_diff);
         fprintf(stdout, "[WAITING TIME] Process PID %d total waiting time updated to: %f mss\n",
                 selected_pid,
-                timeval_to_seconds(process_times[selected_pid -1].wait_time));
+                timeval_to_seconds(process_times[selected_pid - 1].wait_time));
     }
 
     fprintf(stdout, "=== SCHEDULER TERMINATED ===\n");
 
     // Run the selected process
     scissos_proc_run(selected_pid, scheduler);
+}
+
+struct timeval difference_times(struct timeval start, struct timeval end)
+{
+    struct timeval diff;
+
+    if ((end.tv_usec - start.tv_usec) < 0)
+    {
+        diff.tv_sec = end.tv_sec - start.tv_sec - 1;
+        diff.tv_usec = end.tv_usec - start.tv_usec + 1000000;
+    }
+    else
+    {
+        diff.tv_sec = end.tv_sec - start.tv_sec;
+        diff.tv_usec = end.tv_usec - start.tv_usec;
+    }
+
+    return diff;
+}
+
+struct timeval add_times(struct timeval t1, struct timeval t2)
+{
+    struct timeval sum;
+    sum.tv_sec = t1.tv_sec + t2.tv_sec;
+    sum.tv_usec = t1.tv_usec + t2.tv_usec;
+
+    if (sum.tv_usec >= 1000000)
+    {
+        sum.tv_sec += sum.tv_usec / 1000000;
+        sum.tv_usec = sum.tv_usec % 1000000;
+    }
+    return sum;
+}
+
+double timeval_to_seconds(struct timeval t)
+{
+    return (double)t.tv_sec + (double)t.tv_usec / 1000000.0;
+}
+
+void print_time(struct timeval t)
+{
+    fprintf(stdout, "%ld seconds and %ld microseconds\n", t.tv_sec, t.tv_usec);
 }
