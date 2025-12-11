@@ -5,9 +5,12 @@ CC = gcc
 CFLAGS = -Wall -Wextra -g -O2
 LDFLAGS = -L. -lscismem -lm
 
+# Object directory
+OBJ = obj
+
 # Source files
 SOURCES = main.c os.c process.c scheduling_algo.c memory.c
-OBJECTS = $(SOURCES:.c=.o)
+OBJECTS = $(addprefix $(OBJ)/, $(SOURCES:.c=.o))
 HEADERS = ScisSos.h scheduling_algo.h
 
 # Executables
@@ -18,28 +21,32 @@ MEM_TEST = test_memory_gen
 # Default target
 all: $(TARGET)
 
+# Ensure object directory exists
+$(OBJ):
+	mkdir -p $(OBJ)
+
 # Build main executable
 $(TARGET): $(OBJECTS)
 	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
 	@echo "Build complete: $(TARGET)"
 
 # Build test executable
-$(TEST_TARGET): test_perf.o os.o process.o scheduling_algo.o memory.o
+$(TEST_TARGET): $(OBJ)/test_perf.o $(OBJ)/os.o $(OBJ)/process.o $(OBJ)/scheduling_algo.o $(OBJ)/memory.o
 	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
 	@echo "Build complete: $(TEST_TARGET)"
 
 # Build memory test
-$(MEM_TEST): test_memory_gen.o
+$(MEM_TEST): $(OBJ)/test_memory_gen.o
 	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
 	@echo "Build complete: $(MEM_TEST)"
 
-# Compile source files
-%.o: %.c $(HEADERS)
+# Compile source files → OBJ directory
+$(OBJ)/%.o: %.c $(HEADERS) | $(OBJ)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # Clean build artifacts
 clean:
-	rm -f $(OBJECTS) test_perf.o test_memory_gen.o $(TARGET) $(TEST_TARGET) $(MEM_TEST)
+	rm -rf $(OBJ) $(TARGET) $(TEST_TARGET) $(MEM_TEST)
 	@echo "Clean complete"
 
 # Run targets with different schedulers

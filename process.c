@@ -1,9 +1,5 @@
 #include "ScisSos.h"
 
-/* DO NOT include ScisSosMem.h - declare what we need to avoid conflicts */
-extern int GRANULE;
-extern int *memory_gen_addrefstrings(int size, int mtype);
-
 static int pid_counter = 1;
 
 /* Calculate time difference in microseconds */
@@ -108,30 +104,66 @@ void scissos_create_pcb(ScisSosProcess *process, int pid, int uid, int size,
         process->_pcb->num_pages = MAXPGES;
     }
 
-    /* TEMPORARY: Generate simple sequential addresses instead of using library */
-    /* This is a workaround until we fix the library issue */
+    /* Generate memory address reference sequence */
+    /* Using custom implementation since libscismem.a has bugs */
     process->_pcb->address_sequence = (int *)malloc(size * sizeof(int));
-    if (process->_pcb->address_sequence != NULL)
+
+    if (process->_pcb->address_sequence == NULL)
     {
+        fprintf(stderr, "Error: Failed to allocate address sequence for PID %d\n", pid);
+    }
+    else
+    {
+        /* Generate addresses based on memory type */
+        int working_set_size, transition_freq;
+
+        switch (m_type)
+        {
+        case MT_GOOD:             /* Small working set, few page faults */
+            working_set_size = 2; /* 2 pages */
+            transition_freq = 20; /* Change working set every 20 refs */
+            break;
+        case MT_BAD:              /* Larger working set, more page faults */
+            working_set_size = 4; /* 4 pages */
+            transition_freq = 15; /* More frequent transitions */
+            break;
+        case MT_UGLY:             /* Large working set, many page faults */
+            working_set_size = 8; /* 8 pages */
+            transition_freq = 10; /* Frequent transitions */
+            break;
+        default:
+            working_set_size = 2;
+            transition_freq = 20;
+            break;
+        }
+
+        int current_working_set_base = 0;
+
         for (int i = 0; i < size; i++)
         {
-            /* Generate addresses that simulate locality of reference */
-            /* Stay mostly within first few pages, with occasional jumps */
             if (i < 100)
             {
-                /* First 100 refs in first page */
-                process->_pcb->address_sequence[i] = (rand() % PAGESIZE);
-            }
-            else if (rand() % 10 < 7)
-            {
-                /* 70% of time: reference recent pages (working set) */
-                int page = (i / 50) % 4; /* cycle through 4 pages */
-                process->_pcb->address_sequence[i] = page * PAGESIZE + (rand() % PAGESIZE);
+                /* First 100 references stay in first page */
+                process->_pcb->address_sequence[i] = rand() % PAGESIZE;
             }
             else
             {
-                /* 30% of time: jump to random page (page fault) */
-                int page = rand() % process->_pcb->num_pages;
+                /* Change working set periodically (transition phase) */
+                if (i % transition_freq == 0)
+                {
+                    current_working_set_base = (rand() % (process->_pcb->num_pages - working_set_size));
+                }
+
+                /* Generate address within current working set (stable phase) */
+                int page_offset = rand() % working_set_size;
+                int page = current_working_set_base + page_offset;
+
+                /* Ensure page is within bounds */
+                if (page >= process->_pcb->num_pages)
+                {
+                    page = process->_pcb->num_pages - 1;
+                }
+
                 process->_pcb->address_sequence[i] = page * PAGESIZE + (rand() % PAGESIZE);
             }
         }
@@ -141,24 +173,12 @@ void scissos_create_pcb(ScisSosProcess *process, int pid, int uid, int size,
         {
             code[i]->_addref = process->_pcb->address_sequence[i];
         }
-    }
 
-    /* UNCOMMENT THIS WHEN LIBRARY IS FIXED:
-    GRANULE = size / 8;
-    if (GRANULE < 1) GRANULE = 1;
-    process->_pcb->address_sequence = memory_gen_addrefstrings(size, m_type);
-    if (process->_pcb->address_sequence == NULL)
-    {
-        fprintf(stderr, "Warning: Failed to generate address sequence for PID %d\n", pid);
+        fprintf(stdout, "[MEMORY] Generated address sequence for PID %d (type=%s, size=%d)\n",
+                pid,
+                m_type == MT_GOOD ? "GOOD" : (m_type == MT_BAD ? "BAD" : "UGLY"),
+                size);
     }
-    else
-    {
-        for (int i = 0; i < size; i++)
-        {
-            code[i]->_addref = process->_pcb->address_sequence[i];
-        }
-    }
-    */
 
     /* Initialize timing information */
     gettimeofday(&process->_pcb->timing.creation_time, NULL);

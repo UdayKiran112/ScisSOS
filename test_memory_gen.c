@@ -2,23 +2,18 @@
 #include <stdlib.h>
 #include "ScisosMem.h"
 
-/* Declare external variables from the library */
-extern int GRANULE;
-
-/* Initialize GRANULE before main() using constructor attribute */
-__attribute__((constructor)) static void init_granule(void)
-{
-    GRANULE = 128;
-}
-
 /* Simple test to verify ScisSosMem library is working */
 int main(void)
 {
     printf("=== Testing ScisSosMem Library ===\n");
+
+    /* Ensure the library-visible global is initialized */
+    GRANULE = 128;
     printf("GRANULE value: %d\n\n", GRANULE);
 
-    int size = 100;              /* 100 memory references */
-    int mem_types[] = {3, 4, 5}; /* MT_GOOD, MT_BAD, MT_UGLY */
+    int size = 100; /* 100 memory references */
+    /* memory types: 0=GOOD, 1=BAD, 2=UGLY (use indices 0..2 since the library arrays are size 3) */
+    int mem_types[] = {0, 1, 2};
     const char *type_names[] = {"GOOD", "BAD", "UGLY"};
 
     for (int t = 0; t < 3; t++)
@@ -32,7 +27,7 @@ int main(void)
         if (addresses == NULL)
         {
             fprintf(stderr, "Error: Failed to generate addresses for type %d\n", mtype);
-            fprintf(stderr, "Make sure libscismem.a is in the current directory\n");
+            fprintf(stderr, "Make sure libscismem.a is in the current directory and the library was initialized correctly\n\n");
             continue;
         }
 
@@ -64,7 +59,15 @@ int main(void)
 
         /* Calculate page references (assuming PAGESIZE = 4096) */
         int page_faults = 0;
-        int loaded_pages[100] = {0}; /* Track loaded pages */
+        /* Safe capacity for unique pages: at most 'size' distinct pages; use min(size, 1000) cap */
+        int cap = (size < 1000) ? size : 1000;
+        int *loaded_pages = (int *)calloc(cap, sizeof(int));
+        if (!loaded_pages)
+        {
+            fprintf(stderr, "ERROR: could not allocate loaded_pages\n");
+            free(addresses);
+            continue;
+        }
         int num_loaded = 0;
 
         for (int i = 0; i < size; i++)
@@ -85,7 +88,7 @@ int main(void)
             if (!found)
             {
                 page_faults++;
-                if (num_loaded < 100)
+                if (num_loaded < cap)
                 {
                     loaded_pages[num_loaded++] = page;
                 }
@@ -96,11 +99,20 @@ int main(void)
         printf("Total page faults (unlimited frames): %d\n", page_faults);
         printf("Unique pages accessed: %d\n", num_loaded);
         printf("Page fault rate: %.2f%%\n", (page_faults * 100.0) / size);
-        printf("Memory efficiency: %.2f references/page\n", (double)size / num_loaded);
+
+        if (num_loaded <= 0)
+        {
+            printf("Memory efficiency: N/A (no unique pages loaded)\n");
+        }
+        else
+        {
+            printf("Memory efficiency: %.2f references/page\n", (double)size / num_loaded);
+        }
         printf("\n");
 
         /* Free the allocated memory */
         free(addresses);
+        free(loaded_pages);
     }
 
     printf("=== Test Complete ===\n");
