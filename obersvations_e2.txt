@@ -1,0 +1,3 @@
+As K increases from 32 to 128, the GOOD processes show steadily improving performance because their smaller, stable working sets fit more comfortably into available frames, resulting in fewer page faults and reduced running and turnaround times. 
+BAD processes benefit less from increased K, showing moderate improvement, while UGLY processes show almost no improvement and often degrade beyond K=96 because their large working sets cause heavy frame contention and frequent global replacements. 
+Overall, the experiment demonstrates that process performance becomes increasingly sensitive to working-set size when K grows beyond available physical frames (K > 64), with ugly processes suffering the most drastic increase in page faults and waiting times.

@@ -1,9 +1,9 @@
-./run_os sched fcfs
+./run_os sched rr
 
 ============ OS Simulator ================
 
 === Initialising ScisSOS ===
-Base time set is : 1765487697 seconds and 27296 microseconds
+Base time set is : 1765489069 seconds and 988872 microseconds
 === Initialising Memory Management System ===
 Memory management system initialised with 64 frames
 Process table initialised
@@ -13,7 +13,7 @@ Ready and Block Queues initialised
 Configuration:
   Memory Management: ENABLED
   Page Replacement: FIFO
-  Scheduling Algorithm: fcfs
+  Scheduling Algorithm: rr
   Number of Frames: 64
   Page Size: 4096 bytes
   Time Slice: 6239 instructions
@@ -21,31 +21,31 @@ Configuration:
 ===================== CREATING PROCESSES ===============================
 
 === Creating Process: WebBrowser ===
-Process created: WebBrowser, PID: 1, UID: 5, Priority: 5, Type: 2, Memory Type: 3
+Process created: WebBrowser, PID: 1, UID: 2, Priority: 5, Type: 2, Memory Type: 3
 Timeslice: 6239
 [ALLOCATED] Frame 0 allocated to PID 1, page 0
 First page loaded into frame 0
 Process PID 1 moved from NEW to READY state
 === Creating Process: Calculator ===
-Process created: Calculator, PID: 2, UID: 6, Priority: 10, Type: 1, Memory Type: 4
+Process created: Calculator, PID: 2, UID: 10, Priority: 10, Type: 1, Memory Type: 4
 Timeslice: 6239
 [ALLOCATED] Frame 1 allocated to PID 2, page 0
 First page loaded into frame 1
 Process PID 2 moved from NEW to READY state
 === Creating Process: TextEditor ===
-Process created: TextEditor, PID: 3, UID: 8, Priority: 8, Type: 0, Memory Type: 3
+Process created: TextEditor, PID: 3, UID: 6, Priority: 8, Type: 0, Memory Type: 3
 Timeslice: 6239
 [ALLOCATED] Frame 2 allocated to PID 3, page 0
 First page loaded into frame 2
 Process PID 3 moved from NEW to READY state
 === Creating Process: VideoPlayer ===
-Process created: VideoPlayer, PID: 4, UID: 8, Priority: 3, Type: 2, Memory Type: 4
+Process created: VideoPlayer, PID: 4, UID: 3, Priority: 3, Type: 2, Memory Type: 4
 Timeslice: 6239
 [ALLOCATED] Frame 3 allocated to PID 4, page 0
 First page loaded into frame 3
 Process PID 4 moved from NEW to READY state
 === Creating Process: Compiler ===
-Process created: Compiler, PID: 5, UID: 4, Priority: 15, Type: 1, Memory Type: 4
+Process created: Compiler, PID: 5, UID: 5, Priority: 15, Type: 1, Memory Type: 4
 Timeslice: 6239
 [ALLOCATED] Frame 4 allocated to PID 5, page 0
 First page loaded into frame 4
@@ -57,25 +57,25 @@ Timeslice: 6239
 First page loaded into frame 5
 Process PID 6 moved from NEW to READY state
 === Creating Process: Database ===
-Process created: Database, PID: 7, UID: 10, Priority: 4, Type: 2, Memory Type: 3
+Process created: Database, PID: 7, UID: 8, Priority: 4, Type: 2, Memory Type: 3
 Timeslice: 6239
 [ALLOCATED] Frame 6 allocated to PID 7, page 0
 First page loaded into frame 6
 Process PID 7 moved from NEW to READY state
 === Creating Process: Game ===
-Process created: Game, PID: 8, UID: 7, Priority: 2, Type: 1, Memory Type: 4
+Process created: Game, PID: 8, UID: 10, Priority: 2, Type: 1, Memory Type: 4
 Timeslice: 6239
 [ALLOCATED] Frame 7 allocated to PID 8, page 0
 First page loaded into frame 7
 Process PID 8 moved from NEW to READY state
 === Creating Process: Terminal ===
-Process created: Terminal, PID: 9, UID: 9, Priority: 12, Type: 0, Memory Type: 3
+Process created: Terminal, PID: 9, UID: 5, Priority: 12, Type: 0, Memory Type: 3
 Timeslice: 6239
 [ALLOCATED] Frame 8 allocated to PID 9, page 0
 First page loaded into frame 8
 Process PID 9 moved from NEW to READY state
 === Creating Process: ImageEditor ===
-Process created: ImageEditor, PID: 10, UID: 9, Priority: 6, Type: 2, Memory Type: 4
+Process created: ImageEditor, PID: 10, UID: 10, Priority: 6, Type: 2, Memory Type: 4
 Timeslice: 6239
 [ALLOCATED] Frame 9 allocated to PID 10, page 0
 First page loaded into frame 9
@@ -90,7 +90,7 @@ Process PID 10 moved from NEW to READY state
 ----------------------------------------
 Process Name: WebBrowser
 PID: 1
-UID: 5
+UID: 2
 Size: 50
 Priority: 5
 State: READY (1)
@@ -113,7 +113,7 @@ Page | Frame | Loaded
 ----------------------------------------
 Process Name: Calculator
 PID: 2
-UID: 6
+UID: 10
 Size: 20
 Priority: 10
 State: READY (1)
@@ -136,7 +136,7 @@ Page | Frame | Loaded
 ----------------------------------------
 Process Name: TextEditor
 PID: 3
-UID: 8
+UID: 6
 Size: 40
 Priority: 8
 State: READY (1)
@@ -159,7 +159,7 @@ Page | Frame | Loaded
 ----------------------------------------
 Process Name: VideoPlayer
 PID: 4
-UID: 8
+UID: 3
 Size: 60
 Priority: 3
 State: READY (1)
@@ -182,7 +182,7 @@ Page | Frame | Loaded
 ----------------------------------------
 Process Name: Compiler
 PID: 5
-UID: 4
+UID: 5
 Size: 80
 Priority: 15
 State: READY (1)
@@ -228,7 +228,7 @@ Page | Frame | Loaded
 ----------------------------------------
 Process Name: Database
 PID: 7
-UID: 10
+UID: 8
 Size: 70
 Priority: 4
 State: READY (1)
@@ -251,7 +251,7 @@ Page | Frame | Loaded
 ----------------------------------------
 Process Name: Game
 PID: 8
-UID: 7
+UID: 10
 Size: 100
 Priority: 2
 State: READY (1)
@@ -274,7 +274,7 @@ Page | Frame | Loaded
 ----------------------------------------
 Process Name: Terminal
 PID: 9
-UID: 9
+UID: 5
 Size: 25
 Priority: 12
 State: READY (1)
@@ -297,7 +297,7 @@ Page | Frame | Loaded
 ----------------------------------------
 Process Name: ImageEditor
 PID: 10
-UID: 9
+UID: 10
 Size: 55
 Priority: 6
 State: READY (1)
@@ -318,7 +318,7 @@ Page | Frame | Loaded
 ----------------------------------------
 
 ===================== STARTING SCHEDULER ===============================
-Starting scheduler with 'fcfs' algorithm...
+Starting scheduler with 'rr' algorithm...
 
 
 --- Scheduling Iteration 1 ---
@@ -326,1081 +326,282 @@ Starting scheduler with 'fcfs' algorithm...
 === SCHEDULER INVOKED ===
 Number of ready processes: 10
 Ready Queue: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-[SCHEDULER: FCFS] Selecting first process in queue
+[SCHEDULER: ROUND ROBIN] Selected process 1 (position 0 in queue)
 
 [SCHEDULED] Process 1 selected for execution
-[RESPONSE TIME] Process PID 1 response time: 0.082000 ms
-[WAITING TIME] Process PID 1 total waiting time updated to: 0.000079 mss
+[RESPONSE TIME] Process PID 1 response time: 0.081000 ms
+[WAITING TIME] Process PID 1 total waiting time updated to: 0.000078 mss
 === SCHEDULER TERMINATED ===
 
 [RUNNING] Process PID 1 starting from PC = 0
-[BLOCKED] Process PID 1 on instruction 0 (Long Syscall)
-[STATUS] Process PID 1 moved from PC = 0 to PC = 1, State = 3
-[TIME TAKEN] Process PID 1 took 140732460710062.328125 seconds to execute 1 instructions
-[BLOCKED] Process PID 1 moved to READY state
-
-=== SCHEDULER INVOKED ===
-Number of ready processes: 10
-Ready Queue: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-[SCHEDULER: FCFS] Selecting first process in queue
-
-[SCHEDULED] Process 1 selected for execution
-[WAITING TIME] Process PID 1 total waiting time updated to: 0.000085 mss
-=== SCHEDULER TERMINATED ===
-
-[RUNNING] Process PID 1 starting from PC = 1
 [PC = 1] PAGE FAULT OCCURED
-[PC = 2] PAGE FAULT OCCURED
-[PC = 3] PAGE FAULT OCCURED
-[BLOCKED] Process PID 1 on instruction 8 (Long Syscall)
-[STATUS] Process PID 1 moved from PC = 1 to PC = 9, State = 3
-[TIME TAKEN] Process PID 1 took 0.000007 seconds to execute 8 instructions
-[BLOCKED] Process PID 1 moved to READY state
-
-=== SCHEDULER INVOKED ===
-Number of ready processes: 10
-Ready Queue: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-[SCHEDULER: FCFS] Selecting first process in queue
-
-[SCHEDULED] Process 1 selected for execution
-[WAITING TIME] Process PID 1 total waiting time updated to: 0.000091 mss
-=== SCHEDULER TERMINATED ===
-
-[RUNNING] Process PID 1 starting from PC = 9
-[PC = 9] PAGE FAULT OCCURED
-[BLOCKED] Process PID 1 on instruction 9 (Long Syscall)
-[STATUS] Process PID 1 moved from PC = 9 to PC = 10, State = 3
-[TIME TAKEN] Process PID 1 took 140732460709550.328125 seconds to execute 1 instructions
-[BLOCKED] Process PID 1 moved to READY state
-
-=== SCHEDULER INVOKED ===
-Number of ready processes: 10
-Ready Queue: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-[SCHEDULER: FCFS] Selecting first process in queue
-
-[SCHEDULED] Process 1 selected for execution
-[WAITING TIME] Process PID 1 total waiting time updated to: 0.000103 mss
-=== SCHEDULER TERMINATED ===
-
-[RUNNING] Process PID 1 starting from PC = 10
-[BLOCKED] Process PID 1 on instruction 10 (Long Syscall)
-[STATUS] Process PID 1 moved from PC = 10 to PC = 11, State = 3
-[TIME TAKEN] Process PID 1 took 140732460709294.328125 seconds to execute 1 instructions
-[BLOCKED] Process PID 1 moved to READY state
-
-=== SCHEDULER INVOKED ===
-Number of ready processes: 10
-Ready Queue: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-[SCHEDULER: FCFS] Selecting first process in queue
-
-[SCHEDULED] Process 1 selected for execution
-[WAITING TIME] Process PID 1 total waiting time updated to: 0.000108 mss
-=== SCHEDULER TERMINATED ===
-
-[RUNNING] Process PID 1 starting from PC = 11
-[PC = 11] PAGE FAULT OCCURED
-[BLOCKED] Process PID 1 on instruction 12 (Long Syscall)
-[STATUS] Process PID 1 moved from PC = 11 to PC = 13, State = 3
-[TIME TAKEN] Process PID 1 took 0.000002 seconds to execute 2 instructions
-[BLOCKED] Process PID 1 moved to READY state
-
-=== SCHEDULER INVOKED ===
-Number of ready processes: 10
-Ready Queue: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-[SCHEDULER: FCFS] Selecting first process in queue
-
-[SCHEDULED] Process 1 selected for execution
-[WAITING TIME] Process PID 1 total waiting time updated to: 0.000114 mss
-=== SCHEDULER TERMINATED ===
-
-[RUNNING] Process PID 1 starting from PC = 13
-[BLOCKED] Process PID 1 on instruction 14 (Long Syscall)
-[STATUS] Process PID 1 moved from PC = 13 to PC = 15, State = 3
+[BLOCKED] Process PID 1 on instruction 1 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 0 to PC = 2, State = 3
 [TIME TAKEN] Process PID 1 took 0.000000 seconds to execute 2 instructions
 [BLOCKED] Process PID 1 moved to READY state
 
 === SCHEDULER INVOKED ===
 Number of ready processes: 10
 Ready Queue: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-[SCHEDULER: FCFS] Selecting first process in queue
-
-[SCHEDULED] Process 1 selected for execution
-[WAITING TIME] Process PID 1 total waiting time updated to: 0.000119 mss
-=== SCHEDULER TERMINATED ===
-
-[RUNNING] Process PID 1 starting from PC = 15
-[PC = 15] PAGE FAULT OCCURED
-[PAGE FAULT] Process PID 1 requesting page 9
-[ALLOCATION] Free frame 10 allocated to PID 1, page 9
-[LOADED] PID 1, page 9 loaded into frame 10
-[PC = 15] PAGE FAULT HANDLED, FRAME = 10
-[PC = 16] PAGE FAULT OCCURED
-[PC = 18] PAGE FAULT OCCURED
-[BLOCKED] Process PID 1 on instruction 19 (Long Syscall)
-[STATUS] Process PID 1 moved from PC = 15 to PC = 20, State = 3
-[TIME TAKEN] Process PID 1 took 0.000004 seconds to execute 5 instructions
-[BLOCKED] Process PID 1 moved to READY state
-
-=== SCHEDULER INVOKED ===
-Number of ready processes: 10
-Ready Queue: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-[SCHEDULER: FCFS] Selecting first process in queue
-
-[SCHEDULED] Process 1 selected for execution
-[WAITING TIME] Process PID 1 total waiting time updated to: 0.000135 mss
-=== SCHEDULER TERMINATED ===
-
-[RUNNING] Process PID 1 starting from PC = 20
-[PC = 20] PAGE FAULT OCCURED
-[BLOCKED] Process PID 1 on instruction 20 (Long Syscall)
-[STATUS] Process PID 1 moved from PC = 20 to PC = 21, State = 3
-[TIME TAKEN] Process PID 1 took 140732460708270.328125 seconds to execute 1 instructions
-[BLOCKED] Process PID 1 moved to READY state
-
-=== SCHEDULER INVOKED ===
-Number of ready processes: 10
-Ready Queue: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-[SCHEDULER: FCFS] Selecting first process in queue
-
-[SCHEDULED] Process 1 selected for execution
-[WAITING TIME] Process PID 1 total waiting time updated to: 0.000141 mss
-=== SCHEDULER TERMINATED ===
-
-[RUNNING] Process PID 1 starting from PC = 21
-[BLOCKED] Process PID 1 on instruction 21 (Long Syscall)
-[STATUS] Process PID 1 moved from PC = 21 to PC = 22, State = 3
-[TIME TAKEN] Process PID 1 took 140732460708014.328125 seconds to execute 1 instructions
-[BLOCKED] Process PID 1 moved to READY state
-
-=== SCHEDULER INVOKED ===
-Number of ready processes: 10
-Ready Queue: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-[SCHEDULER: FCFS] Selecting first process in queue
-
-[SCHEDULED] Process 1 selected for execution
-[WAITING TIME] Process PID 1 total waiting time updated to: 0.000146 mss
-=== SCHEDULER TERMINATED ===
-
-[RUNNING] Process PID 1 starting from PC = 22
-[BLOCKED] Process PID 1 on instruction 22 (Long Syscall)
-[STATUS] Process PID 1 moved from PC = 22 to PC = 23, State = 3
-[TIME TAKEN] Process PID 1 took 140732460707758.328125 seconds to execute 1 instructions
-[BLOCKED] Process PID 1 moved to READY state
-
-=== SCHEDULER INVOKED ===
-Number of ready processes: 10
-Ready Queue: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-[SCHEDULER: FCFS] Selecting first process in queue
-
-[SCHEDULED] Process 1 selected for execution
-[WAITING TIME] Process PID 1 total waiting time updated to: 0.000152 mss
-=== SCHEDULER TERMINATED ===
-
-[RUNNING] Process PID 1 starting from PC = 23
-[PC = 23] PAGE FAULT OCCURED
-[PC = 25] PAGE FAULT OCCURED
-[BLOCKED] Process PID 1 on instruction 26 (Long Syscall)
-[STATUS] Process PID 1 moved from PC = 23 to PC = 27, State = 3
-[TIME TAKEN] Process PID 1 took 0.000003 seconds to execute 4 instructions
-[BLOCKED] Process PID 1 moved to READY state
-
-=== SCHEDULER INVOKED ===
-Number of ready processes: 10
-Ready Queue: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-[SCHEDULER: FCFS] Selecting first process in queue
-
-[SCHEDULED] Process 1 selected for execution
-[WAITING TIME] Process PID 1 total waiting time updated to: 0.000157 mss
-=== SCHEDULER TERMINATED ===
-
-[RUNNING] Process PID 1 starting from PC = 27
-[PC = 27] PAGE FAULT OCCURED
-[PC = 28] PAGE FAULT OCCURED
-[PC = 29] PAGE FAULT OCCURED
-[PAGE FAULT] Process PID 1 requesting page 8
-[ALLOCATION] Free frame 11 allocated to PID 1, page 8
-[LOADED] PID 1, page 8 loaded into frame 11
-[PC = 29] PAGE FAULT HANDLED, FRAME = 11
-[PC = 31] PAGE FAULT OCCURED
-[PC = 32] PAGE FAULT OCCURED
-[PC = 35] PAGE FAULT OCCURED
-[PC = 36] PAGE FAULT OCCURED
-[PC = 39] PAGE FAULT OCCURED
-[PC = 40] PAGE FAULT OCCURED
-[PC = 44] PAGE FAULT OCCURED
-[BLOCKED] Process PID 1 on instruction 46 (Long Syscall)
-[STATUS] Process PID 1 moved from PC = 27 to PC = 47, State = 3
-[TIME TAKEN] Process PID 1 took 0.000019 seconds to execute 20 instructions
-[BLOCKED] Process PID 1 moved to READY state
-
-=== SCHEDULER INVOKED ===
-Number of ready processes: 10
-Ready Queue: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-[SCHEDULER: FCFS] Selecting first process in queue
-
-[SCHEDULED] Process 1 selected for execution
-[WAITING TIME] Process PID 1 total waiting time updated to: 0.000163 mss
-=== SCHEDULER TERMINATED ===
-
-[RUNNING] Process PID 1 starting from PC = 47
-[PC = 47] PAGE FAULT OCCURED
-[PAGE FAULT] Process PID 1 requesting page 7
-[ALLOCATION] Free frame 12 allocated to PID 1, page 7
-[LOADED] PID 1, page 7 loaded into frame 12
-[PC = 47] PAGE FAULT HANDLED, FRAME = 12
-[PC = 48] PAGE FAULT OCCURED
-[COMPLETED] Process PID 1 completed
-[STATUS] Process PID 1 moved from PC = 47 to PC = 50, State = 6
-[TIME TAKEN] Process PID 1 took 0.000009 seconds to execute 3 instructions
-
-=== SCHEDULER INVOKED ===
-Number of ready processes: 9
-Ready Queue: [2, 3, 4, 5, 6, 7, 8, 9, 10]
-[SCHEDULER: FCFS] Selecting first process in queue
+[SCHEDULER: ROUND ROBIN] Selected process 2 (position 1 in queue)
 
 [SCHEDULED] Process 2 selected for execution
-[RESPONSE TIME] Process PID 2 response time: 0.240000 ms
-[WAITING TIME] Process PID 2 total waiting time updated to: 0.000239 mss
+[RESPONSE TIME] Process PID 2 response time: 0.103000 ms
+[WAITING TIME] Process PID 2 total waiting time updated to: 0.000102 mss
 === SCHEDULER TERMINATED ===
 
 [RUNNING] Process PID 2 starting from PC = 0
+[PC = 0] PAGE FAULT OCCURED
+[PAGE FAULT] Process PID 2 requesting page 4
+[ALLOCATION] Free frame 10 allocated to PID 2, page 4
+[LOADED] PID 2, page 4 loaded into frame 10
+[PC = 0] PAGE FAULT HANDLED, FRAME = 10
 [PC = 1] PAGE FAULT OCCURED
+[PAGE FAULT] Process PID 2 requesting page 3
+[ALLOCATION] Free frame 11 allocated to PID 2, page 3
+[LOADED] PID 2, page 3 loaded into frame 11
+[PC = 1] PAGE FAULT HANDLED, FRAME = 11
 [PC = 2] PAGE FAULT OCCURED
 [PC = 4] PAGE FAULT OCCURED
-[PAGE FAULT] Process PID 2 requesting page 4
-[ALLOCATION] Free frame 13 allocated to PID 2, page 4
-[LOADED] PID 2, page 4 loaded into frame 13
-[PC = 4] PAGE FAULT HANDLED, FRAME = 13
-[PC = 5] PAGE FAULT OCCURED
-[PC = 6] PAGE FAULT OCCURED
-[PC = 9] PAGE FAULT OCCURED
-[PAGE FAULT] Process PID 2 requesting page 9
-[ALLOCATION] Free frame 14 allocated to PID 2, page 9
-[LOADED] PID 2, page 9 loaded into frame 14
-[PC = 9] PAGE FAULT HANDLED, FRAME = 14
-[PC = 10] PAGE FAULT OCCURED
-[PC = 11] PAGE FAULT OCCURED
-[PAGE FAULT] Process PID 2 requesting page 3
-[ALLOCATION] Free frame 15 allocated to PID 2, page 3
-[LOADED] PID 2, page 3 loaded into frame 15
-[PC = 11] PAGE FAULT HANDLED, FRAME = 15
-[PC = 13] PAGE FAULT OCCURED
-[PC = 14] PAGE FAULT OCCURED
-[PC = 15] PAGE FAULT OCCURED
-[PC = 17] PAGE FAULT OCCURED
-[PC = 19] PAGE FAULT OCCURED
-[COMPLETED] Process PID 2 completed
-[STATUS] Process PID 2 moved from PC = 0 to PC = 20, State = 6
-[TIME TAKEN] Process PID 2 took 0.000017 seconds to execute 20 instructions
-
-=== SCHEDULER INVOKED ===
-Number of ready processes: 8
-Ready Queue: [3, 4, 5, 6, 7, 8, 9, 10]
-[SCHEDULER: FCFS] Selecting first process in queue
-
-[SCHEDULED] Process 3 selected for execution
-[RESPONSE TIME] Process PID 3 response time: 0.261000 ms
-[WAITING TIME] Process PID 3 total waiting time updated to: 0.000260 mss
-=== SCHEDULER TERMINATED ===
-
-[RUNNING] Process PID 3 starting from PC = 0
-[PC = 0] PAGE FAULT OCCURED
-[PC = 2] PAGE FAULT OCCURED
-[PC = 3] PAGE FAULT OCCURED
-[PAGE FAULT] Process PID 3 requesting page 5
-[ALLOCATION] Free frame 16 allocated to PID 3, page 5
-[LOADED] PID 3, page 5 loaded into frame 16
-[PC = 3] PAGE FAULT HANDLED, FRAME = 16
-[PC = 5] PAGE FAULT OCCURED
 [PC = 7] PAGE FAULT OCCURED
-[PC = 10] PAGE FAULT OCCURED
-[PAGE FAULT] Process PID 3 requesting page 8
-[ALLOCATION] Free frame 17 allocated to PID 3, page 8
-[LOADED] PID 3, page 8 loaded into frame 17
-[PC = 10] PAGE FAULT HANDLED, FRAME = 17
-[PC = 12] PAGE FAULT OCCURED
-[PC = 13] PAGE FAULT OCCURED
-[PC = 15] PAGE FAULT OCCURED
-[PC = 16] PAGE FAULT OCCURED
-[PC = 22] PAGE FAULT OCCURED
-[PC = 24] PAGE FAULT OCCURED
-[PC = 26] PAGE FAULT OCCURED
-[PC = 27] PAGE FAULT OCCURED
-[PC = 29] PAGE FAULT OCCURED
-[BLOCKED] Process PID 3 on instruction 29 (Long Syscall)
-[STATUS] Process PID 3 moved from PC = 0 to PC = 30, State = 3
-[TIME TAKEN] Process PID 3 took 0.000019 seconds to execute 30 instructions
-[BLOCKED] Process PID 3 moved to READY state
-
-=== SCHEDULER INVOKED ===
-Number of ready processes: 8
-Ready Queue: [3, 4, 5, 6, 7, 8, 9, 10]
-[SCHEDULER: FCFS] Selecting first process in queue
-
-[SCHEDULED] Process 3 selected for execution
-[WAITING TIME] Process PID 3 total waiting time updated to: 0.000266 mss
-=== SCHEDULER TERMINATED ===
-
-[RUNNING] Process PID 3 starting from PC = 30
-[PC = 33] PAGE FAULT OCCURED
-[PC = 34] PAGE FAULT OCCURED
-[PC = 37] PAGE FAULT OCCURED
-[PAGE FAULT] Process PID 3 requesting page 9
-[ALLOCATION] Free frame 18 allocated to PID 3, page 9
-[LOADED] PID 3, page 9 loaded into frame 18
-[PC = 37] PAGE FAULT HANDLED, FRAME = 18
-[COMPLETED] Process PID 3 completed
-[STATUS] Process PID 3 moved from PC = 30 to PC = 40, State = 6
-[TIME TAKEN] Process PID 3 took 0.000004 seconds to execute 10 instructions
-
-=== SCHEDULER INVOKED ===
-Number of ready processes: 7
-Ready Queue: [4, 5, 6, 7, 8, 9, 10]
-[SCHEDULER: FCFS] Selecting first process in queue
-
-[SCHEDULED] Process 4 selected for execution
-[RESPONSE TIME] Process PID 4 response time: 0.300000 ms
-[WAITING TIME] Process PID 4 total waiting time updated to: 0.000300 mss
-=== SCHEDULER TERMINATED ===
-
-[RUNNING] Process PID 4 starting from PC = 0
-[PC = 1] PAGE FAULT OCCURED
-[BLOCKED] Process PID 4 on instruction 1 (Long Syscall)
-[STATUS] Process PID 4 moved from PC = 0 to PC = 2, State = 3
-[TIME TAKEN] Process PID 4 took 0.000000 seconds to execute 2 instructions
-[BLOCKED] Process PID 4 moved to READY state
-
-=== SCHEDULER INVOKED ===
-Number of ready processes: 7
-Ready Queue: [4, 5, 6, 7, 8, 9, 10]
-[SCHEDULER: FCFS] Selecting first process in queue
-
-[SCHEDULED] Process 4 selected for execution
-[WAITING TIME] Process PID 4 total waiting time updated to: 0.000305 mss
-=== SCHEDULER TERMINATED ===
-
-[RUNNING] Process PID 4 starting from PC = 2
-[PC = 2] PAGE FAULT OCCURED
-[PAGE FAULT] Process PID 4 requesting page 3
-[ALLOCATION] Free frame 19 allocated to PID 4, page 3
-[LOADED] PID 4, page 3 loaded into frame 19
-[PC = 2] PAGE FAULT HANDLED, FRAME = 19
-[BLOCKED] Process PID 4 on instruction 2 (Long Syscall)
-[STATUS] Process PID 4 moved from PC = 2 to PC = 3, State = 3
-[TIME TAKEN] Process PID 4 took 140732460705710.328125 seconds to execute 1 instructions
-[BLOCKED] Process PID 4 moved to READY state
-
-=== SCHEDULER INVOKED ===
-Number of ready processes: 7
-Ready Queue: [4, 5, 6, 7, 8, 9, 10]
-[SCHEDULER: FCFS] Selecting first process in queue
-
-[SCHEDULED] Process 4 selected for execution
-[WAITING TIME] Process PID 4 total waiting time updated to: 0.000310 mss
-=== SCHEDULER TERMINATED ===
-
-[RUNNING] Process PID 4 starting from PC = 3
-[PC = 3] PAGE FAULT OCCURED
-[BLOCKED] Process PID 4 on instruction 3 (Long Syscall)
-[STATUS] Process PID 4 moved from PC = 3 to PC = 4, State = 3
-[TIME TAKEN] Process PID 4 took 140732460705454.328125 seconds to execute 1 instructions
-[BLOCKED] Process PID 4 moved to READY state
-
-=== SCHEDULER INVOKED ===
-Number of ready processes: 7
-Ready Queue: [4, 5, 6, 7, 8, 9, 10]
-[SCHEDULER: FCFS] Selecting first process in queue
-
-[SCHEDULED] Process 4 selected for execution
-[WAITING TIME] Process PID 4 total waiting time updated to: 0.000315 mss
-=== SCHEDULER TERMINATED ===
-
-[RUNNING] Process PID 4 starting from PC = 4
-[PC = 5] PAGE FAULT OCCURED
-[PAGE FAULT] Process PID 4 requesting page 5
-[ALLOCATION] Free frame 20 allocated to PID 4, page 5
-[LOADED] PID 4, page 5 loaded into frame 20
-[PC = 5] PAGE FAULT HANDLED, FRAME = 20
 [PC = 8] PAGE FAULT OCCURED
 [PC = 9] PAGE FAULT OCCURED
 [PC = 10] PAGE FAULT OCCURED
 [PC = 11] PAGE FAULT OCCURED
-[PAGE FAULT] Process PID 4 requesting page 6
-[ALLOCATION] Free frame 21 allocated to PID 4, page 6
-[LOADED] PID 4, page 6 loaded into frame 21
-[PC = 11] PAGE FAULT HANDLED, FRAME = 21
+[PAGE FAULT] Process PID 2 requesting page 5
+[ALLOCATION] Free frame 12 allocated to PID 2, page 5
+[LOADED] PID 2, page 5 loaded into frame 12
+[PC = 11] PAGE FAULT HANDLED, FRAME = 12
 [PC = 13] PAGE FAULT OCCURED
-[PC = 15] PAGE FAULT OCCURED
-[PC = 21] PAGE FAULT OCCURED
-[PC = 23] PAGE FAULT OCCURED
-[PC = 25] PAGE FAULT OCCURED
-[PC = 26] PAGE FAULT OCCURED
-[PAGE FAULT] Process PID 4 requesting page 9
-[ALLOCATION] Free frame 22 allocated to PID 4, page 9
-[LOADED] PID 4, page 9 loaded into frame 22
-[PC = 26] PAGE FAULT HANDLED, FRAME = 22
-[PC = 28] PAGE FAULT OCCURED
-[PC = 29] PAGE FAULT OCCURED
-[BLOCKED] Process PID 4 on instruction 29 (Long Syscall)
-[STATUS] Process PID 4 moved from PC = 4 to PC = 30, State = 3
-[TIME TAKEN] Process PID 4 took 0.000017 seconds to execute 26 instructions
+[PC = 19] PAGE FAULT OCCURED
+[COMPLETED] Process PID 2 completed
+[STATUS] Process PID 2 moved from PC = 0 to PC = 20, State = 6
+[TIME TAKEN] Process PID 2 took 0.000009 seconds to execute 20 instructions
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 9
+Ready Queue: [1, 3, 4, 5, 6, 7, 8, 9, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 2 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+[RESPONSE TIME] Process PID 4 response time: 0.111000 ms
+[WAITING TIME] Process PID 4 total waiting time updated to: 0.000111 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 0
+[PC = 0] PAGE FAULT OCCURED
+[PAGE FAULT] Process PID 4 requesting page 1
+[ALLOCATION] Free frame 13 allocated to PID 4, page 1
+[LOADED] PID 4, page 1 loaded into frame 13
+[PC = 0] PAGE FAULT HANDLED, FRAME = 13
+[BLOCKED] Process PID 4 on instruction 0 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 0 to PC = 1, State = 3
+[TIME TAKEN] Process PID 4 took 140726712453895.421875 seconds to execute 1 instructions
 [BLOCKED] Process PID 4 moved to READY state
 
 === SCHEDULER INVOKED ===
-Number of ready processes: 7
-Ready Queue: [4, 5, 6, 7, 8, 9, 10]
-[SCHEDULER: FCFS] Selecting first process in queue
-
-[SCHEDULED] Process 4 selected for execution
-[WAITING TIME] Process PID 4 total waiting time updated to: 0.000321 mss
-=== SCHEDULER TERMINATED ===
-
-[RUNNING] Process PID 4 starting from PC = 30
-[PC = 31] PAGE FAULT OCCURED
-[PAGE FAULT] Process PID 4 requesting page 8
-[ALLOCATION] Free frame 23 allocated to PID 4, page 8
-[LOADED] PID 4, page 8 loaded into frame 23
-[PC = 31] PAGE FAULT HANDLED, FRAME = 23
-[PC = 32] PAGE FAULT OCCURED
-[PC = 34] PAGE FAULT OCCURED
-[BLOCKED] Process PID 4 on instruction 35 (Long Syscall)
-[STATUS] Process PID 4 moved from PC = 30 to PC = 36, State = 3
-[TIME TAKEN] Process PID 4 took 0.000004 seconds to execute 6 instructions
-[BLOCKED] Process PID 4 moved to READY state
-
-=== SCHEDULER INVOKED ===
-Number of ready processes: 7
-Ready Queue: [4, 5, 6, 7, 8, 9, 10]
-[SCHEDULER: FCFS] Selecting first process in queue
-
-[SCHEDULED] Process 4 selected for execution
-[WAITING TIME] Process PID 4 total waiting time updated to: 0.000326 mss
-=== SCHEDULER TERMINATED ===
-
-[RUNNING] Process PID 4 starting from PC = 36
-[BLOCKED] Process PID 4 on instruction 37 (Long Syscall)
-[STATUS] Process PID 4 moved from PC = 36 to PC = 38, State = 3
-[TIME TAKEN] Process PID 4 took 0.000001 seconds to execute 2 instructions
-[BLOCKED] Process PID 4 moved to READY state
-
-=== SCHEDULER INVOKED ===
-Number of ready processes: 7
-Ready Queue: [4, 5, 6, 7, 8, 9, 10]
-[SCHEDULER: FCFS] Selecting first process in queue
-
-[SCHEDULED] Process 4 selected for execution
-[WAITING TIME] Process PID 4 total waiting time updated to: 0.000331 mss
-=== SCHEDULER TERMINATED ===
-
-[RUNNING] Process PID 4 starting from PC = 38
-[PC = 39] PAGE FAULT OCCURED
-[PAGE FAULT] Process PID 4 requesting page 7
-[ALLOCATION] Free frame 24 allocated to PID 4, page 7
-[LOADED] PID 4, page 7 loaded into frame 24
-[PC = 39] PAGE FAULT HANDLED, FRAME = 24
-[PC = 42] PAGE FAULT OCCURED
-[PC = 43] PAGE FAULT OCCURED
-[BLOCKED] Process PID 4 on instruction 43 (Long Syscall)
-[STATUS] Process PID 4 moved from PC = 38 to PC = 44, State = 3
-[TIME TAKEN] Process PID 4 took 0.000002 seconds to execute 6 instructions
-[BLOCKED] Process PID 4 moved to READY state
-
-=== SCHEDULER INVOKED ===
-Number of ready processes: 7
-Ready Queue: [4, 5, 6, 7, 8, 9, 10]
-[SCHEDULER: FCFS] Selecting first process in queue
-
-[SCHEDULED] Process 4 selected for execution
-[WAITING TIME] Process PID 4 total waiting time updated to: 0.000336 mss
-=== SCHEDULER TERMINATED ===
-
-[RUNNING] Process PID 4 starting from PC = 44
-[PC = 49] PAGE FAULT OCCURED
-[BLOCKED] Process PID 4 on instruction 49 (Long Syscall)
-[STATUS] Process PID 4 moved from PC = 44 to PC = 50, State = 3
-[TIME TAKEN] Process PID 4 took 0.000000 seconds to execute 6 instructions
-[BLOCKED] Process PID 4 moved to READY state
-
-=== SCHEDULER INVOKED ===
-Number of ready processes: 7
-Ready Queue: [4, 5, 6, 7, 8, 9, 10]
-[SCHEDULER: FCFS] Selecting first process in queue
-
-[SCHEDULED] Process 4 selected for execution
-[WAITING TIME] Process PID 4 total waiting time updated to: 0.000341 mss
-=== SCHEDULER TERMINATED ===
-
-[RUNNING] Process PID 4 starting from PC = 50
-[PC = 51] PAGE FAULT OCCURED
-[PC = 52] PAGE FAULT OCCURED
-[PC = 53] PAGE FAULT OCCURED
-[PC = 54] PAGE FAULT OCCURED
-[PC = 56] PAGE FAULT OCCURED
-[BLOCKED] Process PID 4 on instruction 56 (Long Syscall)
-[STATUS] Process PID 4 moved from PC = 50 to PC = 57, State = 3
-[TIME TAKEN] Process PID 4 took 0.000007 seconds to execute 7 instructions
-[BLOCKED] Process PID 4 moved to READY state
-
-=== SCHEDULER INVOKED ===
-Number of ready processes: 7
-Ready Queue: [4, 5, 6, 7, 8, 9, 10]
-[SCHEDULER: FCFS] Selecting first process in queue
-
-[SCHEDULED] Process 4 selected for execution
-[WAITING TIME] Process PID 4 total waiting time updated to: 0.000347 mss
-=== SCHEDULER TERMINATED ===
-
-[RUNNING] Process PID 4 starting from PC = 57
-[COMPLETED] Process PID 4 completed
-[STATUS] Process PID 4 moved from PC = 57 to PC = 60, State = 6
-[TIME TAKEN] Process PID 4 took 0.000000 seconds to execute 3 instructions
-
-=== SCHEDULER INVOKED ===
-Number of ready processes: 6
-Ready Queue: [5, 6, 7, 8, 9, 10]
-[SCHEDULER: FCFS] Selecting first process in queue
+Number of ready processes: 9
+Ready Queue: [1, 3, 4, 5, 6, 7, 8, 9, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 5 (position 3 in queue)
 
 [SCHEDULED] Process 5 selected for execution
-[RESPONSE TIME] Process PID 5 response time: 0.407000 ms
-[WAITING TIME] Process PID 5 total waiting time updated to: 0.000406 mss
+[RESPONSE TIME] Process PID 5 response time: 0.114000 ms
+[WAITING TIME] Process PID 5 total waiting time updated to: 0.000114 mss
 === SCHEDULER TERMINATED ===
 
 [RUNNING] Process PID 5 starting from PC = 0
 [PC = 0] PAGE FAULT OCCURED
-[PC = 1] PAGE FAULT OCCURED
-[PAGE FAULT] Process PID 5 requesting page 4
-[ALLOCATION] Free frame 25 allocated to PID 5, page 4
-[LOADED] PID 5, page 4 loaded into frame 25
-[PC = 1] PAGE FAULT HANDLED, FRAME = 25
-[PC = 4] PAGE FAULT OCCURED
-[PAGE FAULT] Process PID 5 requesting page 7
-[ALLOCATION] Free frame 26 allocated to PID 5, page 7
-[LOADED] PID 5, page 7 loaded into frame 26
-[PC = 4] PAGE FAULT HANDLED, FRAME = 26
-[PC = 9] PAGE FAULT OCCURED
-[PC = 13] PAGE FAULT OCCURED
-[PC = 15] PAGE FAULT OCCURED
-[PC = 16] PAGE FAULT OCCURED
-[PC = 18] PAGE FAULT OCCURED
-[PC = 25] PAGE FAULT OCCURED
-[PC = 26] PAGE FAULT OCCURED
-[PC = 28] PAGE FAULT OCCURED
-[PC = 29] PAGE FAULT OCCURED
-[PC = 31] PAGE FAULT OCCURED
-[PC = 32] PAGE FAULT OCCURED
-[PC = 34] PAGE FAULT OCCURED
-[PC = 35] PAGE FAULT OCCURED
-[PC = 37] PAGE FAULT OCCURED
-[PC = 41] PAGE FAULT OCCURED
-[PC = 45] PAGE FAULT OCCURED
-[PC = 52] PAGE FAULT OCCURED
-[PC = 56] PAGE FAULT OCCURED
-[PC = 60] PAGE FAULT OCCURED
-[PC = 61] PAGE FAULT OCCURED
-[PC = 64] PAGE FAULT OCCURED
-[PAGE FAULT] Process PID 5 requesting page 2
-[ALLOCATION] Free frame 27 allocated to PID 5, page 2
-[LOADED] PID 5, page 2 loaded into frame 27
-[PC = 64] PAGE FAULT HANDLED, FRAME = 27
-[PC = 66] PAGE FAULT OCCURED
-[PC = 68] PAGE FAULT OCCURED
-[PAGE FAULT] Process PID 5 requesting page 5
-[ALLOCATION] Free frame 28 allocated to PID 5, page 5
-[LOADED] PID 5, page 5 loaded into frame 28
-[PC = 68] PAGE FAULT HANDLED, FRAME = 28
-[PC = 70] PAGE FAULT OCCURED
-[PC = 71] PAGE FAULT OCCURED
-[PAGE FAULT] Process PID 5 requesting page 6
-[ALLOCATION] Free frame 29 allocated to PID 5, page 6
-[LOADED] PID 5, page 6 loaded into frame 29
-[PC = 71] PAGE FAULT HANDLED, FRAME = 29
-[PC = 75] PAGE FAULT OCCURED
-[PC = 78] PAGE FAULT OCCURED
-[COMPLETED] Process PID 5 completed
-[STATUS] Process PID 5 moved from PC = 0 to PC = 80, State = 6
-[TIME TAKEN] Process PID 5 took 0.000055 seconds to execute 80 instructions
-
-=== SCHEDULER INVOKED ===
-Number of ready processes: 5
-Ready Queue: [6, 7, 8, 9, 10]
-[SCHEDULER: FCFS] Selecting first process in queue
-
-[SCHEDULED] Process 6 selected for execution
-[RESPONSE TIME] Process PID 6 response time: 0.467000 ms
-[WAITING TIME] Process PID 6 total waiting time updated to: 0.000466 mss
-=== SCHEDULER TERMINATED ===
-
-[RUNNING] Process PID 6 starting from PC = 0
-[PC = 1] PAGE FAULT OCCURED
-[PAGE FAULT] Process PID 6 requesting page 4
-[ALLOCATION] Free frame 30 allocated to PID 6, page 4
-[LOADED] PID 6, page 4 loaded into frame 30
-[PC = 1] PAGE FAULT HANDLED, FRAME = 30
-[PC = 2] PAGE FAULT OCCURED
-[PC = 6] PAGE FAULT OCCURED
-[PC = 7] PAGE FAULT OCCURED
-[PC = 8] PAGE FAULT OCCURED
-[BLOCKED] Process PID 6 on instruction 9 (Long Syscall)
-[STATUS] Process PID 6 moved from PC = 0 to PC = 10, State = 3
-[TIME TAKEN] Process PID 6 took 0.000006 seconds to execute 10 instructions
-[BLOCKED] Process PID 6 moved to READY state
-
-=== SCHEDULER INVOKED ===
-Number of ready processes: 5
-Ready Queue: [6, 7, 8, 9, 10]
-[SCHEDULER: FCFS] Selecting first process in queue
-
-[SCHEDULED] Process 6 selected for execution
-[WAITING TIME] Process PID 6 total waiting time updated to: 0.000472 mss
-=== SCHEDULER TERMINATED ===
-
-[RUNNING] Process PID 6 starting from PC = 10
-[PC = 11] PAGE FAULT OCCURED
-[PC = 12] PAGE FAULT OCCURED
-[PC = 13] PAGE FAULT OCCURED
-[PC = 18] PAGE FAULT OCCURED
-[PC = 21] PAGE FAULT OCCURED
-[PAGE FAULT] Process PID 6 requesting page 8
-[ALLOCATION] Free frame 31 allocated to PID 6, page 8
-[LOADED] PID 6, page 8 loaded into frame 31
-[PC = 21] PAGE FAULT HANDLED, FRAME = 31
-[PC = 22] PAGE FAULT OCCURED
-[PC = 23] PAGE FAULT OCCURED
-[PC = 24] PAGE FAULT OCCURED
-[PAGE FAULT] Process PID 6 requesting page 9
-[ALLOCATION] Free frame 32 allocated to PID 6, page 9
-[LOADED] PID 6, page 9 loaded into frame 32
-[PC = 24] PAGE FAULT HANDLED, FRAME = 32
-[PC = 25] PAGE FAULT OCCURED
-[PAGE FAULT] Process PID 6 requesting page 5
-[ALLOCATION] Free frame 33 allocated to PID 6, page 5
-[LOADED] PID 6, page 5 loaded into frame 33
-[PC = 25] PAGE FAULT HANDLED, FRAME = 33
-[PC = 26] PAGE FAULT OCCURED
-[PC = 27] PAGE FAULT OCCURED
-[PC = 29] PAGE FAULT OCCURED
-[PC = 30] PAGE FAULT OCCURED
-[PC = 32] PAGE FAULT OCCURED
-[PC = 34] PAGE FAULT OCCURED
-[COMPLETED] Process PID 6 completed
-[STATUS] Process PID 6 moved from PC = 10 to PC = 35, State = 6
-[TIME TAKEN] Process PID 6 took 0.000022 seconds to execute 25 instructions
-
-=== SCHEDULER INVOKED ===
-Number of ready processes: 4
-Ready Queue: [7, 8, 9, 10]
-[SCHEDULER: FCFS] Selecting first process in queue
-
-[SCHEDULED] Process 7 selected for execution
-[RESPONSE TIME] Process PID 7 response time: 0.511000 ms
-[WAITING TIME] Process PID 7 total waiting time updated to: 0.000510 mss
-=== SCHEDULER TERMINATED ===
-
-[RUNNING] Process PID 7 starting from PC = 0
-[PC = 1] PAGE FAULT OCCURED
-[PAGE FAULT] Process PID 7 requesting page 2
-[ALLOCATION] Free frame 34 allocated to PID 7, page 2
-[LOADED] PID 7, page 2 loaded into frame 34
-[PC = 1] PAGE FAULT HANDLED, FRAME = 34
-[PC = 2] PAGE FAULT OCCURED
 [PC = 3] PAGE FAULT OCCURED
 [PC = 4] PAGE FAULT OCCURED
+[PAGE FAULT] Process PID 5 requesting page 9
+[ALLOCATION] Free frame 14 allocated to PID 5, page 9
+[LOADED] PID 5, page 9 loaded into frame 14
+[PC = 4] PAGE FAULT HANDLED, FRAME = 14
 [PC = 5] PAGE FAULT OCCURED
-[PAGE FAULT] Process PID 7 requesting page 9
-[ALLOCATION] Free frame 35 allocated to PID 7, page 9
-[LOADED] PID 7, page 9 loaded into frame 35
-[PC = 5] PAGE FAULT HANDLED, FRAME = 35
 [PC = 6] PAGE FAULT OCCURED
-[BLOCKED] Process PID 7 on instruction 6 (Long Syscall)
-[STATUS] Process PID 7 moved from PC = 0 to PC = 7, State = 3
-[TIME TAKEN] Process PID 7 took 0.000007 seconds to execute 7 instructions
-[BLOCKED] Process PID 7 moved to READY state
-
-=== SCHEDULER INVOKED ===
-Number of ready processes: 4
-Ready Queue: [7, 8, 9, 10]
-[SCHEDULER: FCFS] Selecting first process in queue
-
-[SCHEDULED] Process 7 selected for execution
-[WAITING TIME] Process PID 7 total waiting time updated to: 0.000515 mss
-=== SCHEDULER TERMINATED ===
-
-[RUNNING] Process PID 7 starting from PC = 7
-[PC = 7] PAGE FAULT OCCURED
-[BLOCKED] Process PID 7 on instruction 7 (Long Syscall)
-[STATUS] Process PID 7 moved from PC = 7 to PC = 8, State = 3
-[TIME TAKEN] Process PID 7 took 140732460702382.328125 seconds to execute 1 instructions
-[BLOCKED] Process PID 7 moved to READY state
-
-=== SCHEDULER INVOKED ===
-Number of ready processes: 4
-Ready Queue: [7, 8, 9, 10]
-[SCHEDULER: FCFS] Selecting first process in queue
-
-[SCHEDULED] Process 7 selected for execution
-[WAITING TIME] Process PID 7 total waiting time updated to: 0.000520 mss
-=== SCHEDULER TERMINATED ===
-
-[RUNNING] Process PID 7 starting from PC = 8
-[PC = 8] PAGE FAULT OCCURED
+[PAGE FAULT] Process PID 5 requesting page 3
+[ALLOCATION] Free frame 15 allocated to PID 5, page 3
+[LOADED] PID 5, page 3 loaded into frame 15
+[PC = 6] PAGE FAULT HANDLED, FRAME = 15
 [PC = 10] PAGE FAULT OCCURED
-[BLOCKED] Process PID 7 on instruction 12 (Long Syscall)
-[STATUS] Process PID 7 moved from PC = 8 to PC = 13, State = 3
-[TIME TAKEN] Process PID 7 took 0.000003 seconds to execute 5 instructions
-[BLOCKED] Process PID 7 moved to READY state
-
-=== SCHEDULER INVOKED ===
-Number of ready processes: 4
-Ready Queue: [7, 8, 9, 10]
-[SCHEDULER: FCFS] Selecting first process in queue
-
-[SCHEDULED] Process 7 selected for execution
-[WAITING TIME] Process PID 7 total waiting time updated to: 0.000525 mss
-=== SCHEDULER TERMINATED ===
-
-[RUNNING] Process PID 7 starting from PC = 13
-[BLOCKED] Process PID 7 on instruction 13 (Long Syscall)
-[STATUS] Process PID 7 moved from PC = 13 to PC = 14, State = 3
-[TIME TAKEN] Process PID 7 took 140732460701870.328125 seconds to execute 1 instructions
-[BLOCKED] Process PID 7 moved to READY state
-
-=== SCHEDULER INVOKED ===
-Number of ready processes: 4
-Ready Queue: [7, 8, 9, 10]
-[SCHEDULER: FCFS] Selecting first process in queue
-
-[SCHEDULED] Process 7 selected for execution
-[WAITING TIME] Process PID 7 total waiting time updated to: 0.000530 mss
-=== SCHEDULER TERMINATED ===
-
-[RUNNING] Process PID 7 starting from PC = 14
-[PC = 14] PAGE FAULT OCCURED
-[PC = 17] PAGE FAULT OCCURED
-[PC = 19] PAGE FAULT OCCURED
-[PC = 21] PAGE FAULT OCCURED
-[BLOCKED] Process PID 7 on instruction 21 (Long Syscall)
-[STATUS] Process PID 7 moved from PC = 14 to PC = 22, State = 3
-[TIME TAKEN] Process PID 7 took 0.000006 seconds to execute 8 instructions
-[BLOCKED] Process PID 7 moved to READY state
-
-=== SCHEDULER INVOKED ===
-Number of ready processes: 4
-Ready Queue: [7, 8, 9, 10]
-[SCHEDULER: FCFS] Selecting first process in queue
-
-[SCHEDULED] Process 7 selected for execution
-[WAITING TIME] Process PID 7 total waiting time updated to: 0.000535 mss
-=== SCHEDULER TERMINATED ===
-
-[RUNNING] Process PID 7 starting from PC = 22
-[PC = 22] PAGE FAULT OCCURED
-[PAGE FAULT] Process PID 7 requesting page 7
-[ALLOCATION] Free frame 36 allocated to PID 7, page 7
-[LOADED] PID 7, page 7 loaded into frame 36
-[PC = 22] PAGE FAULT HANDLED, FRAME = 36
-[BLOCKED] Process PID 7 on instruction 22 (Long Syscall)
-[STATUS] Process PID 7 moved from PC = 22 to PC = 23, State = 3
-[TIME TAKEN] Process PID 7 took 140732460701358.328125 seconds to execute 1 instructions
-[BLOCKED] Process PID 7 moved to READY state
-
-=== SCHEDULER INVOKED ===
-Number of ready processes: 4
-Ready Queue: [7, 8, 9, 10]
-[SCHEDULER: FCFS] Selecting first process in queue
-
-[SCHEDULED] Process 7 selected for execution
-[WAITING TIME] Process PID 7 total waiting time updated to: 0.000540 mss
-=== SCHEDULER TERMINATED ===
-
-[RUNNING] Process PID 7 starting from PC = 23
-[PC = 23] PAGE FAULT OCCURED
-[BLOCKED] Process PID 7 on instruction 28 (Long Syscall)
-[STATUS] Process PID 7 moved from PC = 23 to PC = 29, State = 3
-[TIME TAKEN] Process PID 7 took 0.000002 seconds to execute 6 instructions
-[BLOCKED] Process PID 7 moved to READY state
-
-=== SCHEDULER INVOKED ===
-Number of ready processes: 4
-Ready Queue: [7, 8, 9, 10]
-[SCHEDULER: FCFS] Selecting first process in queue
-
-[SCHEDULED] Process 7 selected for execution
-[WAITING TIME] Process PID 7 total waiting time updated to: 0.000546 mss
-=== SCHEDULER TERMINATED ===
-
-[RUNNING] Process PID 7 starting from PC = 29
-[PC = 29] PAGE FAULT OCCURED
-[PAGE FAULT] Process PID 7 requesting page 8
-[ALLOCATION] Free frame 37 allocated to PID 7, page 8
-[LOADED] PID 7, page 8 loaded into frame 37
-[PC = 29] PAGE FAULT HANDLED, FRAME = 37
-[PC = 30] PAGE FAULT OCCURED
-[BLOCKED] Process PID 7 on instruction 32 (Long Syscall)
-[STATUS] Process PID 7 moved from PC = 29 to PC = 33, State = 3
-[TIME TAKEN] Process PID 7 took 0.000002 seconds to execute 4 instructions
-[BLOCKED] Process PID 7 moved to READY state
-
-=== SCHEDULER INVOKED ===
-Number of ready processes: 4
-Ready Queue: [7, 8, 9, 10]
-[SCHEDULER: FCFS] Selecting first process in queue
-
-[SCHEDULED] Process 7 selected for execution
-[WAITING TIME] Process PID 7 total waiting time updated to: 0.000552 mss
-=== SCHEDULER TERMINATED ===
-
-[RUNNING] Process PID 7 starting from PC = 33
-[PC = 37] PAGE FAULT OCCURED
-[PC = 39] PAGE FAULT OCCURED
-[BLOCKED] Process PID 7 on instruction 39 (Long Syscall)
-[STATUS] Process PID 7 moved from PC = 33 to PC = 40, State = 3
-[TIME TAKEN] Process PID 7 took 0.000002 seconds to execute 7 instructions
-[BLOCKED] Process PID 7 moved to READY state
-
-=== SCHEDULER INVOKED ===
-Number of ready processes: 4
-Ready Queue: [7, 8, 9, 10]
-[SCHEDULER: FCFS] Selecting first process in queue
-
-[SCHEDULED] Process 7 selected for execution
-[WAITING TIME] Process PID 7 total waiting time updated to: 0.000558 mss
-=== SCHEDULER TERMINATED ===
-
-[RUNNING] Process PID 7 starting from PC = 40
-[PC = 40] PAGE FAULT OCCURED
-[PC = 41] PAGE FAULT OCCURED
-[PC = 42] PAGE FAULT OCCURED
-[PAGE FAULT] Process PID 7 requesting page 3
-[ALLOCATION] Free frame 38 allocated to PID 7, page 3
-[LOADED] PID 7, page 3 loaded into frame 38
-[PC = 42] PAGE FAULT HANDLED, FRAME = 38
-[BLOCKED] Process PID 7 on instruction 42 (Long Syscall)
-[STATUS] Process PID 7 moved from PC = 40 to PC = 43, State = 3
-[TIME TAKEN] Process PID 7 took 0.000003 seconds to execute 3 instructions
-[BLOCKED] Process PID 7 moved to READY state
-
-=== SCHEDULER INVOKED ===
-Number of ready processes: 4
-Ready Queue: [7, 8, 9, 10]
-[SCHEDULER: FCFS] Selecting first process in queue
-
-[SCHEDULED] Process 7 selected for execution
-[WAITING TIME] Process PID 7 total waiting time updated to: 0.000564 mss
-=== SCHEDULER TERMINATED ===
-
-[RUNNING] Process PID 7 starting from PC = 43
-[BLOCKED] Process PID 7 on instruction 43 (Long Syscall)
-[STATUS] Process PID 7 moved from PC = 43 to PC = 44, State = 3
-[TIME TAKEN] Process PID 7 took 140732460700078.328125 seconds to execute 1 instructions
-[BLOCKED] Process PID 7 moved to READY state
-
-=== SCHEDULER INVOKED ===
-Number of ready processes: 4
-Ready Queue: [7, 8, 9, 10]
-[SCHEDULER: FCFS] Selecting first process in queue
-
-[SCHEDULED] Process 7 selected for execution
-[WAITING TIME] Process PID 7 total waiting time updated to: 0.000569 mss
-=== SCHEDULER TERMINATED ===
-
-[RUNNING] Process PID 7 starting from PC = 44
-[PC = 44] PAGE FAULT OCCURED
-[PC = 45] PAGE FAULT OCCURED
-[PC = 46] PAGE FAULT OCCURED
-[PC = 48] PAGE FAULT OCCURED
-[PC = 49] PAGE FAULT OCCURED
-[PC = 51] PAGE FAULT OCCURED
-[BLOCKED] Process PID 7 on instruction 54 (Long Syscall)
-[STATUS] Process PID 7 moved from PC = 44 to PC = 55, State = 3
-[TIME TAKEN] Process PID 7 took 0.000009 seconds to execute 11 instructions
-[BLOCKED] Process PID 7 moved to READY state
-
-=== SCHEDULER INVOKED ===
-Number of ready processes: 4
-Ready Queue: [7, 8, 9, 10]
-[SCHEDULER: FCFS] Selecting first process in queue
-
-[SCHEDULED] Process 7 selected for execution
-[WAITING TIME] Process PID 7 total waiting time updated to: 0.000574 mss
-=== SCHEDULER TERMINATED ===
-
-[RUNNING] Process PID 7 starting from PC = 55
-[PC = 55] PAGE FAULT OCCURED
-[BLOCKED] Process PID 7 on instruction 57 (Long Syscall)
-[STATUS] Process PID 7 moved from PC = 55 to PC = 58, State = 3
-[TIME TAKEN] Process PID 7 took 0.000001 seconds to execute 3 instructions
-[BLOCKED] Process PID 7 moved to READY state
-
-=== SCHEDULER INVOKED ===
-Number of ready processes: 4
-Ready Queue: [7, 8, 9, 10]
-[SCHEDULER: FCFS] Selecting first process in queue
-
-[SCHEDULED] Process 7 selected for execution
-[WAITING TIME] Process PID 7 total waiting time updated to: 0.000579 mss
-=== SCHEDULER TERMINATED ===
-
-[RUNNING] Process PID 7 starting from PC = 58
-[PC = 59] PAGE FAULT OCCURED
-[PC = 60] PAGE FAULT OCCURED
-[BLOCKED] Process PID 7 on instruction 62 (Long Syscall)
-[STATUS] Process PID 7 moved from PC = 58 to PC = 63, State = 3
-[TIME TAKEN] Process PID 7 took 0.000003 seconds to execute 5 instructions
-[BLOCKED] Process PID 7 moved to READY state
-
-=== SCHEDULER INVOKED ===
-Number of ready processes: 4
-Ready Queue: [7, 8, 9, 10]
-[SCHEDULER: FCFS] Selecting first process in queue
-
-[SCHEDULED] Process 7 selected for execution
-[WAITING TIME] Process PID 7 total waiting time updated to: 0.000585 mss
-=== SCHEDULER TERMINATED ===
-
-[RUNNING] Process PID 7 starting from PC = 63
-[BLOCKED] Process PID 7 on instruction 64 (Long Syscall)
-[STATUS] Process PID 7 moved from PC = 63 to PC = 65, State = 3
-[TIME TAKEN] Process PID 7 took 0.000000 seconds to execute 2 instructions
-[BLOCKED] Process PID 7 moved to READY state
-
-=== SCHEDULER INVOKED ===
-Number of ready processes: 4
-Ready Queue: [7, 8, 9, 10]
-[SCHEDULER: FCFS] Selecting first process in queue
-
-[SCHEDULED] Process 7 selected for execution
-[WAITING TIME] Process PID 7 total waiting time updated to: 0.000590 mss
-=== SCHEDULER TERMINATED ===
-
-[RUNNING] Process PID 7 starting from PC = 65
-[PC = 66] PAGE FAULT OCCURED
-[PC = 67] PAGE FAULT OCCURED
-[PC = 68] PAGE FAULT OCCURED
-[PC = 69] PAGE FAULT OCCURED
-[COMPLETED] Process PID 7 completed
-[STATUS] Process PID 7 moved from PC = 65 to PC = 70, State = 6
-[TIME TAKEN] Process PID 7 took 0.000006 seconds to execute 5 instructions
-
-=== SCHEDULER INVOKED ===
-Number of ready processes: 3
-Ready Queue: [8, 9, 10]
-[SCHEDULER: FCFS] Selecting first process in queue
-
-[SCHEDULED] Process 8 selected for execution
-[RESPONSE TIME] Process PID 8 response time: 0.676000 ms
-[WAITING TIME] Process PID 8 total waiting time updated to: 0.000675 mss
-=== SCHEDULER TERMINATED ===
-
-[RUNNING] Process PID 8 starting from PC = 0
-[PC = 3] PAGE FAULT OCCURED
-[PC = 4] PAGE FAULT OCCURED
-[PAGE FAULT] Process PID 8 requesting page 5
-[ALLOCATION] Free frame 39 allocated to PID 8, page 5
-[LOADED] PID 8, page 5 loaded into frame 39
-[PC = 4] PAGE FAULT HANDLED, FRAME = 39
-[PC = 8] PAGE FAULT OCCURED
-[PAGE FAULT] Process PID 8 requesting page 7
-[ALLOCATION] Free frame 40 allocated to PID 8, page 7
-[LOADED] PID 8, page 7 loaded into frame 40
-[PC = 8] PAGE FAULT HANDLED, FRAME = 40
-[PC = 11] PAGE FAULT OCCURED
-[PC = 14] PAGE FAULT OCCURED
-[PAGE FAULT] Process PID 8 requesting page 4
-[ALLOCATION] Free frame 41 allocated to PID 8, page 4
-[LOADED] PID 8, page 4 loaded into frame 41
-[PC = 14] PAGE FAULT HANDLED, FRAME = 41
+[PC = 12] PAGE FAULT OCCURED
+[PAGE FAULT] Process PID 5 requesting page 5
+[ALLOCATION] Free frame 16 allocated to PID 5, page 5
+[LOADED] PID 5, page 5 loaded into frame 16
+[PC = 12] PAGE FAULT HANDLED, FRAME = 16
 [PC = 15] PAGE FAULT OCCURED
-[PC = 16] PAGE FAULT OCCURED
-[PAGE FAULT] Process PID 8 requesting page 2
-[ALLOCATION] Free frame 42 allocated to PID 8, page 2
-[LOADED] PID 8, page 2 loaded into frame 42
-[PC = 16] PAGE FAULT HANDLED, FRAME = 42
+[PC = 18] PAGE FAULT OCCURED
+[PAGE FAULT] Process PID 5 requesting page 8
+[ALLOCATION] Free frame 17 allocated to PID 5, page 8
+[LOADED] PID 5, page 8 loaded into frame 17
+[PC = 18] PAGE FAULT HANDLED, FRAME = 17
+[PC = 19] PAGE FAULT OCCURED
+[PAGE FAULT] Process PID 5 requesting page 7
+[ALLOCATION] Free frame 18 allocated to PID 5, page 7
+[LOADED] PID 5, page 7 loaded into frame 18
+[PC = 19] PAGE FAULT HANDLED, FRAME = 18
+[PC = 21] PAGE FAULT OCCURED
+[PC = 22] PAGE FAULT OCCURED
+[PC = 23] PAGE FAULT OCCURED
 [PC = 30] PAGE FAULT OCCURED
 [PC = 32] PAGE FAULT OCCURED
 [PC = 33] PAGE FAULT OCCURED
-[PAGE FAULT] Process PID 8 requesting page 8
-[ALLOCATION] Free frame 43 allocated to PID 8, page 8
-[LOADED] PID 8, page 8 loaded into frame 43
-[PC = 33] PAGE FAULT HANDLED, FRAME = 43
-[PC = 35] PAGE FAULT OCCURED
-[PC = 40] PAGE FAULT OCCURED
+[PC = 38] PAGE FAULT OCCURED
 [PC = 42] PAGE FAULT OCCURED
-[PC = 43] PAGE FAULT OCCURED
-[PC = 45] PAGE FAULT OCCURED
-[PC = 48] PAGE FAULT OCCURED
-[PC = 49] PAGE FAULT OCCURED
-[PC = 50] PAGE FAULT OCCURED
-[PC = 51] PAGE FAULT OCCURED
-[PC = 52] PAGE FAULT OCCURED
+[PAGE FAULT] Process PID 5 requesting page 6
+[ALLOCATION] Free frame 19 allocated to PID 5, page 6
+[LOADED] PID 5, page 6 loaded into frame 19
+[PC = 42] PAGE FAULT HANDLED, FRAME = 19
+[PC = 44] PAGE FAULT OCCURED
+[PC = 47] PAGE FAULT OCCURED
 [PC = 53] PAGE FAULT OCCURED
-[PC = 55] PAGE FAULT OCCURED
+[PC = 54] PAGE FAULT OCCURED
+[PC = 57] PAGE FAULT OCCURED
 [PC = 58] PAGE FAULT OCCURED
 [PC = 59] PAGE FAULT OCCURED
-[PAGE FAULT] Process PID 8 requesting page 9
-[ALLOCATION] Free frame 44 allocated to PID 8, page 9
-[LOADED] PID 8, page 9 loaded into frame 44
-[PC = 59] PAGE FAULT HANDLED, FRAME = 44
 [PC = 63] PAGE FAULT OCCURED
+[PC = 64] PAGE FAULT OCCURED
 [PC = 68] PAGE FAULT OCCURED
-[PC = 72] PAGE FAULT OCCURED
+[PC = 69] PAGE FAULT OCCURED
+[PC = 70] PAGE FAULT OCCURED
+[PAGE FAULT] Process PID 5 requesting page 2
+[ALLOCATION] Free frame 20 allocated to PID 5, page 2
+[LOADED] PID 5, page 2 loaded into frame 20
+[PC = 70] PAGE FAULT HANDLED, FRAME = 20
+[PC = 71] PAGE FAULT OCCURED
 [PC = 74] PAGE FAULT OCCURED
-[PC = 75] PAGE FAULT OCCURED
-[PC = 77] PAGE FAULT OCCURED
+[PC = 78] PAGE FAULT OCCURED
+[COMPLETED] Process PID 5 completed
+[STATUS] Process PID 5 moved from PC = 0 to PC = 80, State = 6
+[TIME TAKEN] Process PID 5 took 0.000031 seconds to execute 80 instructions
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 8
+Ready Queue: [1, 3, 4, 6, 7, 8, 9, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 4 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+[RESPONSE TIME] Process PID 7 response time: 0.146000 ms
+[WAITING TIME] Process PID 7 total waiting time updated to: 0.000145 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 0
+[PC = 0] PAGE FAULT OCCURED
+[PC = 1] PAGE FAULT OCCURED
+[PAGE FAULT] Process PID 7 requesting page 2
+[ALLOCATION] Free frame 21 allocated to PID 7, page 2
+[LOADED] PID 7, page 2 loaded into frame 21
+[PC = 1] PAGE FAULT HANDLED, FRAME = 21
+[PC = 3] PAGE FAULT OCCURED
+[PC = 6] PAGE FAULT OCCURED
+[PC = 8] PAGE FAULT OCCURED
+[PC = 9] PAGE FAULT OCCURED
+[PC = 10] PAGE FAULT OCCURED
+[PC = 12] PAGE FAULT OCCURED
+[BLOCKED] Process PID 7 on instruction 12 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 0 to PC = 13, State = 3
+[TIME TAKEN] Process PID 7 took 0.000005 seconds to execute 13 instructions
+[BLOCKED] Process PID 7 moved to READY state
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 8
+Ready Queue: [1, 3, 4, 6, 7, 8, 9, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 8 (position 5 in queue)
+
+[SCHEDULED] Process 8 selected for execution
+[RESPONSE TIME] Process PID 8 response time: 0.152000 ms
+[WAITING TIME] Process PID 8 total waiting time updated to: 0.000151 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 8 starting from PC = 0
+[PC = 0] PAGE FAULT OCCURED
+[PC = 1] PAGE FAULT OCCURED
+[PC = 3] PAGE FAULT OCCURED
+[PC = 4] PAGE FAULT OCCURED
+[PC = 7] PAGE FAULT OCCURED
+[PC = 8] PAGE FAULT OCCURED
+[PC = 14] PAGE FAULT OCCURED
+[PC = 16] PAGE FAULT OCCURED
+[PC = 17] PAGE FAULT OCCURED
+[PC = 18] PAGE FAULT OCCURED
+[PC = 20] PAGE FAULT OCCURED
+[PAGE FAULT] Process PID 8 requesting page 3
+[ALLOCATION] Free frame 22 allocated to PID 8, page 3
+[LOADED] PID 8, page 3 loaded into frame 22
+[PC = 20] PAGE FAULT HANDLED, FRAME = 22
+[PC = 23] PAGE FAULT OCCURED
+[PC = 25] PAGE FAULT OCCURED
 [PAGE FAULT] Process PID 8 requesting page 1
-[ALLOCATION] Free frame 45 allocated to PID 8, page 1
-[LOADED] PID 8, page 1 loaded into frame 45
-[PC = 77] PAGE FAULT HANDLED, FRAME = 45
-[PC = 79] PAGE FAULT OCCURED
+[ALLOCATION] Free frame 23 allocated to PID 8, page 1
+[LOADED] PID 8, page 1 loaded into frame 23
+[PC = 25] PAGE FAULT HANDLED, FRAME = 23
+[PC = 26] PAGE FAULT OCCURED
+[PC = 27] PAGE FAULT OCCURED
+[PC = 29] PAGE FAULT OCCURED
+[PC = 31] PAGE FAULT OCCURED
+[PC = 32] PAGE FAULT OCCURED
+[PAGE FAULT] Process PID 8 requesting page 2
+[ALLOCATION] Free frame 24 allocated to PID 8, page 2
+[LOADED] PID 8, page 2 loaded into frame 24
+[PC = 32] PAGE FAULT HANDLED, FRAME = 24
+[PC = 35] PAGE FAULT OCCURED
+[PC = 37] PAGE FAULT OCCURED
+[PC = 44] PAGE FAULT OCCURED
+[PC = 45] PAGE FAULT OCCURED
+[PC = 46] PAGE FAULT OCCURED
+[PC = 50] PAGE FAULT OCCURED
+[PC = 52] PAGE FAULT OCCURED
+[PC = 54] PAGE FAULT OCCURED
+[PAGE FAULT] Process PID 8 requesting page 6
+[ALLOCATION] Free frame 25 allocated to PID 8, page 6
+[LOADED] PID 8, page 6 loaded into frame 25
+[PC = 54] PAGE FAULT HANDLED, FRAME = 25
+[PC = 55] PAGE FAULT OCCURED
+[PC = 56] PAGE FAULT OCCURED
+[PAGE FAULT] Process PID 8 requesting page 5
+[ALLOCATION] Free frame 26 allocated to PID 8, page 5
+[LOADED] PID 8, page 5 loaded into frame 26
+[PC = 56] PAGE FAULT HANDLED, FRAME = 26
+[PC = 57] PAGE FAULT OCCURED
+[PC = 62] PAGE FAULT OCCURED
+[PC = 64] PAGE FAULT OCCURED
+[PC = 65] PAGE FAULT OCCURED
+[PC = 66] PAGE FAULT OCCURED
+[PC = 67] PAGE FAULT OCCURED
+[PC = 69] PAGE FAULT OCCURED
+[PC = 76] PAGE FAULT OCCURED
+[PC = 77] PAGE FAULT OCCURED
 [PC = 80] PAGE FAULT OCCURED
-[PC = 81] PAGE FAULT OCCURED
-[PC = 89] PAGE FAULT OCCURED
+[PC = 84] PAGE FAULT OCCURED
+[PAGE FAULT] Process PID 8 requesting page 8
+[ALLOCATION] Free frame 27 allocated to PID 8, page 8
+[LOADED] PID 8, page 8 loaded into frame 27
+[PC = 84] PAGE FAULT HANDLED, FRAME = 27
+[PC = 86] PAGE FAULT OCCURED
+[PAGE FAULT] Process PID 8 requesting page 9
+[ALLOCATION] Free frame 28 allocated to PID 8, page 9
+[LOADED] PID 8, page 9 loaded into frame 28
+[PC = 86] PAGE FAULT HANDLED, FRAME = 28
+[PC = 88] PAGE FAULT OCCURED
 [PC = 90] PAGE FAULT OCCURED
+[PC = 91] PAGE FAULT OCCURED
+[PC = 92] PAGE FAULT OCCURED
 [PC = 94] PAGE FAULT OCCURED
+[PC = 96] PAGE FAULT OCCURED
 [PC = 97] PAGE FAULT OCCURED
-[PC = 99] PAGE FAULT OCCURED
+[PC = 98] PAGE FAULT OCCURED
 [COMPLETED] Process PID 8 completed
 [STATUS] Process PID 8 moved from PC = 0 to PC = 100, State = 6
 [TIME TAKEN] Process PID 8 took 0.000062 seconds to execute 100 instructions
 
 === SCHEDULER INVOKED ===
-Number of ready processes: 2
-Ready Queue: [9, 10]
-[SCHEDULER: FCFS] Selecting first process in queue
-
-[SCHEDULED] Process 9 selected for execution
-[RESPONSE TIME] Process PID 9 response time: 0.744000 ms
-[WAITING TIME] Process PID 9 total waiting time updated to: 0.000743 mss
-=== SCHEDULER TERMINATED ===
-
-[RUNNING] Process PID 9 starting from PC = 0
-[PC = 3] PAGE FAULT OCCURED
-[PAGE FAULT] Process PID 9 requesting page 9
-[ALLOCATION] Free frame 46 allocated to PID 9, page 9
-[LOADED] PID 9, page 9 loaded into frame 46
-[PC = 3] PAGE FAULT HANDLED, FRAME = 46
-[PC = 6] PAGE FAULT OCCURED
-[PAGE FAULT] Process PID 9 requesting page 4
-[ALLOCATION] Free frame 47 allocated to PID 9, page 4
-[LOADED] PID 9, page 4 loaded into frame 47
-[PC = 6] PAGE FAULT HANDLED, FRAME = 47
-[PC = 7] PAGE FAULT OCCURED
-[PAGE FAULT] Process PID 9 requesting page 6
-[ALLOCATION] Free frame 48 allocated to PID 9, page 6
-[LOADED] PID 9, page 6 loaded into frame 48
-[PC = 7] PAGE FAULT HANDLED, FRAME = 48
-[PC = 13] PAGE FAULT OCCURED
-[COMPLETED] Process PID 9 completed
-[STATUS] Process PID 9 moved from PC = 0 to PC = 25, State = 6
-[TIME TAKEN] Process PID 9 took 0.000004 seconds to execute 25 instructions
-
-=== SCHEDULER INVOKED ===
-Number of ready processes: 1
-Ready Queue: [10]
-[SCHEDULER: FCFS] Selecting first process in queue
+Number of ready processes: 7
+Ready Queue: [1, 3, 4, 6, 7, 9, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 6 in queue)
 
 [SCHEDULED] Process 10 selected for execution
-[RESPONSE TIME] Process PID 10 response time: 0.749000 ms
-[WAITING TIME] Process PID 10 total waiting time updated to: 0.000749 mss
+[RESPONSE TIME] Process PID 10 response time: 0.215000 ms
+[WAITING TIME] Process PID 10 total waiting time updated to: 0.000214 mss
 === SCHEDULER TERMINATED ===
 
 [RUNNING] Process PID 10 starting from PC = 0
@@ -1411,16 +612,277 @@ Ready Queue: [10]
 [PC = 4] PAGE FAULT OCCURED
 [BLOCKED] Process PID 10 on instruction 4 (Long Syscall)
 [STATUS] Process PID 10 moved from PC = 0 to PC = 5, State = 3
-[TIME TAKEN] Process PID 10 took 0.000007 seconds to execute 5 instructions
+[TIME TAKEN] Process PID 10 took 0.000005 seconds to execute 5 instructions
 [BLOCKED] Process PID 10 moved to READY state
 
 === SCHEDULER INVOKED ===
-Number of ready processes: 1
-Ready Queue: [10]
-[SCHEDULER: FCFS] Selecting first process in queue
+Number of ready processes: 7
+Ready Queue: [1, 3, 4, 6, 7, 9, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 1 (position 0 in queue)
+
+[SCHEDULED] Process 1 selected for execution
+[WAITING TIME] Process PID 1 total waiting time updated to: 0.000241 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 2
+[PC = 2] PAGE FAULT OCCURED
+[PC = 3] PAGE FAULT OCCURED
+[PC = 4] PAGE FAULT OCCURED
+[PC = 5] PAGE FAULT OCCURED
+[PC = 8] PAGE FAULT OCCURED
+[PAGE FAULT] Process PID 1 requesting page 7
+[ALLOCATION] Free frame 29 allocated to PID 1, page 7
+[LOADED] PID 1, page 7 loaded into frame 29
+[PC = 8] PAGE FAULT HANDLED, FRAME = 29
+[PC = 14] PAGE FAULT OCCURED
+[PC = 16] PAGE FAULT OCCURED
+[PAGE FAULT] Process PID 1 requesting page 5
+[ALLOCATION] Free frame 30 allocated to PID 1, page 5
+[LOADED] PID 1, page 5 loaded into frame 30
+[PC = 16] PAGE FAULT HANDLED, FRAME = 30
+[PC = 18] PAGE FAULT OCCURED
+[BLOCKED] Process PID 1 on instruction 18 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 2 to PC = 19, State = 3
+[TIME TAKEN] Process PID 1 took 0.000008 seconds to execute 17 instructions
+[BLOCKED] Process PID 1 moved to READY state
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 7
+Ready Queue: [1, 3, 4, 6, 7, 9, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 3 (position 1 in queue)
+
+[SCHEDULED] Process 3 selected for execution
+[RESPONSE TIME] Process PID 3 response time: 0.272000 ms
+[WAITING TIME] Process PID 3 total waiting time updated to: 0.000272 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 3 starting from PC = 0
+[PC = 1] PAGE FAULT OCCURED
+[PC = 3] PAGE FAULT OCCURED
+[PAGE FAULT] Process PID 3 requesting page 6
+[ALLOCATION] Free frame 31 allocated to PID 3, page 6
+[LOADED] PID 3, page 6 loaded into frame 31
+[PC = 3] PAGE FAULT HANDLED, FRAME = 31
+[PC = 4] PAGE FAULT OCCURED
+[PAGE FAULT] Process PID 3 requesting page 2
+[ALLOCATION] Free frame 32 allocated to PID 3, page 2
+[LOADED] PID 3, page 2 loaded into frame 32
+[PC = 4] PAGE FAULT HANDLED, FRAME = 32
+[PC = 5] PAGE FAULT OCCURED
+[PC = 7] PAGE FAULT OCCURED
+[PC = 10] PAGE FAULT OCCURED
+[PAGE FAULT] Process PID 3 requesting page 9
+[ALLOCATION] Free frame 33 allocated to PID 3, page 9
+[LOADED] PID 3, page 9 loaded into frame 33
+[PC = 10] PAGE FAULT HANDLED, FRAME = 33
+[PC = 11] PAGE FAULT OCCURED
+[PC = 12] PAGE FAULT OCCURED
+[PAGE FAULT] Process PID 3 requesting page 4
+[ALLOCATION] Free frame 34 allocated to PID 3, page 4
+[LOADED] PID 3, page 4 loaded into frame 34
+[PC = 12] PAGE FAULT HANDLED, FRAME = 34
+[PC = 14] PAGE FAULT OCCURED
+[PAGE FAULT] Process PID 3 requesting page 3
+[ALLOCATION] Free frame 35 allocated to PID 3, page 3
+[LOADED] PID 3, page 3 loaded into frame 35
+[PC = 14] PAGE FAULT HANDLED, FRAME = 35
+[BLOCKED] Process PID 3 on instruction 16 (Long Syscall)
+[STATUS] Process PID 3 moved from PC = 0 to PC = 17, State = 3
+[TIME TAKEN] Process PID 3 took 0.000015 seconds to execute 17 instructions
+[BLOCKED] Process PID 3 moved to READY state
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 7
+Ready Queue: [1, 3, 4, 6, 7, 9, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 2 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+[WAITING TIME] Process PID 4 total waiting time updated to: 0.000286 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 1
+[PC = 1] PAGE FAULT OCCURED
+[PC = 4] PAGE FAULT OCCURED
+[PC = 5] PAGE FAULT OCCURED
+[PC = 6] PAGE FAULT OCCURED
+[BLOCKED] Process PID 4 on instruction 6 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 1 to PC = 7, State = 3
+[TIME TAKEN] Process PID 4 took 0.000003 seconds to execute 6 instructions
+[BLOCKED] Process PID 4 moved to READY state
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 7
+Ready Queue: [1, 3, 4, 6, 7, 9, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 6 (position 3 in queue)
+
+[SCHEDULED] Process 6 selected for execution
+[RESPONSE TIME] Process PID 6 response time: 0.293000 ms
+[WAITING TIME] Process PID 6 total waiting time updated to: 0.000292 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 6 starting from PC = 0
+[PC = 2] PAGE FAULT OCCURED
+[PC = 7] PAGE FAULT OCCURED
+[PC = 8] PAGE FAULT OCCURED
+[PC = 9] PAGE FAULT OCCURED
+[PC = 13] PAGE FAULT OCCURED
+[PC = 15] PAGE FAULT OCCURED
+[PAGE FAULT] Process PID 6 requesting page 9
+[ALLOCATION] Free frame 36 allocated to PID 6, page 9
+[LOADED] PID 6, page 9 loaded into frame 36
+[PC = 15] PAGE FAULT HANDLED, FRAME = 36
+[PC = 16] PAGE FAULT OCCURED
+[PAGE FAULT] Process PID 6 requesting page 6
+[ALLOCATION] Free frame 37 allocated to PID 6, page 6
+[LOADED] PID 6, page 6 loaded into frame 37
+[PC = 16] PAGE FAULT HANDLED, FRAME = 37
+[PC = 17] PAGE FAULT OCCURED
+[PAGE FAULT] Process PID 6 requesting page 7
+[ALLOCATION] Free frame 38 allocated to PID 6, page 7
+[LOADED] PID 6, page 7 loaded into frame 38
+[PC = 17] PAGE FAULT HANDLED, FRAME = 38
+[PC = 19] PAGE FAULT OCCURED
+[PAGE FAULT] Process PID 6 requesting page 4
+[ALLOCATION] Free frame 39 allocated to PID 6, page 4
+[LOADED] PID 6, page 4 loaded into frame 39
+[PC = 19] PAGE FAULT HANDLED, FRAME = 39
+[PC = 23] PAGE FAULT OCCURED
+[PC = 27] PAGE FAULT OCCURED
+[PAGE FAULT] Process PID 6 requesting page 3
+[ALLOCATION] Free frame 40 allocated to PID 6, page 3
+[LOADED] PID 6, page 3 loaded into frame 40
+[PC = 27] PAGE FAULT HANDLED, FRAME = 40
+[PC = 28] PAGE FAULT OCCURED
+[PC = 29] PAGE FAULT OCCURED
+[PC = 32] PAGE FAULT OCCURED
+[COMPLETED] Process PID 6 completed
+[STATUS] Process PID 6 moved from PC = 0 to PC = 35, State = 6
+[TIME TAKEN] Process PID 6 took 0.000015 seconds to execute 35 instructions
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 6
+Ready Queue: [1, 3, 4, 7, 9, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 9 (position 4 in queue)
+
+[SCHEDULED] Process 9 selected for execution
+[RESPONSE TIME] Process PID 9 response time: 0.301000 ms
+[WAITING TIME] Process PID 9 total waiting time updated to: 0.000301 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 9 starting from PC = 0
+[PC = 16] PAGE FAULT OCCURED
+[PAGE FAULT] Process PID 9 requesting page 2
+[ALLOCATION] Free frame 41 allocated to PID 9, page 2
+[LOADED] PID 9, page 2 loaded into frame 41
+[PC = 16] PAGE FAULT HANDLED, FRAME = 41
+[PC = 19] PAGE FAULT OCCURED
+[PAGE FAULT] Process PID 9 requesting page 7
+[ALLOCATION] Free frame 42 allocated to PID 9, page 7
+[LOADED] PID 9, page 7 loaded into frame 42
+[PC = 19] PAGE FAULT HANDLED, FRAME = 42
+[PC = 21] PAGE FAULT OCCURED
+[PAGE FAULT] Process PID 9 requesting page 1
+[ALLOCATION] Free frame 43 allocated to PID 9, page 1
+[LOADED] PID 9, page 1 loaded into frame 43
+[PC = 21] PAGE FAULT HANDLED, FRAME = 43
+[PC = 22] PAGE FAULT OCCURED
+[PAGE FAULT] Process PID 9 requesting page 6
+[ALLOCATION] Free frame 44 allocated to PID 9, page 6
+[LOADED] PID 9, page 6 loaded into frame 44
+[PC = 22] PAGE FAULT HANDLED, FRAME = 44
+[COMPLETED] Process PID 9 completed
+[STATUS] Process PID 9 moved from PC = 0 to PC = 25, State = 6
+[TIME TAKEN] Process PID 9 took 0.000002 seconds to execute 25 instructions
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 5
+Ready Queue: [1, 3, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 1 (position 0 in queue)
+
+[SCHEDULED] Process 1 selected for execution
+[WAITING TIME] Process PID 1 total waiting time updated to: 0.000315 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 19
+[PC = 20] PAGE FAULT OCCURED
+[PC = 21] PAGE FAULT OCCURED
+[PAGE FAULT] Process PID 1 requesting page 1
+[ALLOCATION] Free frame 45 allocated to PID 1, page 1
+[LOADED] PID 1, page 1 loaded into frame 45
+[PC = 21] PAGE FAULT HANDLED, FRAME = 45
+[BLOCKED] Process PID 1 on instruction 21 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 19 to PC = 22, State = 3
+[TIME TAKEN] Process PID 1 took 0.000001 seconds to execute 3 instructions
+[BLOCKED] Process PID 1 moved to READY state
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 5
+Ready Queue: [1, 3, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 3 (position 1 in queue)
+
+[SCHEDULED] Process 3 selected for execution
+[WAITING TIME] Process PID 3 total waiting time updated to: 0.000333 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 3 starting from PC = 17
+[PC = 17] PAGE FAULT OCCURED
+[PC = 18] PAGE FAULT OCCURED
+[PAGE FAULT] Process PID 3 requesting page 1
+[ALLOCATION] Free frame 46 allocated to PID 3, page 1
+[LOADED] PID 3, page 1 loaded into frame 46
+[PC = 18] PAGE FAULT HANDLED, FRAME = 46
+[PC = 19] PAGE FAULT OCCURED
+[PC = 23] PAGE FAULT OCCURED
+[BLOCKED] Process PID 3 on instruction 28 (Long Syscall)
+[STATUS] Process PID 3 moved from PC = 17 to PC = 29, State = 3
+[TIME TAKEN] Process PID 3 took 0.000005 seconds to execute 12 instructions
+[BLOCKED] Process PID 3 moved to READY state
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 5
+Ready Queue: [1, 3, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 2 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+[WAITING TIME] Process PID 4 total waiting time updated to: 0.000347 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 7
+[BLOCKED] Process PID 4 on instruction 7 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 7 to PC = 8, State = 3
+[TIME TAKEN] Process PID 4 took 140726712450823.421875 seconds to execute 1 instructions
+[BLOCKED] Process PID 4 moved to READY state
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 5
+Ready Queue: [1, 3, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 3 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+[WAITING TIME] Process PID 7 total waiting time updated to: 0.000342 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 13
+[PC = 13] PAGE FAULT OCCURED
+[PC = 14] PAGE FAULT OCCURED
+[PAGE FAULT] Process PID 7 requesting page 1
+[ALLOCATION] Free frame 47 allocated to PID 7, page 1
+[LOADED] PID 7, page 1 loaded into frame 47
+[PC = 14] PAGE FAULT HANDLED, FRAME = 47
+[PC = 15] PAGE FAULT OCCURED
+[PC = 17] PAGE FAULT OCCURED
+[BLOCKED] Process PID 7 on instruction 17 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 13 to PC = 18, State = 3
+[TIME TAKEN] Process PID 7 took 0.000003 seconds to execute 5 instructions
+[BLOCKED] Process PID 7 moved to READY state
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 5
+Ready Queue: [1, 3, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 4 in queue)
 
 [SCHEDULED] Process 10 selected for execution
-[WAITING TIME] Process PID 10 total waiting time updated to: 0.000754 mss
+[WAITING TIME] Process PID 10 total waiting time updated to: 0.000348 mss
 === SCHEDULER TERMINATED ===
 
 [RUNNING] Process PID 10 starting from PC = 5
@@ -1429,211 +891,747 @@ Ready Queue: [10]
 [PC = 7] PAGE FAULT OCCURED
 [PC = 8] PAGE FAULT OCCURED
 [PC = 9] PAGE FAULT OCCURED
-[PAGE FAULT] Process PID 10 requesting page 1
-[ALLOCATION] Free frame 49 allocated to PID 10, page 1
-[LOADED] PID 10, page 1 loaded into frame 49
-[PC = 9] PAGE FAULT HANDLED, FRAME = 49
 [PC = 10] PAGE FAULT OCCURED
-[PAGE FAULT] Process PID 10 requesting page 3
-[ALLOCATION] Free frame 50 allocated to PID 10, page 3
-[LOADED] PID 10, page 3 loaded into frame 50
-[PC = 10] PAGE FAULT HANDLED, FRAME = 50
 [PC = 11] PAGE FAULT OCCURED
+[PC = 12] PAGE FAULT OCCURED
 [PC = 13] PAGE FAULT OCCURED
 [PC = 14] PAGE FAULT OCCURED
-[PAGE FAULT] Process PID 10 requesting page 7
-[ALLOCATION] Free frame 51 allocated to PID 10, page 7
-[LOADED] PID 10, page 7 loaded into frame 51
-[PC = 14] PAGE FAULT HANDLED, FRAME = 51
 [PC = 15] PAGE FAULT OCCURED
-[PC = 16] PAGE FAULT OCCURED
-[PC = 18] PAGE FAULT OCCURED
-[PC = 19] PAGE FAULT OCCURED
-[BLOCKED] Process PID 10 on instruction 19 (Long Syscall)
-[STATUS] Process PID 10 moved from PC = 5 to PC = 20, State = 3
-[TIME TAKEN] Process PID 10 took 0.000017 seconds to execute 15 instructions
+[BLOCKED] Process PID 10 on instruction 15 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 5 to PC = 16, State = 3
+[TIME TAKEN] Process PID 10 took 0.000012 seconds to execute 11 instructions
 [BLOCKED] Process PID 10 moved to READY state
 
 === SCHEDULER INVOKED ===
-Number of ready processes: 1
-Ready Queue: [10]
-[SCHEDULER: FCFS] Selecting first process in queue
+Number of ready processes: 5
+Ready Queue: [1, 3, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 1 (position 0 in queue)
 
-[SCHEDULED] Process 10 selected for execution
-[WAITING TIME] Process PID 10 total waiting time updated to: 0.000760 mss
+[SCHEDULED] Process 1 selected for execution
+[WAITING TIME] Process PID 1 total waiting time updated to: 0.000374 mss
 === SCHEDULER TERMINATED ===
 
-[RUNNING] Process PID 10 starting from PC = 20
+[RUNNING] Process PID 1 starting from PC = 22
+[PC = 23] PAGE FAULT OCCURED
+[BLOCKED] Process PID 1 on instruction 23 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 22 to PC = 24, State = 3
+[TIME TAKEN] Process PID 1 took 0.000000 seconds to execute 2 instructions
+[BLOCKED] Process PID 1 moved to READY state
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 5
+Ready Queue: [1, 3, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 3 (position 1 in queue)
+
+[SCHEDULED] Process 3 selected for execution
+[WAITING TIME] Process PID 3 total waiting time updated to: 0.000389 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 3 starting from PC = 29
+[PC = 30] PAGE FAULT OCCURED
+[PAGE FAULT] Process PID 3 requesting page 7
+[ALLOCATION] Free frame 48 allocated to PID 3, page 7
+[LOADED] PID 3, page 7 loaded into frame 48
+[PC = 30] PAGE FAULT HANDLED, FRAME = 48
+[PC = 32] PAGE FAULT OCCURED
+[PC = 35] PAGE FAULT OCCURED
+[PC = 39] PAGE FAULT OCCURED
+[COMPLETED] Process PID 3 completed
+[STATUS] Process PID 3 moved from PC = 29 to PC = 40, State = 6
+[TIME TAKEN] Process PID 3 took 0.000005 seconds to execute 11 instructions
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 4
+Ready Queue: [1, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 2 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+[WAITING TIME] Process PID 7 total waiting time updated to: 0.000386 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 18
+[PC = 18] PAGE FAULT OCCURED
+[PC = 19] PAGE FAULT OCCURED
+[PAGE FAULT] Process PID 7 requesting page 7
+[ALLOCATION] Free frame 49 allocated to PID 7, page 7
+[LOADED] PID 7, page 7 loaded into frame 49
+[PC = 19] PAGE FAULT HANDLED, FRAME = 49
 [PC = 20] PAGE FAULT OCCURED
+[PAGE FAULT] Process PID 7 requesting page 9
+[ALLOCATION] Free frame 50 allocated to PID 7, page 9
+[LOADED] PID 7, page 9 loaded into frame 50
+[PC = 20] PAGE FAULT HANDLED, FRAME = 50
 [PC = 21] PAGE FAULT OCCURED
 [PC = 22] PAGE FAULT OCCURED
+[PC = 24] PAGE FAULT OCCURED
+[PC = 25] PAGE FAULT OCCURED
+[PAGE FAULT] Process PID 7 requesting page 6
+[ALLOCATION] Free frame 51 allocated to PID 7, page 6
+[LOADED] PID 7, page 6 loaded into frame 51
+[PC = 25] PAGE FAULT HANDLED, FRAME = 51
+[PC = 26] PAGE FAULT OCCURED
+[BLOCKED] Process PID 7 on instruction 26 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 18 to PC = 27, State = 3
+[TIME TAKEN] Process PID 7 took 0.000007 seconds to execute 9 instructions
+[BLOCKED] Process PID 7 moved to READY state
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 4
+Ready Queue: [1, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 3 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+[WAITING TIME] Process PID 10 total waiting time updated to: 0.000394 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 16
+[PC = 16] PAGE FAULT OCCURED
+[PC = 17] PAGE FAULT OCCURED
+[PC = 18] PAGE FAULT OCCURED
+[PC = 19] PAGE FAULT OCCURED
+[PC = 21] PAGE FAULT OCCURED
+[PAGE FAULT] Process PID 10 requesting page 1
+[ALLOCATION] Free frame 52 allocated to PID 10, page 1
+[LOADED] PID 10, page 1 loaded into frame 52
+[PC = 21] PAGE FAULT HANDLED, FRAME = 52
+[PC = 22] PAGE FAULT OCCURED
+[PC = 23] PAGE FAULT OCCURED
 [BLOCKED] Process PID 10 on instruction 23 (Long Syscall)
-[STATUS] Process PID 10 moved from PC = 20 to PC = 24, State = 3
-[TIME TAKEN] Process PID 10 took 0.000005 seconds to execute 4 instructions
+[STATUS] Process PID 10 moved from PC = 16 to PC = 24, State = 3
+[TIME TAKEN] Process PID 10 took 0.000008 seconds to execute 8 instructions
 [BLOCKED] Process PID 10 moved to READY state
 
 === SCHEDULER INVOKED ===
-Number of ready processes: 1
-Ready Queue: [10]
-[SCHEDULER: FCFS] Selecting first process in queue
+Number of ready processes: 4
+Ready Queue: [1, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 1 (position 0 in queue)
+
+[SCHEDULED] Process 1 selected for execution
+[WAITING TIME] Process PID 1 total waiting time updated to: 0.000428 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 24
+[PC = 25] PAGE FAULT OCCURED
+[PC = 27] PAGE FAULT OCCURED
+[PAGE FAULT] Process PID 1 requesting page 3
+[ALLOCATION] Free frame 53 allocated to PID 1, page 3
+[LOADED] PID 1, page 3 loaded into frame 53
+[PC = 27] PAGE FAULT HANDLED, FRAME = 53
+[PC = 28] PAGE FAULT OCCURED
+[PAGE FAULT] Process PID 1 requesting page 8
+[ALLOCATION] Free frame 54 allocated to PID 1, page 8
+[LOADED] PID 1, page 8 loaded into frame 54
+[PC = 28] PAGE FAULT HANDLED, FRAME = 54
+[PC = 29] PAGE FAULT OCCURED
+[PC = 30] PAGE FAULT OCCURED
+[BLOCKED] Process PID 1 on instruction 31 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 24 to PC = 32, State = 3
+[TIME TAKEN] Process PID 1 took 0.000004 seconds to execute 8 instructions
+[BLOCKED] Process PID 1 moved to READY state
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 4
+Ready Queue: [1, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 1 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+[WAITING TIME] Process PID 4 total waiting time updated to: 0.000456 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 8
+[BLOCKED] Process PID 4 on instruction 11 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 8 to PC = 12, State = 3
+[TIME TAKEN] Process PID 4 took 0.000000 seconds to execute 4 instructions
+[BLOCKED] Process PID 4 moved to READY state
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 4
+Ready Queue: [1, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 2 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+[WAITING TIME] Process PID 7 total waiting time updated to: 0.000433 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 27
+[PC = 27] PAGE FAULT OCCURED
+[PC = 28] PAGE FAULT OCCURED
+[PC = 29] PAGE FAULT OCCURED
+[PC = 30] PAGE FAULT OCCURED
+[BLOCKED] Process PID 7 on instruction 31 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 27 to PC = 32, State = 3
+[TIME TAKEN] Process PID 7 took 0.000005 seconds to execute 5 instructions
+[BLOCKED] Process PID 7 moved to READY state
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 4
+Ready Queue: [1, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 3 in queue)
 
 [SCHEDULED] Process 10 selected for execution
-[WAITING TIME] Process PID 10 total waiting time updated to: 0.000765 mss
+[WAITING TIME] Process PID 10 total waiting time updated to: 0.000430 mss
 === SCHEDULER TERMINATED ===
 
 [RUNNING] Process PID 10 starting from PC = 24
 [PC = 24] PAGE FAULT OCCURED
-[PAGE FAULT] Process PID 10 requesting page 8
-[ALLOCATION] Free frame 52 allocated to PID 10, page 8
-[LOADED] PID 10, page 8 loaded into frame 52
-[PC = 24] PAGE FAULT HANDLED, FRAME = 52
-[PC = 25] PAGE FAULT OCCURED
-[PC = 26] PAGE FAULT OCCURED
-[BLOCKED] Process PID 10 on instruction 26 (Long Syscall)
-[STATUS] Process PID 10 moved from PC = 24 to PC = 27, State = 3
-[TIME TAKEN] Process PID 10 took 0.000002 seconds to execute 3 instructions
+[BLOCKED] Process PID 10 on instruction 24 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 24 to PC = 25, State = 3
+[TIME TAKEN] Process PID 10 took 140726712448263.421875 seconds to execute 1 instructions
 [BLOCKED] Process PID 10 moved to READY state
 
 === SCHEDULER INVOKED ===
-Number of ready processes: 1
-Ready Queue: [10]
-[SCHEDULER: FCFS] Selecting first process in queue
+Number of ready processes: 4
+Ready Queue: [1, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 1 (position 0 in queue)
 
-[SCHEDULED] Process 10 selected for execution
-[WAITING TIME] Process PID 10 total waiting time updated to: 0.000770 mss
+[SCHEDULED] Process 1 selected for execution
+[WAITING TIME] Process PID 1 total waiting time updated to: 0.000461 mss
 === SCHEDULER TERMINATED ===
 
-[RUNNING] Process PID 10 starting from PC = 27
-[PC = 27] PAGE FAULT OCCURED
-[PAGE FAULT] Process PID 10 requesting page 5
-[ALLOCATION] Free frame 53 allocated to PID 10, page 5
-[LOADED] PID 10, page 5 loaded into frame 53
-[PC = 27] PAGE FAULT HANDLED, FRAME = 53
-[PC = 28] PAGE FAULT OCCURED
-[PC = 29] PAGE FAULT OCCURED
-[PAGE FAULT] Process PID 10 requesting page 9
-[ALLOCATION] Free frame 54 allocated to PID 10, page 9
-[LOADED] PID 10, page 9 loaded into frame 54
-[PC = 29] PAGE FAULT HANDLED, FRAME = 54
-[BLOCKED] Process PID 10 on instruction 29 (Long Syscall)
-[STATUS] Process PID 10 moved from PC = 27 to PC = 30, State = 3
-[TIME TAKEN] Process PID 10 took 0.000002 seconds to execute 3 instructions
-[BLOCKED] Process PID 10 moved to READY state
+[RUNNING] Process PID 1 starting from PC = 32
+[PC = 37] PAGE FAULT OCCURED
+[PAGE FAULT] Process PID 1 requesting page 9
+[ALLOCATION] Free frame 55 allocated to PID 1, page 9
+[LOADED] PID 1, page 9 loaded into frame 55
+[PC = 37] PAGE FAULT HANDLED, FRAME = 55
+[BLOCKED] Process PID 1 on instruction 38 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 32 to PC = 39, State = 3
+[TIME TAKEN] Process PID 1 took 0.000001 seconds to execute 7 instructions
+[BLOCKED] Process PID 1 moved to READY state
 
 === SCHEDULER INVOKED ===
-Number of ready processes: 1
-Ready Queue: [10]
-[SCHEDULER: FCFS] Selecting first process in queue
+Number of ready processes: 4
+Ready Queue: [1, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 1 in queue)
 
-[SCHEDULED] Process 10 selected for execution
-[WAITING TIME] Process PID 10 total waiting time updated to: 0.000775 mss
+[SCHEDULED] Process 4 selected for execution
+[WAITING TIME] Process PID 4 total waiting time updated to: 0.000494 mss
 === SCHEDULER TERMINATED ===
 
-[RUNNING] Process PID 10 starting from PC = 30
-[PC = 30] PAGE FAULT OCCURED
-[PC = 31] PAGE FAULT OCCURED
-[BLOCKED] Process PID 10 on instruction 31 (Long Syscall)
-[STATUS] Process PID 10 moved from PC = 30 to PC = 32, State = 3
-[TIME TAKEN] Process PID 10 took 0.000001 seconds to execute 2 instructions
-[BLOCKED] Process PID 10 moved to READY state
+[RUNNING] Process PID 4 starting from PC = 12
+[BLOCKED] Process PID 4 on instruction 14 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 12 to PC = 15, State = 3
+[TIME TAKEN] Process PID 4 took 0.000000 seconds to execute 3 instructions
+[BLOCKED] Process PID 4 moved to READY state
 
 === SCHEDULER INVOKED ===
-Number of ready processes: 1
-Ready Queue: [10]
-[SCHEDULER: FCFS] Selecting first process in queue
+Number of ready processes: 4
+Ready Queue: [1, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 2 in queue)
 
-[SCHEDULED] Process 10 selected for execution
-[WAITING TIME] Process PID 10 total waiting time updated to: 0.000781 mss
+[SCHEDULED] Process 7 selected for execution
+[WAITING TIME] Process PID 7 total waiting time updated to: 0.000467 mss
 === SCHEDULER TERMINATED ===
 
-[RUNNING] Process PID 10 starting from PC = 32
+[RUNNING] Process PID 7 starting from PC = 32
 [PC = 32] PAGE FAULT OCCURED
 [PC = 34] PAGE FAULT OCCURED
 [PC = 35] PAGE FAULT OCCURED
-[PC = 36] PAGE FAULT OCCURED
-[PC = 37] PAGE FAULT OCCURED
 [PC = 38] PAGE FAULT OCCURED
 [PC = 39] PAGE FAULT OCCURED
-[PC = 40] PAGE FAULT OCCURED
-[PC = 41] PAGE FAULT OCCURED
-[BLOCKED] Process PID 10 on instruction 41 (Long Syscall)
-[STATUS] Process PID 10 moved from PC = 32 to PC = 42, State = 3
-[TIME TAKEN] Process PID 10 took 0.000014 seconds to execute 10 instructions
+[BLOCKED] Process PID 7 on instruction 39 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 32 to PC = 40, State = 3
+[TIME TAKEN] Process PID 7 took 0.000006 seconds to execute 8 instructions
+[BLOCKED] Process PID 7 moved to READY state
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 4
+Ready Queue: [1, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 3 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+[WAITING TIME] Process PID 10 total waiting time updated to: 0.000468 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 25
+[PC = 25] PAGE FAULT OCCURED
+[BLOCKED] Process PID 10 on instruction 25 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 25 to PC = 26, State = 3
+[TIME TAKEN] Process PID 10 took 140726712447239.421875 seconds to execute 1 instructions
 [BLOCKED] Process PID 10 moved to READY state
 
 === SCHEDULER INVOKED ===
-Number of ready processes: 1
-Ready Queue: [10]
-[SCHEDULER: FCFS] Selecting first process in queue
+Number of ready processes: 4
+Ready Queue: [1, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 1 (position 0 in queue)
 
-[SCHEDULED] Process 10 selected for execution
-[WAITING TIME] Process PID 10 total waiting time updated to: 0.000786 mss
+[SCHEDULED] Process 1 selected for execution
+[WAITING TIME] Process PID 1 total waiting time updated to: 0.000501 mss
 === SCHEDULER TERMINATED ===
 
-[RUNNING] Process PID 10 starting from PC = 42
+[RUNNING] Process PID 1 starting from PC = 39
+[PC = 40] PAGE FAULT OCCURED
+[PAGE FAULT] Process PID 1 requesting page 6
+[ALLOCATION] Free frame 56 allocated to PID 1, page 6
+[LOADED] PID 1, page 6 loaded into frame 56
+[PC = 40] PAGE FAULT HANDLED, FRAME = 56
+[BLOCKED] Process PID 1 on instruction 43 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 39 to PC = 44, State = 3
+[TIME TAKEN] Process PID 1 took 0.000000 seconds to execute 5 instructions
+[BLOCKED] Process PID 1 moved to READY state
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 4
+Ready Queue: [1, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 1 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+[WAITING TIME] Process PID 4 total waiting time updated to: 0.000535 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 15
+[PC = 15] PAGE FAULT OCCURED
+[PC = 16] PAGE FAULT OCCURED
+[PAGE FAULT] Process PID 4 requesting page 3
+[ALLOCATION] Free frame 57 allocated to PID 4, page 3
+[LOADED] PID 4, page 3 loaded into frame 57
+[PC = 16] PAGE FAULT HANDLED, FRAME = 57
+[BLOCKED] Process PID 4 on instruction 16 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 15 to PC = 17, State = 3
+[TIME TAKEN] Process PID 4 took 0.000002 seconds to execute 2 instructions
+[BLOCKED] Process PID 4 moved to READY state
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 4
+Ready Queue: [1, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 2 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+[WAITING TIME] Process PID 7 total waiting time updated to: 0.000509 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 40
 [PC = 42] PAGE FAULT OCCURED
 [PC = 43] PAGE FAULT OCCURED
-[PC = 44] PAGE FAULT OCCURED
 [PC = 45] PAGE FAULT OCCURED
-[BLOCKED] Process PID 10 on instruction 45 (Long Syscall)
-[STATUS] Process PID 10 moved from PC = 42 to PC = 46, State = 3
-[TIME TAKEN] Process PID 10 took 0.000005 seconds to execute 4 instructions
-[BLOCKED] Process PID 10 moved to READY state
+[PC = 47] PAGE FAULT OCCURED
+[PAGE FAULT] Process PID 7 requesting page 4
+[ALLOCATION] Free frame 58 allocated to PID 7, page 4
+[LOADED] PID 7, page 4 loaded into frame 58
+[PC = 47] PAGE FAULT HANDLED, FRAME = 58
+[PC = 50] PAGE FAULT OCCURED
+[PC = 52] PAGE FAULT OCCURED
+[PC = 55] PAGE FAULT OCCURED
+[PAGE FAULT] Process PID 7 requesting page 8
+[ALLOCATION] Free frame 59 allocated to PID 7, page 8
+[LOADED] PID 7, page 8 loaded into frame 59
+[PC = 55] PAGE FAULT HANDLED, FRAME = 59
+[PC = 57] PAGE FAULT OCCURED
+[PAGE FAULT] Process PID 7 requesting page 3
+[ALLOCATION] Free frame 60 allocated to PID 7, page 3
+[LOADED] PID 7, page 3 loaded into frame 60
+[PC = 57] PAGE FAULT HANDLED, FRAME = 60
+[PC = 59] PAGE FAULT OCCURED
+[PC = 61] PAGE FAULT OCCURED
+[PAGE FAULT] Process PID 7 requesting page 5
+[ALLOCATION] Free frame 61 allocated to PID 7, page 5
+[LOADED] PID 7, page 5 loaded into frame 61
+[PC = 61] PAGE FAULT HANDLED, FRAME = 61
+[BLOCKED] Process PID 7 on instruction 65 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 40 to PC = 66, State = 3
+[TIME TAKEN] Process PID 7 took 0.000012 seconds to execute 26 instructions
+[BLOCKED] Process PID 7 moved to READY state
 
 === SCHEDULER INVOKED ===
-Number of ready processes: 1
-Ready Queue: [10]
-[SCHEDULER: FCFS] Selecting first process in queue
+Number of ready processes: 4
+Ready Queue: [1, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 3 in queue)
 
 [SCHEDULED] Process 10 selected for execution
-[WAITING TIME] Process PID 10 total waiting time updated to: 0.000792 mss
+[WAITING TIME] Process PID 10 total waiting time updated to: 0.000520 mss
 === SCHEDULER TERMINATED ===
 
-[RUNNING] Process PID 10 starting from PC = 46
-[PC = 46] PAGE FAULT OCCURED
-[PC = 47] PAGE FAULT OCCURED
-[PC = 48] PAGE FAULT OCCURED
-[PC = 49] PAGE FAULT OCCURED
-[PC = 51] PAGE FAULT OCCURED
-[BLOCKED] Process PID 10 on instruction 51 (Long Syscall)
-[STATUS] Process PID 10 moved from PC = 46 to PC = 52, State = 3
+[RUNNING] Process PID 10 starting from PC = 26
+[PC = 26] PAGE FAULT OCCURED
+[PC = 27] PAGE FAULT OCCURED
+[PC = 28] PAGE FAULT OCCURED
+[PC = 29] PAGE FAULT OCCURED
+[PC = 30] PAGE FAULT OCCURED
+[PC = 31] PAGE FAULT OCCURED
+[BLOCKED] Process PID 10 on instruction 31 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 26 to PC = 32, State = 3
 [TIME TAKEN] Process PID 10 took 0.000006 seconds to execute 6 instructions
 [BLOCKED] Process PID 10 moved to READY state
 
 === SCHEDULER INVOKED ===
-Number of ready processes: 1
-Ready Queue: [10]
-[SCHEDULER: FCFS] Selecting first process in queue
+Number of ready processes: 4
+Ready Queue: [1, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 1 (position 0 in queue)
 
-[SCHEDULED] Process 10 selected for execution
-[WAITING TIME] Process PID 10 total waiting time updated to: 0.000797 mss
+[SCHEDULED] Process 1 selected for execution
+[WAITING TIME] Process PID 1 total waiting time updated to: 0.000553 mss
 === SCHEDULER TERMINATED ===
 
-[RUNNING] Process PID 10 starting from PC = 52
-[BLOCKED] Process PID 10 on instruction 52 (Long Syscall)
-[STATUS] Process PID 10 moved from PC = 52 to PC = 53, State = 3
-[TIME TAKEN] Process PID 10 took 140732460695726.328125 seconds to execute 1 instructions
+[RUNNING] Process PID 1 starting from PC = 44
+[BLOCKED] Process PID 1 on instruction 45 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 44 to PC = 46, State = 3
+[TIME TAKEN] Process PID 1 took 0.000000 seconds to execute 2 instructions
+[BLOCKED] Process PID 1 moved to READY state
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 4
+Ready Queue: [1, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 1 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+[WAITING TIME] Process PID 4 total waiting time updated to: 0.000585 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 17
+[PC = 18] PAGE FAULT OCCURED
+[BLOCKED] Process PID 4 on instruction 20 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 17 to PC = 21, State = 3
+[TIME TAKEN] Process PID 4 took 0.000002 seconds to execute 4 instructions
+[BLOCKED] Process PID 4 moved to READY state
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 4
+Ready Queue: [1, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 2 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+[WAITING TIME] Process PID 7 total waiting time updated to: 0.000543 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 66
+[PC = 66] PAGE FAULT OCCURED
+[BLOCKED] Process PID 7 on instruction 66 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 66 to PC = 67, State = 3
+[TIME TAKEN] Process PID 7 took 140726712445447.421875 seconds to execute 1 instructions
+[BLOCKED] Process PID 7 moved to READY state
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 4
+Ready Queue: [1, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 3 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+[WAITING TIME] Process PID 10 total waiting time updated to: 0.000554 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 32
+[PC = 33] PAGE FAULT OCCURED
+[PAGE FAULT] Process PID 10 requesting page 3
+[ALLOCATION] Free frame 62 allocated to PID 10, page 3
+[LOADED] PID 10, page 3 loaded into frame 62
+[PC = 33] PAGE FAULT HANDLED, FRAME = 62
+[PC = 34] PAGE FAULT OCCURED
+[PAGE FAULT] Process PID 10 requesting page 8
+[ALLOCATION] Free frame 63 allocated to PID 10, page 8
+[LOADED] PID 10, page 8 loaded into frame 63
+[PC = 34] PAGE FAULT HANDLED, FRAME = 63
+[PC = 35] PAGE FAULT OCCURED
+[PC = 36] PAGE FAULT OCCURED
+[PC = 37] PAGE FAULT OCCURED
+[BLOCKED] Process PID 10 on instruction 37 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 32 to PC = 38, State = 3
+[TIME TAKEN] Process PID 10 took 0.000004 seconds to execute 6 instructions
 [BLOCKED] Process PID 10 moved to READY state
 
 === SCHEDULER INVOKED ===
-Number of ready processes: 1
-Ready Queue: [10]
-[SCHEDULER: FCFS] Selecting first process in queue
+Number of ready processes: 4
+Ready Queue: [1, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 1 (position 0 in queue)
+
+[SCHEDULED] Process 1 selected for execution
+[WAITING TIME] Process PID 1 total waiting time updated to: 0.000592 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 46
+[BLOCKED] Process PID 1 on instruction 47 (Long Syscall)
+[STATUS] Process PID 1 moved from PC = 46 to PC = 48, State = 3
+[TIME TAKEN] Process PID 1 took 0.000001 seconds to execute 2 instructions
+[BLOCKED] Process PID 1 moved to READY state
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 4
+Ready Queue: [1, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 1 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+[WAITING TIME] Process PID 4 total waiting time updated to: 0.000623 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 21
+[PC = 21] PAGE FAULT OCCURED
+[PC = 23] PAGE FAULT OCCURED
+[PAGE FAULT] Process PID 4 requesting page 9
+[REPLACEMENT] No free frames available, using FIFO replacement
+[FIFO] Selected frame 0 for replacement
+[VICTIM] Frame 0: evicting PID 1, page 0
+[UPDATE] PID 1 page table updated: page 0 unloaded
+[LOADED] PID 4, page 9 loaded into frame 0
+[PC = 23] PAGE FAULT HANDLED, FRAME = 0
+[PC = 27] PAGE FAULT OCCURED
+[PC = 29] PAGE FAULT OCCURED
+[PAGE FAULT] Process PID 4 requesting page 2
+[REPLACEMENT] No free frames available, using FIFO replacement
+[FIFO] Selected frame 1 for replacement
+[VICTIM] Frame 1: evicting PID 2, page 0
+[UPDATE] PID 2 page table updated: page 0 unloaded
+[LOADED] PID 4, page 2 loaded into frame 1
+[PC = 29] PAGE FAULT HANDLED, FRAME = 1
+[PC = 30] PAGE FAULT OCCURED
+[PC = 31] PAGE FAULT OCCURED
+[BLOCKED] Process PID 4 on instruction 31 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 21 to PC = 32, State = 3
+[TIME TAKEN] Process PID 4 took 0.000006 seconds to execute 11 instructions
+[BLOCKED] Process PID 4 moved to READY state
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 4
+Ready Queue: [1, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 2 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+[WAITING TIME] Process PID 7 total waiting time updated to: 0.000582 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 67
+[BLOCKED] Process PID 7 on instruction 67 (Long Syscall)
+[STATUS] Process PID 7 moved from PC = 67 to PC = 68, State = 3
+[TIME TAKEN] Process PID 7 took 140726712444423.421875 seconds to execute 1 instructions
+[BLOCKED] Process PID 7 moved to READY state
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 4
+Ready Queue: [1, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 3 in queue)
 
 [SCHEDULED] Process 10 selected for execution
-[WAITING TIME] Process PID 10 total waiting time updated to: 0.000803 mss
+[WAITING TIME] Process PID 10 total waiting time updated to: 0.000587 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 38
+[PC = 38] PAGE FAULT OCCURED
+[BLOCKED] Process PID 10 on instruction 38 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 38 to PC = 39, State = 3
+[TIME TAKEN] Process PID 10 took 140726712444167.421875 seconds to execute 1 instructions
+[BLOCKED] Process PID 10 moved to READY state
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 4
+Ready Queue: [1, 4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 1 (position 0 in queue)
+
+[SCHEDULED] Process 1 selected for execution
+[WAITING TIME] Process PID 1 total waiting time updated to: 0.000633 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 1 starting from PC = 48
+[COMPLETED] Process PID 1 completed
+[STATUS] Process PID 1 moved from PC = 48 to PC = 50, State = 6
+[TIME TAKEN] Process PID 1 took 0.000000 seconds to execute 2 instructions
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 3
+Ready Queue: [4, 7, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 7 (position 1 in queue)
+
+[SCHEDULED] Process 7 selected for execution
+[WAITING TIME] Process PID 7 total waiting time updated to: 0.000607 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 7 starting from PC = 68
+[PC = 68] PAGE FAULT OCCURED
+[COMPLETED] Process PID 7 completed
+[STATUS] Process PID 7 moved from PC = 68 to PC = 70, State = 6
+[TIME TAKEN] Process PID 7 took 0.000002 seconds to execute 2 instructions
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 2
+Ready Queue: [4, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 0 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+[WAITING TIME] Process PID 4 total waiting time updated to: 0.000662 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 32
+[BLOCKED] Process PID 4 on instruction 32 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 32 to PC = 33, State = 3
+[TIME TAKEN] Process PID 4 took 140726712443399.421875 seconds to execute 1 instructions
+[BLOCKED] Process PID 4 moved to READY state
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 2
+Ready Queue: [4, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 1 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+[WAITING TIME] Process PID 10 total waiting time updated to: 0.000611 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 39
+[PC = 39] PAGE FAULT OCCURED
+[PC = 40] PAGE FAULT OCCURED
+[PAGE FAULT] Process PID 10 requesting page 4
+[REPLACEMENT] No free frames available, using FIFO replacement
+[FIFO] Selected frame 2 for replacement
+[VICTIM] Frame 2: evicting PID 3, page 0
+[UPDATE] PID 3 page table updated: page 0 unloaded
+[LOADED] PID 10, page 4 loaded into frame 2
+[PC = 40] PAGE FAULT HANDLED, FRAME = 2
+[BLOCKED] Process PID 10 on instruction 40 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 39 to PC = 41, State = 3
+[TIME TAKEN] Process PID 10 took 0.000002 seconds to execute 2 instructions
+[BLOCKED] Process PID 10 moved to READY state
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 2
+Ready Queue: [4, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 0 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+[WAITING TIME] Process PID 4 total waiting time updated to: 0.000676 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 33
+[PC = 33] PAGE FAULT OCCURED
+[BLOCKED] Process PID 4 on instruction 33 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 33 to PC = 34, State = 3
+[TIME TAKEN] Process PID 4 took 140726712442887.421875 seconds to execute 1 instructions
+[BLOCKED] Process PID 4 moved to READY state
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 2
+Ready Queue: [4, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 1 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+[WAITING TIME] Process PID 10 total waiting time updated to: 0.000624 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 41
+[PC = 41] PAGE FAULT OCCURED
+[PC = 42] PAGE FAULT OCCURED
+[PC = 43] PAGE FAULT OCCURED
+[PC = 46] PAGE FAULT OCCURED
+[PC = 47] PAGE FAULT OCCURED
+[PC = 48] PAGE FAULT OCCURED
+[BLOCKED] Process PID 10 on instruction 48 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 41 to PC = 49, State = 3
+[TIME TAKEN] Process PID 10 took 0.000012 seconds to execute 8 instructions
+[BLOCKED] Process PID 10 moved to READY state
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 2
+Ready Queue: [4, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 0 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+[WAITING TIME] Process PID 4 total waiting time updated to: 0.000701 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 34
+[PC = 36] PAGE FAULT OCCURED
+[PC = 38] PAGE FAULT OCCURED
+[PC = 39] PAGE FAULT OCCURED
+[PC = 40] PAGE FAULT OCCURED
+[BLOCKED] Process PID 4 on instruction 40 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 34 to PC = 41, State = 3
+[TIME TAKEN] Process PID 4 took 0.000004 seconds to execute 7 instructions
+[BLOCKED] Process PID 4 moved to READY state
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 2
+Ready Queue: [4, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 1 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+[WAITING TIME] Process PID 10 total waiting time updated to: 0.000642 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 10 starting from PC = 49
+[PC = 49] PAGE FAULT OCCURED
+[PC = 50] PAGE FAULT OCCURED
+[PC = 51] PAGE FAULT OCCURED
+[PC = 52] PAGE FAULT OCCURED
+[BLOCKED] Process PID 10 on instruction 52 (Long Syscall)
+[STATUS] Process PID 10 moved from PC = 49 to PC = 53, State = 3
+[TIME TAKEN] Process PID 10 took 0.000004 seconds to execute 4 instructions
+[BLOCKED] Process PID 10 moved to READY state
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 2
+Ready Queue: [4, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 0 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+[WAITING TIME] Process PID 4 total waiting time updated to: 0.000719 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 41
+[PC = 42] PAGE FAULT OCCURED
+[PC = 46] PAGE FAULT OCCURED
+[PC = 47] PAGE FAULT OCCURED
+[PC = 51] PAGE FAULT OCCURED
+[PAGE FAULT] Process PID 4 requesting page 6
+[REPLACEMENT] No free frames available, using FIFO replacement
+[FIFO] Selected frame 3 for replacement
+[VICTIM] Frame 3: evicting PID 4, page 0
+[UPDATE] PID 4 page table updated: page 0 unloaded
+[LOADED] PID 4, page 6 loaded into frame 3
+[PC = 51] PAGE FAULT HANDLED, FRAME = 3
+[BLOCKED] Process PID 4 on instruction 52 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 41 to PC = 53, State = 3
+[TIME TAKEN] Process PID 4 took 0.000005 seconds to execute 12 instructions
+[BLOCKED] Process PID 4 moved to READY state
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 2
+Ready Queue: [4, 10]
+[SCHEDULER: ROUND ROBIN] Selected process 10 (position 1 in queue)
+
+[SCHEDULED] Process 10 selected for execution
+[WAITING TIME] Process PID 10 total waiting time updated to: 0.000658 mss
 === SCHEDULER TERMINATED ===
 
 [RUNNING] Process PID 10 starting from PC = 53
 [PC = 53] PAGE FAULT OCCURED
-[PAGE FAULT] Process PID 10 requesting page 4
-[ALLOCATION] Free frame 55 allocated to PID 10, page 4
-[LOADED] PID 10, page 4 loaded into frame 55
-[PC = 53] PAGE FAULT HANDLED, FRAME = 55
 [PC = 54] PAGE FAULT OCCURED
 [COMPLETED] Process PID 10 completed
 [STATUS] Process PID 10 moved from PC = 53 to PC = 55, State = 6
-[TIME TAKEN] Process PID 10 took 0.000002 seconds to execute 2 instructions
+[TIME TAKEN] Process PID 10 took 0.000003 seconds to execute 2 instructions
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 1
+Ready Queue: [4]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 0 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+[WAITING TIME] Process PID 4 total waiting time updated to: 0.000734 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 53
+[PC = 54] PAGE FAULT OCCURED
+[PC = 56] PAGE FAULT OCCURED
+[PC = 57] PAGE FAULT OCCURED
+[PAGE FAULT] Process PID 4 requesting page 8
+[REPLACEMENT] No free frames available, using FIFO replacement
+[FIFO] Selected frame 4 for replacement
+[VICTIM] Frame 4: evicting PID 5, page 0
+[UPDATE] PID 5 page table updated: page 0 unloaded
+[LOADED] PID 4, page 8 loaded into frame 4
+[PC = 57] PAGE FAULT HANDLED, FRAME = 4
+[BLOCKED] Process PID 4 on instruction 58 (Long Syscall)
+[STATUS] Process PID 4 moved from PC = 53 to PC = 59, State = 3
+[TIME TAKEN] Process PID 4 took 0.000004 seconds to execute 6 instructions
+[BLOCKED] Process PID 4 moved to READY state
+
+=== SCHEDULER INVOKED ===
+Number of ready processes: 1
+Ready Queue: [4]
+[SCHEDULER: ROUND ROBIN] Selected process 4 (position 0 in queue)
+
+[SCHEDULED] Process 4 selected for execution
+[WAITING TIME] Process PID 4 total waiting time updated to: 0.000739 mss
+=== SCHEDULER TERMINATED ===
+
+[RUNNING] Process PID 4 starting from PC = 59
+[COMPLETED] Process PID 4 completed
+[STATUS] Process PID 4 moved from PC = 59 to PC = 60, State = 6
+[TIME TAKEN] Process PID 4 took 0.000000 seconds to execute 1 instructions
 
 === SCHEDULER INVOKED ===
 Number of ready processes: 0
@@ -1648,19 +1646,18 @@ No active processes --- Scheduler terminating
 ========================================
 PID   Response(ms)    Turnaround(ms)  Wait(ms)        Status         
 ------------------------------------------------------------------------
-P1    0.08            0.24            0.16            COMPLETED
-P2    0.24            0.26            0.24            COMPLETED
-P3    0.26            0.29            0.27            COMPLETED
-P4    0.30            0.41            0.35            COMPLETED
-P5    0.41            0.46            0.41            COMPLETED
-P6    0.47            0.50            0.47            COMPLETED
-P7    0.51            0.68            0.59            COMPLETED
-P8    0.68            0.74            0.68            COMPLETED
-P9    0.74            0.75            0.74            COMPLETED
-P10   0.75            0.90            0.80            COMPLETED
+P1    0.08            0.69            0.63            COMPLETED
+P2    0.10            0.11            0.10            COMPLETED
+P3    0.27            0.42            0.39            COMPLETED
+P4    0.11            0.79            0.74            COMPLETED
+P5    0.11            0.15            0.11            COMPLETED
+P6    0.29            0.31            0.29            COMPLETED
+P7    0.15            0.67            0.61            COMPLETED
+P8    0.15            0.21            0.15            COMPLETED
+P9    0.30            0.31            0.30            COMPLETED
+P10   0.21            0.75            0.66            COMPLETED
 ========================================
-Total Instructions Executed: 0
-Total Page Faults: 258
+Total Page Faults: 264
 ========================================
 
 
@@ -1683,18 +1680,18 @@ Active Processes: 0
 
 === Memory Statistics ===
 Total Frames: 64
-Used Frames: 56
-Free Frames: 8
-Total Page Faults: 258
+Used Frames: 64
+Free Frames: 0
+Total Page Faults: 264
 
 Frame Table (First 10 frames):
 Frame | PID  | Page | Dirty | Use | Ref Count
 ------+------+------+-------+-----+----------
-   0  |    1 |    0 |   0   |  1  |    1
-   1  |    2 |    0 |   0   |  1  |    1
-   2  |    3 |    0 |   0   |  1  |    1
-   3  |    4 |    0 |   0   |  1  |    1
-   4  |    5 |    0 |   0   |  1  |    1
+   0  |    4 |    9 |   0   |  1  |    1
+   1  |    4 |    2 |   0   |  1  |    1
+   2  |   10 |    4 |   0   |  1  |    1
+   3  |    4 |    6 |   0   |  1  |    1
+   4  |    4 |    8 |   0   |  1  |    1
    5  |    6 |    0 |   0   |  1  |    1
    6  |    7 |    0 |   0   |  1  |    1
    7  |    8 |    0 |   0   |  1  |    1
